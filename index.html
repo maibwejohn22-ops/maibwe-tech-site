@@ -1392,10 +1392,10 @@
     </div>
     <div class="contact-grid">
 
-      <form class="form" id="contactForm" data-anim="left" action="https://api.web3forms.com/v3/submit" method="POST">
-        <!-- Web3Forms : remplacez la valeur par votre clé d'accès (gratuite sur web3forms.com).
-             Votre adresse courriel reste chez Web3Forms — elle n'apparaît jamais dans ce code. -->
-        <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS_ICI">
+      <form class="form" id="contactForm" data-anim="left" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Web3Forms : clé d'accès publique (route les messages vers la boîte configurée
+             sur web3forms.com). Ne donne aucun accès au compte ; sûre côté client. -->
+        <input type="hidden" name="access_key" value="02a4a4b1-b083-4a1f-8153-439a2b643891">
         <input type="hidden" name="subject" value="Nouveau message — Site Maibwe Tech">
         <input type="hidden" name="from_name" value="Site Maibwe Tech">
         <!-- Honeypot anti-spam (invisible pour les humains) -->
