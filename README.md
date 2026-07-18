@@ -8,6 +8,10 @@
 
 Basée au Québec, ouverte au monde 🌍
 
+### 🔗 [**Voir le site en ligne →**](https://maibwejohn22-ops.github.io/maibwe-tech-site/)
+
+`https://maibwejohn22-ops.github.io/maibwe-tech-site/`
+
 </div>
 
 ---
@@ -33,7 +37,7 @@ Ce dépôt contient le **site vitrine officiel** de l'entreprise.
 - **Compteurs animés**, bandeau défilant, accordéon FAQ et animations d'apparition au défilement
 - **Réalisations** présentant les vrais logos des applications (Église Connect, etc.) en orbite animée
 - **Assistant intégré (chatbot)** répondant aux questions fréquentes, 100 % côté client
-- **Formulaire de contact** (ouvre le logiciel de courriel — aucune donnée stockée)
+- **Formulaire de contact sécurisé** (Web3Forms) avec message de confirmation animé
 - **SEO optimisé** : balises Open Graph / Twitter, favicon, titre et description
 - **Accessibilité** : respect de `prefers-reduced-motion`, navigation au clavier, contrastes soignés
 
@@ -47,18 +51,22 @@ Site **statique**, sans dépendance ni étape de compilation :
 | Style | CSS3 (variables, Flexbox, Grid, animations) |
 | Interactivité | JavaScript vanilla (aucun framework) |
 | Police | Montserrat (Google Fonts) |
-| Images | Encodées en base64 dans le fichier + copies sources dans `assets/` |
-| Hébergement | Vercel (recommandé) ou GitHub Pages |
+| Images | Fichiers optimisés dans `assets/` (JPEG/PNG), chargées à la demande |
+| Formulaire | Web3Forms (envoi sécurisé, sans backend) |
+| Hébergement | GitHub Pages (actuel) · Vercel (option domaine) |
 
-Le site tient dans un seul fichier `index.html` autonome, ce qui le rend rapide,
-portable et facile à héberger n'importe où.
+Le site est **léger et rapide** (`index.html` ~100 Ko + images optimisées) et obtient
+**100/100** aux quatre catégories Lighthouse : Performance, Accessibilité, Bonnes
+pratiques et SEO.
 
 ## 📁 Structure du projet
 
 ```
 maibwe-tech-site/
-├── index.html          # Le site complet (autonome, images intégrées)
-├── assets/             # Copies sources des images (référence / réutilisation)
+├── index.html          # Le site (HTML + CSS + JS, ~100 Ko)
+├── assets/             # Images optimisées, chargées par le site
+│   ├── favicon-32.png          # Favicon
+│   ├── apple-touch-icon.png    # Icône iOS (180×180)
 │   ├── og-cover.png            # Image de partage social (1200×630)
 │   ├── photo-hero-afrique.jpg
 │   ├── photo-apropos-afrique.jpg
@@ -93,19 +101,47 @@ Puis ouvrez <http://localhost:4173> dans votre navigateur.
 
 ## 🌐 Déploiement
 
-Le site se déploie automatiquement à chaque `git push` sur la branche `main`
-(voir la configuration d'hébergement). Comme il s'agit d'un site statique,
-aucune variable d'environnement n'est nécessaire.
+Le site est hébergé sur **GitHub Pages** et se **redéploie automatiquement** à chaque
+`git push` sur la branche `main` :
 
-### Configuration optionnelle
-
-Pour activer l'envoi du **formulaire de contact** par courriel, renseignez l'adresse
-officielle dans `index.html` :
-
-```js
-// Rechercher cette ligne et y mettre votre adresse :
-var CONTACT_EMAIL = 'contact@maibwetech.com';
+```bash
+git add -A
+git commit -m "Description de la modification"
+git push
 ```
+
+La mise en ligne prend environ une minute. Aucune variable d'environnement n'est
+nécessaire (site statique).
+
+> Pour passer à **Vercel** (recommandé pour un domaine personnalisé) : connectez-vous
+> sur [vercel.com](https://vercel.com) avec GitHub → *Add New → Project* → importez ce
+> dépôt → Framework *Other*, aucune commande de build → *Deploy*.
+
+### Brancher un nom de domaine personnalisé
+
+1. *Settings → Pages → Custom domain* dans le dépôt GitHub, saisissez votre domaine.
+2. Chez votre registraire DNS : un `CNAME` `www` → `maibwejohn22-ops.github.io`
+   (ou les enregistrements `A` de GitHub pour le domaine racine).
+3. Cochez *Enforce HTTPS*.
+4. Mettez à jour l'URL dans les balises `<link rel="canonical">` et `og:url` /
+   `og:image` de `index.html`, puis `git push`.
+
+## ✉️ Configurer le formulaire de contact (Web3Forms)
+
+Le formulaire envoie les messages via **[Web3Forms](https://web3forms.com)** — votre
+adresse courriel **n'apparaît jamais** dans le code, seulement une clé d'accès publique
+qui route les messages vers votre boîte.
+
+1. Créez une clé gratuite sur [web3forms.com](https://web3forms.com) (avec votre courriel).
+2. Dans `index.html`, remplacez la valeur du champ caché :
+
+```html
+<input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS_ICI">
+```
+
+3. `git push` — le formulaire est immédiatement fonctionnel, avec message de confirmation.
+
+Tant que la clé n'est pas renseignée, un message clair s'affiche au lieu d'un envoi.
 
 ## 📄 Licence
 
