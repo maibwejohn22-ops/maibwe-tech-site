@@ -1660,11 +1660,10 @@
       root.classList.toggle('dark', sombre);
       if (themeBtn) themeBtn.setAttribute('aria-pressed', sombre ? 'true' : 'false');
     }
+    // Aucun choix enregistré → mode CLAIR par défaut (on ignore volontairement la
+    // préférence système prefers-color-scheme). Le choix manuel est ensuite mémorisé.
     var choix = null;
     try { choix = localStorage.getItem('mt-theme'); } catch (e) {}
-    if (choix === null) {
-      choix = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
     appliquerTheme(choix === 'dark');
     if (themeBtn) {
       themeBtn.addEventListener('click', function () {
