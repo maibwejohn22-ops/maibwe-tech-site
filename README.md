@@ -8,9 +8,9 @@
 
 Basée au Québec, ouverte au monde 🌍
 
-### 🔗 [**Voir le site en ligne →**](https://maibwejohn22-ops.github.io/maibwe-tech-site/)
+### 🔗 [**Voir le site en ligne →**](https://maibwe-tech-site.vercel.app/)
 
-`https://maibwejohn22-ops.github.io/maibwe-tech-site/`
+`https://maibwe-tech-site.vercel.app/`
 
 </div>
 
@@ -53,7 +53,7 @@ Site **statique**, sans dépendance ni étape de compilation :
 | Police | Montserrat (Google Fonts) |
 | Images | Fichiers optimisés dans `assets/` (JPEG/PNG), chargées à la demande |
 | Formulaire | Web3Forms (envoi sécurisé, sans backend) |
-| Hébergement | GitHub Pages (actuel) · Vercel (option domaine) |
+| Hébergement | Vercel (principal) · GitHub Pages (miroir) |
 
 Le site est **léger et rapide** (`index.html` ~100 Ko + images optimisées) et obtient
 **100/100** aux quatre catégories Lighthouse : Performance, Accessibilité, Bonnes
@@ -101,8 +101,9 @@ Puis ouvrez <http://localhost:4173> dans votre navigateur.
 
 ## 🌐 Déploiement
 
-Le site est hébergé sur **GitHub Pages** et se **redéploie automatiquement** à chaque
-`git push` sur la branche `main` :
+Le site est déployé sur **Vercel** (adresse officielle
+<https://maibwe-tech-site.vercel.app/>) et se **redéploie automatiquement** à chaque
+`git push` sur la branche `main`. Un miroir reste disponible sur GitHub Pages.
 
 ```bash
 git add -A
@@ -113,17 +114,12 @@ git push
 La mise en ligne prend environ une minute. Aucune variable d'environnement n'est
 nécessaire (site statique).
 
-> Pour passer à **Vercel** (recommandé pour un domaine personnalisé) : connectez-vous
-> sur [vercel.com](https://vercel.com) avec GitHub → *Add New → Project* → importez ce
-> dépôt → Framework *Other*, aucune commande de build → *Deploy*.
-
 ### Brancher un nom de domaine personnalisé
 
-1. *Settings → Pages → Custom domain* dans le dépôt GitHub, saisissez votre domaine.
-2. Chez votre registraire DNS : un `CNAME` `www` → `maibwejohn22-ops.github.io`
-   (ou les enregistrements `A` de GitHub pour le domaine racine).
-3. Cochez *Enforce HTTPS*.
-4. Mettez à jour l'URL dans les balises `<link rel="canonical">` et `og:url` /
+1. **Sur Vercel** : *Project → Settings → Domains → Add*, saisissez votre domaine, puis
+   suivez les instructions DNS affichées (CNAME ou enregistrements A fournis par Vercel).
+2. Cochez le HTTPS automatique (activé par défaut sur Vercel).
+3. Mettez à jour l'adresse dans les balises `<link rel="canonical">`, `og:url` et
    `og:image` de `index.html`, puis `git push`.
 
 ## ✉️ Configurer le formulaire de contact (Web3Forms)

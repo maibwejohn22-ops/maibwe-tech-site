@@ -8,7 +8,7 @@
   <meta name="keywords" content="Maibwe Tech, développement web, application mobile, logiciel sur mesure, site web, Québec, Afrique, transformation numérique, base de données, automatisation">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#14253F">
-  <link rel="canonical" href="https://maibwejohn22-ops.github.io/maibwe-tech-site/">
+  <link rel="canonical" href="https://maibwe-tech-site.vercel.app/">
   <title>Maibwe Tech — Solutions numériques simples, utiles et accessibles</title>
   <!-- Open Graph (partage Facebook, LinkedIn, WhatsApp…) -->
   <meta property="og:type" content="website">
@@ -16,15 +16,15 @@
   <meta property="og:locale" content="fr_CA">
   <meta property="og:title" content="Maibwe Tech — Solutions numériques simples, utiles et accessibles">
   <meta property="og:description" content="Sites web, applications mobiles et logiciels sur mesure pour les entreprises, organisations, églises, écoles et entrepreneurs. Basée au Québec, ouverte au monde.">
-  <meta property="og:url" content="https://maibwejohn22-ops.github.io/maibwe-tech-site/">
-  <meta property="og:image" content="https://maibwejohn22-ops.github.io/maibwe-tech-site/assets/og-cover.png">
+  <meta property="og:url" content="https://maibwe-tech-site.vercel.app/">
+  <meta property="og:image" content="https://maibwe-tech-site.vercel.app/assets/og-cover.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Maibwe Tech — Solutions numériques simples, utiles et accessibles">
   <meta name="twitter:description" content="Sites web, applications mobiles et logiciels sur mesure. Basée au Québec, ouverte au monde.">
-  <meta name="twitter:image" content="https://maibwejohn22-ops.github.io/maibwe-tech-site/assets/og-cover.png">
+  <meta name="twitter:image" content="https://maibwe-tech-site.vercel.app/assets/og-cover.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -619,6 +619,20 @@
   .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   .faq-a p { padding: 0 24px 22px; color: var(--slate); font-size: 15px; }
 
+  /* ============ TÉMOIGNAGES (prêt à activer) ============ */
+  .testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 900px) { .testimonials { grid-template-columns: 1fr; } }
+  .testimonial {
+    margin: 0; background: var(--white); border: 1px solid var(--line);
+    border-radius: 20px; padding: 28px 26px; box-shadow: var(--shadow-card);
+    display: grid; gap: 18px; align-content: start;
+  }
+  .testimonial blockquote { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--navy); }
+  .testimonial blockquote::before { content: ""; display: block; width: 34px; height: 3px; background: var(--grad); border-radius: 999px; margin-bottom: 14px; }
+  .testimonial figcaption { display: grid; gap: 2px; }
+  .testimonial figcaption b { font-size: 14.5px; color: var(--navy); }
+  .testimonial figcaption span { font-size: 13px; color: var(--slate); }
+
   /* ============ CONTACT ============ */
   .contact-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 40px; align-items: start; }
   @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
@@ -998,10 +1012,10 @@
 <section class="section on-dark" style="padding: 72px 0;">
   <div class="wrap">
     <div class="stats">
-      <div class="stat" data-anim="up"><b><span class="count" data-target="8">0</span></b><span>services offerts</span></div>
-      <div class="stat" data-anim="up" style="--d: 0.12s;"><b><span class="count" data-target="6">0</span></b><span>produits développés ou en chemin</span></div>
-      <div class="stat" data-anim="up" style="--d: 0.24s;"><b><span class="count" data-target="4">0</span></b><span>étapes dans notre méthode</span></div>
-      <div class="stat" data-anim="up" style="--d: 0.36s;"><b><span class="count" data-target="100">0</span>&nbsp;%</b><span>sur mesure, pensé pour vous</span></div>
+      <div class="stat" data-anim="up"><b><span class="count" data-target="8">8</span></b><span>services offerts</span></div>
+      <div class="stat" data-anim="up" style="--d: 0.12s;"><b><span class="count" data-target="6">6</span></b><span>produits développés ou en chemin</span></div>
+      <div class="stat" data-anim="up" style="--d: 0.24s;"><b><span class="count" data-target="4">4</span></b><span>étapes dans notre méthode</span></div>
+      <div class="stat" data-anim="up" style="--d: 0.36s;"><b><span class="count" data-target="100">100</span>&nbsp;%</b><span>sur mesure, pensé pour vous</span></div>
     </div>
   </div>
 </section>
@@ -1119,14 +1133,14 @@
         <div class="product-top">
           <div class="product-head">
             <div><p class="product-kind">Application mobile</p><h3>VillageMap RDC</h3></div>
-            <span class="badge badge-dev">En développement</span>
+            <span class="badge badge-ok">Disponible — en évolution</span>
           </div>
         </div>
         <div class="product-body">
           <p>Rendre visibles les villages de la RDC sur Google Maps : chacun peut ajouter son village, envoyer sa position GPS et des photos pour faciliter son identification.</p>
           <p class="product-aud"><b>Public cible</b>Diaspora congolaise, communautés locales, chercheurs et ONG</p>
         </div>
-        <div class="product-foot"><a class="product-link" href="#contact">Voir le produit →</a></div>
+        <div class="product-foot"><a class="product-link" href="https://villagemap-rdc.vercel.app" target="_blank" rel="noopener">Visiter la plateforme →</a></div>
       </article>
 
       <article class="product" data-anim="up" style="--d: 0.1s;">
@@ -1140,7 +1154,7 @@
           <p>Toutes les informations sur les universités et établissements supérieurs de la RDC, centralisées en un seul endroit : programmes, admissions, coordonnées.</p>
           <p class="product-aud"><b>Public cible</b>Étudiants, parents, établissements d’enseignement</p>
         </div>
-        <div class="product-foot"><a class="product-link" href="#contact">Voir le produit →</a></div>
+        <div class="product-foot"><a class="product-link" href="#contact">Demander une démonstration →</a></div>
       </article>
 
       <article class="product" data-anim="up" style="--d: 0.2s;">
@@ -1154,7 +1168,7 @@
           <p>La plateforme complète pour paroisses : annonces, horaires de messes, événements, demandes de services et notifications, avec une application mobile pour les fidèles et un portail pour le secrétariat.</p>
           <p class="product-aud"><b>Public cible</b>Paroisses, diocèses, organisations religieuses</p>
         </div>
-        <div class="product-foot"><a class="product-link" href="#vedette">Voir le produit →</a></div>
+        <div class="product-foot"><a class="product-link" href="#contact">Demander une démonstration →</a></div>
       </article>
 
       <article class="product" data-anim="up" style="--d: 0.3s;">
@@ -1168,7 +1182,7 @@
           <p>Des sites vitrines modernes, livrés rapidement, avec hébergement et nom de domaine pris en charge — vous vous concentrez sur votre organisation, nous nous occupons du reste.</p>
           <p class="product-aud"><b>Public cible</b>PME, associations, entrepreneurs</p>
         </div>
-        <div class="product-foot"><a class="product-link" href="#contact">Voir le produit →</a></div>
+        <div class="product-foot"><a class="product-link" href="#contact">Demander un devis →</a></div>
       </article>
 
       <article class="product" data-anim="up" style="--d: 0.4s;">
@@ -1182,7 +1196,7 @@
           <p>Communication avec les parents, annonces, calendriers et gestion documentaire : une boîte à outils numérique adaptée aux écoles et centres de formation.</p>
           <p class="product-aud"><b>Public cible</b>Écoles, centres de formation, garderies</p>
         </div>
-        <div class="product-foot"><a class="product-link" href="#contact">Voir le produit →</a></div>
+        <div class="product-foot"><a class="product-link" href="#contact">Demander une démonstration →</a></div>
       </article>
 
       <article class="product" data-anim="up" style="--d: 0.5s;">
@@ -1196,7 +1210,7 @@
           <p>Des outils numériques open source ou gratuits pour les communautés qui ont de grands besoins et de petits budgets — parce que la technologie doit servir tout le monde.</p>
           <p class="product-aud"><b>Public cible</b>Associations, communautés, projets à impact social</p>
         </div>
-        <div class="product-foot"><a class="product-link" href="#contact">Voir le produit →</a></div>
+        <div class="product-foot"><a class="product-link" href="#contact">Demander une démonstration →</a></div>
       </article>
 
     </div>
@@ -1209,62 +1223,30 @@
     <div class="section-head" data-anim="up">
       <span class="kicker">Produits en vedette</span>
       <h2>Ce que Maibwe Tech construit de mieux</h2>
-      <p>Cinq projets qui montrent notre vision : des outils utiles, ancrés dans les besoins réels d’ici et d’ailleurs.</p>
+      <p>Nos produits phares, nés de besoins réels sur le terrain — au cœur de la vision de Maibwe Tech.</p>
     </div>
     <div class="featured">
 
       <article class="feat" data-anim="up">
-        <p class="feat-tag">Vedette · Cartographie citoyenne</p>
+        <p class="feat-tag">Disponible · Cartographie citoyenne</p>
         <h3>VillageMap RDC</h3>
-        <p>Des milliers de villages de la RDC n’apparaissent sur aucune carte. VillageMap RDC change cela : une application qui permet à chacun de mettre son village sur Google Maps.</p>
+        <p>Des milliers de villages de la RDC n’apparaissent sur aucune carte. VillageMap RDC change cela : une plateforme en ligne où chacun peut placer son village sur la carte, avec sa position GPS et ses photos.</p>
         <ul class="feat-points">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Ajout d’un village avec sa position GPS exacte</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Photos pour faciliter l’identification des lieux</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Contribution communautaire, depuis la RDC ou la diaspora</li>
         </ul>
+        <a class="work-link" href="https://villagemap-rdc.vercel.app" target="_blank" rel="noopener" style="color: #B79CFF;">Visiter la plateforme →</a>
       </article>
 
       <article class="feat" data-anim="up" style="--d: 0.12s;">
-        <p class="feat-tag">Vedette · Éducation</p>
+        <p class="feat-tag">En développement · Éducation</p>
         <h3>Campus RDC</h3>
-        <p>Choisir une université en RDC ne devrait pas être un parcours du combattant. Campus RDC centralise l’information sur les établissements supérieurs du pays.</p>
+        <p>Choisir une université en RDC ne devrait pas être un parcours du combattant. Campus RDC vise à centraliser l’information sur les établissements supérieurs du pays, en un seul endroit fiable.</p>
         <ul class="feat-points">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Fiches complètes des universités et instituts</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Programmes, admissions et coordonnées à jour</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Un point de départ fiable pour étudiants et parents</li>
-        </ul>
-      </article>
-
-      <article class="feat" data-anim="up" style="--d: 0.24s;">
-        <p class="feat-tag">Vedette · Organisations et paroisses</p>
-        <h3>Solutions pour paroisses et organisations</h3>
-        <p>Des plateformes numériques complètes pour gérer la vie d’une communauté : annonces, messes et événements, demandes de services, notifications et communication avec les membres.</p>
-        <ul class="feat-points">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Application mobile pour les membres</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Portail d’administration simple pour le secrétariat</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Déjà utilisées par des paroisses au Québec</li>
-        </ul>
-      </article>
-
-      <article class="feat" data-anim="up" style="--d: 0.36s;">
-        <p class="feat-tag">Vedette · Présence en ligne</p>
-        <h3>Sites web professionnels</h3>
-        <p>Un site vitrine moderne reste la première porte d’entrée de votre organisation. Nous les concevons sobres, rapides et crédibles — comme celui que vous lisez en ce moment.</p>
-        <ul class="feat-points">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Design professionnel adapté à votre image</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Optimisé pour mobile, tablette et ordinateur</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Livraison rapide et accompagnement après la mise en ligne</li>
-        </ul>
-      </article>
-
-      <article class="feat feat-wide" data-anim="up" style="--d: 0.48s;">
-        <p class="feat-tag">Vedette · Sur mesure</p>
-        <h3>Applications mobiles sur mesure</h3>
-        <p>Votre organisation a un besoin qu’aucune application existante ne couvre ? Nous concevons des applications iOS et Android taillées exactement pour votre réalité — de la première idée jusqu’à la publication sur l’App Store et Google Play.</p>
-        <ul class="feat-points">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Conception, développement et publication pris en charge de bout en bout</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Notifications, comptes utilisateurs, contenus en temps réel selon vos besoins</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Maintenance et évolutions après le lancement</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Fiches des universités et instituts</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Programmes, admissions et coordonnées</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg>Un point de départ pensé pour les étudiants et les parents</li>
         </ul>
       </article>
 
@@ -1299,6 +1281,10 @@
       <p>Un aperçu de ce que nous avons construit — et de ce que nous pourrions construire pour vous.</p>
     </div>
     <div class="works">
+      <!-- Captures d'écran réelles : quand une vraie capture est disponible, remplacer
+           le médaillon .work-visual d'une carte par :
+           <div class="work-visual"><img src="assets/capture-projet.jpg" alt="Capture de l'application" style="width:100%;height:100%;object-fit:cover"></div>
+           Ne pas afficher de cadre vide tant qu'aucune capture réelle n'existe. -->
 
       <article class="work" data-anim="up">
         <div class="work-visual" role="img" aria-label="Logo de l’application Église Connect">
@@ -1311,7 +1297,7 @@
           <h3>Église Connect — plateforme paroissiale</h3>
           <p>Application mobile et portail administratif complets pour une paroisse : annonces, messes, événements, demandes de services, notifications et rapports imprimables.</p>
           <div class="work-tech"><span>React Native</span><span>Next.js</span><span>PostgreSQL</span><span>Vercel</span></div>
-          <a class="work-link" href="#contact">Voir plus →</a>
+          <a class="work-link" href="#contact">Discuter d’un projet similaire →</a>
         </div>
       </article>
 
@@ -1326,7 +1312,7 @@
           <h3>Portail sécurisé pour congrégation religieuse</h3>
           <p>Plateforme privée de communication interne : messages, annonces avec accusés de lecture, documents, calendrier et gestion des demandes d’adhésion.</p>
           <div class="work-tech"><span>Next.js</span><span>Fastify</span><span>Prisma</span><span>PostgreSQL</span></div>
-          <a class="work-link" href="#contact">Voir plus →</a>
+          <a class="work-link" href="#contact">Discuter d’un projet similaire →</a>
         </div>
       </article>
 
@@ -1341,7 +1327,7 @@
           <h3>Sites vitrines pour organisations</h3>
           <p>Conception de sites professionnels sobres et rapides pour des organisations et entrepreneurs, avec formulaire de contact et optimisation mobile.</p>
           <div class="work-tech"><span>HTML/CSS</span><span>Next.js</span><span>Design responsive</span></div>
-          <a class="work-link" href="#contact">Voir plus →</a>
+          <a class="work-link" href="#contact">Discuter d’un projet similaire →</a>
         </div>
       </article>
 
@@ -1378,6 +1364,29 @@
         <button class="faq-q" aria-expanded="false">Travaillez-vous avec des organisations hors du Québec ?<span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button>
         <div class="faq-a"><p>Oui. Maibwe Tech est basée au Québec et ouverte au monde : nous accompagnons des organisations partout au Canada et à l’international, avec des rencontres à distance et un suivi en ligne.</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TÉMOIGNAGES (MASQUÉ) =================
+     Section prête, VOLONTAIREMENT masquée (style="display:none") tant qu'aucun
+     témoignage RÉEL n'est fourni. Pour l'activer : retirer style="display:none"
+     ci-dessous et remplacer le contenu des cartes par de vrais témoignages
+     (nom, rôle/organisation et texte authentiques). Ne rien publier de fictif. -->
+<section class="section" id="temoignages" style="display: none;">
+  <div class="wrap">
+    <div class="section-head" data-anim="up">
+      <span class="kicker">Témoignages</span>
+      <h2>Ce que disent nos clients</h2>
+      <p>Des retours authentiques d’organisations accompagnées par Maibwe Tech.</p>
+    </div>
+    <div class="testimonials">
+      <!-- Gabarit de carte — dupliquer pour chaque témoignage réel :
+      <figure class="testimonial">
+        <blockquote>« Témoignage réel du client, mot pour mot. »</blockquote>
+        <figcaption><b>Nom du client</b><span>Rôle · Organisation</span></figcaption>
+      </figure>
+      -->
     </div>
   </div>
 </section>
@@ -1428,7 +1437,7 @@
         </div>
         <button class="btn btn-grad" type="submit" id="formSubmit" style="justify-self: start;">Envoyer le message</button>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-        <p class="form-note">Vos informations sont transmises de façon sécurisée. Aucune donnée n’est stockée sur ce site.</p>
+        <p class="form-note">Vos informations sont transmises via Web3Forms, uniquement pour traiter votre demande. <a href="confidentialite.html">Politique de confidentialité</a>.</p>
       </form>
       <div class="form form-success" id="formSuccess" role="status" aria-live="polite">
         <span class="success-icon" aria-hidden="true">
@@ -1441,24 +1450,16 @@
 
       <div class="contact-info" data-anim="right">
         <div class="info-block">
-          <b>Courriel</b>
-          <span class="info-soon">Contact bientôt disponible</span>
-          <p>L’adresse courriel officielle sera publiée au lancement du site.</p>
+          <b>Parlons de votre projet</b>
+          <p>Décrivez-nous votre besoin à l’aide du formulaire. Maibwe Tech étudiera votre demande et vous contactera pour discuter des prochaines étapes.</p>
         </div>
         <div class="info-block">
-          <b>Téléphone</b>
-          <span class="info-soon">À ajouter</span>
-          <p>Le numéro sera affiché ici dès qu’il sera en service.</p>
+          <b>Zones desservies</b>
+          <p>Services offerts au Québec, au Canada et à l’international.</p>
         </div>
         <div class="info-block">
-          <b>WhatsApp</b>
-          <span class="info-soon">À ajouter</span>
-          <p>Un lien direct WhatsApp sera offert pour les demandes depuis l’international.</p>
-        </div>
-        <div class="info-block">
-          <b>Réseaux sociaux</b>
-          <span class="info-soon">À ajouter</span>
-          <p>LinkedIn, Facebook, Instagram et X — les liens seront ajoutés prochainement.</p>
+          <b>Langues de service</b>
+          <p>Français et anglais.</p>
         </div>
       </div>
 
@@ -1501,7 +1502,7 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="footer-legal">
-      <span>© 2026 Maibwe Tech (MT). Tous droits réservés.</span>
+      <span>© 2026 Maibwe Tech (MT). Tous droits réservés. · <a href="confidentialite.html" style="color: inherit;">Confidentialité</a></span>
       <span>Conçu et développé par Maibwe Tech</span>
     </div>
   </div>
@@ -1761,6 +1762,9 @@
           if (entry.isIntersecting) { animateCount(entry.target); cio.unobserve(entry.target); }
         });
       }, { threshold: 0.6 });
+      // JS actif + animations : on repart de 0 pour l'effet de comptage (sans JS,
+      // la vraie valeur reste affichée dans le HTML). Réduit-mouvement : on garde la vraie valeur.
+      if (!reduced) counters.forEach(function (el) { el.textContent = '0'; });
       counters.forEach(function (el) { cio.observe(el); });
     } else {
       counters.forEach(function (el) { el.textContent = el.getAttribute('data-target'); });
