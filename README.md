@@ -30,7 +30,7 @@ Ce dépôt contient le **site vitrine officiel** de l'entreprise.
 ## ✨ Fonctionnalités du site
 
 - **Page d'accueil animée** avec héros à diaporama automatique et cartes flottantes
-- **Mode clair / sombre** avec bouton de bascule (mémorisé, respecte la préférence du système)
+- **Mode clair / sombre** avec bouton de bascule — mode clair par défaut à la première visite, choix mémorisé pour les visites suivantes
 - **Design 100 % responsive** — ordinateur, tablette et téléphone
 - **Sections complètes** : Solutions, À propos, Services, Notre approche, Pour qui, Produits,
   Produits en vedette, Pourquoi nous, Réalisations, FAQ et Contact
