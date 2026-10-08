@@ -35,7 +35,8 @@
   <link rel="manifest" href="/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" id="font-css">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"></noscript>
   <link rel="stylesheet" href="/assets/site.css">
   <script src="/assets/site.js" defer></script>
   <script type="application/ld+json">
@@ -79,12 +80,12 @@
 <!-- ================= HEADER ================= -->
 <nav class="nav" id="siteNav" aria-label="Navigation principale">
   <div class="wrap nav-inner">
-    <a class="brand" href="/" aria-label="Applications John Maibwe — accueil">
+    <a class="brand" href="/">
       <img class="logo-icon" src="/assets/ajm-icon.svg" alt="" width="46" height="46">
-      <span class="brand-text"><small>APPLICATIONS</small><b>JOHN <em>MAIBWE</em></b></span>
+      <span class="brand-text"><small>APPLICATIONS</small> <b>JOHN <em>MAIBWE</em></b></span>
     </a>
     <div class="nav-actions">
-    <a class="lang-switch" href="/en/" hreflang="en" lang="en" aria-label="English version">EN</a>
+    <a class="lang-switch" href="/en/" hreflang="en" lang="en" aria-label="EN — English version">EN</a>
     <button class="theme-toggle" id="themeToggle" type="button" aria-label="Basculer le mode sombre">
       <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
       <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.8 4.8l1.8 1.8M17.4 17.4l1.8 1.8M19.2 4.8l-1.8 1.8M6.6 17.4l-1.8 1.8"/></svg>
@@ -137,7 +138,7 @@
     </div>
 
     <div class="hero-visual">
-      <img class="hero-photo" src="/assets/photo-hero-afrique.jpg" alt="Jeunes professionnels africains étudiant et collaborant ensemble" width="840" height="629" decoding="async">
+      <img class="hero-photo" src="/assets/photo-hero-afrique.webp" alt="Jeunes professionnels africains étudiant et collaborant ensemble" width="800" height="533" loading="lazy" decoding="async">
       <div class="fcard fcard-main" aria-hidden="true">
         <span class="fmark"><img src="/assets/ajm-icon.svg" alt="" width="44" height="44" style="border-radius: 11px;"></span>
         <div><b>AJM</b><span>Applications John Maibwe</span></div>
@@ -209,7 +210,7 @@
       <p>Applications John Maibwe n’est pas qu’un fournisseur de sites web : c’est un partenaire de croissance, d’innovation et de solutions concrètes.</p>
       <a class="btn btn-grad" href="#contact">Parlons de votre projet</a>
     </div>
-    <img class="cta-photo" data-anim="right" src="/assets/photo-cta-afrique.jpg" alt="Consultant africain analysant des données avec une collègue" width="840" height="560" loading="lazy" decoding="async">
+    <img class="cta-photo" data-anim="right" src="/assets/photo-cta-afrique.webp" alt="Consultant africain analysant des données avec une collègue" width="800" height="1200" loading="lazy" decoding="async">
   </div>
 </section>
 
@@ -239,7 +240,7 @@
           entrepreneurs : nous parlons votre langue, pas seulement celle de la technologie.
           Chaque projet commence par une question simple — <strong>qu’est-ce qui vous ferait vraiment gagner du temps&nbsp;?</strong>
         </p>
-        <img class="about-photo" src="/assets/photo-apropos-afrique.jpg" alt="Femme d’affaires africaine concluant un partenariat par une poignée de main" width="840" height="561" loading="lazy" decoding="async">
+        <img class="about-photo" src="/assets/photo-apropos-afrique.webp" alt="Femme d’affaires africaine concluant un partenariat par une poignée de main" width="800" height="533" loading="lazy" decoding="async">
       </div>
       <div style="display: grid; gap: 14px;" data-anim="right">
         <div class="why-item"><h3>Simplicité</h3><p>Des outils clairs, que tout le monde peut utiliser sans formation compliquée.</p></div>
@@ -570,7 +571,7 @@
         <div class="work-visual" role="img" aria-label="Logo de l’application Église Connect">
           <span class="orbit" aria-hidden="true"></span>
           <span class="orbit orbit-2" aria-hidden="true"></span>
-          <span class="app-badge app-badge-zoom"><img src="/assets/logo-eglise-connect.jpg" alt="Logo de l’application Église Connect" decoding="async"></span>
+          <span class="app-badge app-badge-zoom"><img src="/assets/logo-eglise-connect.webp" width="192" height="192" loading="lazy" alt="Logo de l’application Église Connect" decoding="async"></span>
           <span class="work-visual-label">APP MOBILE + PORTAIL</span>
         </div>
         <div class="work-body">
@@ -585,7 +586,7 @@
         <div class="work-visual" role="img" aria-label="Sceau de la congrégation cliente">
           <span class="orbit" aria-hidden="true"></span>
           <span class="orbit orbit-2" aria-hidden="true"></span>
-          <span class="app-badge"><img src="/assets/logo-cimko.jpg" alt="Logo de la plateforme CIMKO" decoding="async"></span>
+          <span class="app-badge"><img src="/assets/logo-cimko.webp" width="192" height="192" loading="lazy" alt="Logo de la plateforme CIMKO" decoding="async"></span>
           <span class="work-visual-label">PLATEFORME SÉCURISÉE</span>
         </div>
         <div class="work-body">
@@ -600,7 +601,7 @@
         <div class="work-visual" role="img" aria-label="Logo du site Classy Event">
           <span class="orbit" aria-hidden="true"></span>
           <span class="orbit orbit-2" aria-hidden="true"></span>
-          <span class="app-badge app-badge-dark"><img src="/assets/logo-classy-event.jpg" alt="Logo du site Classy Event" decoding="async"></span>
+          <span class="app-badge app-badge-dark"><img src="/assets/logo-classy-event.webp" width="192" height="192" loading="lazy" alt="Logo du site Classy Event" decoding="async"></span>
           <span class="work-visual-label">SITES VITRINES</span>
         </div>
         <div class="work-body">
@@ -772,9 +773,9 @@
 <footer class="footer">
   <div class="wrap footer-inner">
     <div class="footer-brand">
-      <a class="brand brand-dark" href="/" aria-label="Applications John Maibwe — accueil">
+      <a class="brand brand-dark" href="/">
         <img class="logo-icon" src="/assets/ajm-icon.svg" alt="" width="46" height="46" loading="lazy">
-        <span class="brand-text"><small>APPLICATIONS</small><b>JOHN <em>MAIBWE</em></b></span>
+        <span class="brand-text"><small>APPLICATIONS</small> <b>JOHN <em>MAIBWE</em></b></span>
       </a>
       <p style="font-size: 13.5px;">Applications web et mobiles, logiciels sur mesure et intelligence artificielle. Basée au Québec, ouverte au monde.</p>
       <p style="font-size: 13.5px;"><a href="mailto:john@johnmaibwe.com" style="color: #C9B6FF;">john@johnmaibwe.com</a></p>

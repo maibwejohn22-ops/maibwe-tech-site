@@ -12,9 +12,9 @@ et les images de partage `public/assets/og-ajm-fr.png` / `og-ajm-en.png` sont la
 Les logos affichés dans les cartes « Réalisations » appartiennent à des projets
 développés par Applications John Maibwe ou à ses clients :
 
-- `logo-eglise-connect.jpg` — application Église Connect (Applications John Maibwe)
-- `logo-cimko.jpg` — plateforme de la Congrégation CIMKO (client)
-- `logo-classy-event.jpg` — site Classy Event (client)
+- `logo-eglise-connect.webp` — application Église Connect (Applications John Maibwe)
+- `logo-cimko.webp` — plateforme de la Congrégation CIMKO (client)
+- `logo-classy-event.webp` — site Classy Event (client)
 
 ## Photographies
 
@@ -24,9 +24,9 @@ et sont utilisées sous la **[licence Pexels](https://www.pexels.com/license/)**
 
 | Fichier | Source |
 |---|---|
-| `photo-hero-afrique.jpg` | Pexels — jeunes professionnels étudiant ensemble |
-| `photo-apropos-afrique.jpg` | Pexels — poignée de main professionnelle |
-| `photo-cta-afrique.jpg` | Pexels — analyse de données en équipe |
+| `photo-hero-afrique.webp` | Pexels — jeunes professionnels étudiant ensemble |
+| `photo-apropos-afrique.webp` | Pexels — poignée de main professionnelle |
+| `photo-cta-afrique.webp` | Pexels — analyse de données en équipe |
 
 > La licence Pexels autorise l'usage commercial sans attribution. Cette page de
 > crédits est fournie par courtoisie et bonne pratique. Vous pouvez remplacer ces

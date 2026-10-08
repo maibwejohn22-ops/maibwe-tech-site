@@ -3,6 +3,11 @@
    du formulaire sont choisis en conséquence. Aucun appel externe hormis Web3Forms. */
 (function () {
   var LANG = (document.documentElement.lang || 'fr').slice(0, 2) === 'en' ? 'en' : 'fr';
+
+  // Police Montserrat : préchargée dans <head> (rel="preload"), appliquée ici pour ne pas
+  // bloquer le premier affichage (et sans script inline, interdit par la CSP).
+  var fontCss = document.getElementById('font-css');
+  if (fontCss) fontCss.rel = 'stylesheet';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ----- Coordonnées -----
