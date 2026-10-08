@@ -41,6 +41,9 @@
       formThanks: function (nom) { return 'Merci ' + (nom || '') + ' ! Nous avons bien reçu votre demande et vous répondrons rapidement, en langage clair.'; },
       formFailed: 'Désolé, l’envoi a échoué. Réessayez dans un instant ou écrivez à ' + EMAIL + '.',
       formNetwork: 'Problème de connexion. Vérifiez votre réseau et réessayez.',
+      formTooShort: 'Merci de préciser votre nom (2 caractères minimum) et votre demande (20 caractères minimum).',
+      formTooManyLinks: 'Pour éviter les messages indésirables, limitez votre message à 3 liens. Vous pourrez nous envoyer les autres par courriel.',
+      formSubject: function (sujet) { return 'Nouveau message — ' + sujet + ' — johnmaibwe.com'; },
       waText: 'Bonjour John, je vous contacte depuis johnmaibwe.com au sujet d’un projet.'
     },
     en: {
@@ -67,6 +70,9 @@
       formThanks: function (nom) { return 'Thank you ' + (nom || '') + '! We received your request and will get back to you shortly, in plain language.'; },
       formFailed: 'Sorry, sending failed. Please try again in a moment or email ' + EMAIL + '.',
       formNetwork: 'Connection problem. Check your network and try again.',
+      formTooShort: 'Please enter your name (at least 2 characters) and describe your request (at least 20 characters).',
+      formTooManyLinks: 'To keep spam out, please include at most 3 links. You can email us the others.',
+      formSubject: function (sujet) { return 'New message (EN) — ' + sujet + ' — johnmaibwe.com'; },
       waText: 'Hello John, I’m reaching out from johnmaibwe.com about a project.'
     }
   }[LANG];
@@ -319,6 +325,18 @@
       statusEl.classList.add('show');
     };
 
+    // Anti-spam côté client, en plus du filtre de Web3Forms et du pot de miel « botcheck » :
+    // un robot remplit le formulaire en moins de 3 secondes ou coche la case invisible.
+    // Dans ces deux cas on affiche la confirmation SANS rien envoyer (le robot ne sait pas
+    // qu'il a été écarté). Un message avec plus de 3 liens est refusé avec une explication.
+    var chargeA = Date.now();
+    var afficherSucces = function (nom) {
+      document.getElementById('successText').textContent = T.formThanks(nom);
+      cform.style.display = 'none';
+      successEl.classList.add('show');
+      successEl.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+    };
+
     cform.addEventListener('submit', function (e) {
       e.preventDefault();
       var cle = cform.querySelector('[name="access_key"]').value;
@@ -326,20 +344,37 @@
         afficherStatut(T.formNoKey, false);
         return;
       }
+      var nom = (document.getElementById('f-nom').value || '').trim();
+      var piege = cform.querySelector('[name="botcheck"]');
+      if ((piege && piege.checked) || Date.now() - chargeA < 3000) {
+        afficherSucces(nom);
+        return;
+      }
+      // minlength n'est vérifié par le navigateur qu'après une saisie au clavier : on revérifie ici.
+      var message = (document.getElementById('f-msg').value || '').trim();
+      if (nom.length < 2 || message.length < 20) {
+        afficherStatut(T.formTooShort, true);
+        return;
+      }
+      var liens = (message.match(/https?:\/\/|www\./gi) || []).length;
+      if (liens > 3) {
+        afficherStatut(T.formTooManyLinks, true);
+        return;
+      }
       statusEl.classList.remove('show', 'error');
       submitBtn.setAttribute('aria-busy', 'true');
       var texteInitial = submitBtn.textContent;
       submitBtn.textContent = T.formSending;
-      var nom = (document.getElementById('f-nom').value || '').trim();
 
-      fetch(cform.action, { method: 'POST', body: new FormData(cform), headers: { 'Accept': 'application/json' } })
+      var donnees = new FormData(cform);
+      // Sujet du courriel reçu : la catégorie choisie, pour trier d'un coup d'œil.
+      donnees.set('subject', T.formSubject(document.getElementById('f-sujet').value));
+
+      fetch(cform.action, { method: 'POST', body: donnees, headers: { 'Accept': 'application/json' } })
         .then(function (r) { return r.json(); })
         .then(function (data) {
           if (data.success) {
-            document.getElementById('successText').textContent = T.formThanks(nom);
-            cform.style.display = 'none';
-            successEl.classList.add('show');
-            successEl.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+            afficherSucces(nom);
           } else {
             afficherStatut(T.formFailed, true);
           }
@@ -360,6 +395,7 @@
         successEl.classList.remove('show');
         cform.style.display = '';
         statusEl.classList.remove('show', 'error');
+        chargeA = Date.now();
         document.getElementById('f-nom').focus();
       });
     }

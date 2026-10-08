@@ -694,19 +694,20 @@
         <input type="hidden" name="from_name" value="Site Applications John Maibwe">
         <!-- Honeypot anti-spam (invisible pour les humains) -->
         <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="langue" value="Français">
         <div class="form-row">
           <div class="field">
             <label for="f-nom">Votre nom</label>
-            <input id="f-nom" name="nom" type="text" autocomplete="name" required>
+            <input id="f-nom" name="nom" type="text" autocomplete="name" required minlength="2" maxlength="100">
           </div>
           <div class="field">
             <label for="f-email">Votre courriel</label>
-            <input id="f-email" name="email" type="email" autocomplete="email" required>
+            <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="254">
           </div>
         </div>
         <div class="field">
           <label for="f-sujet">Sujet de votre demande</label>
-          <select id="f-sujet" name="sujet">
+          <select id="f-sujet" name="sujet" required>
             <option>Application web ou site web</option>
             <option>Application iOS ou Android</option>
             <option>Logiciel sur mesure</option>
@@ -721,7 +722,7 @@
         </div>
         <div class="field">
           <label for="f-msg">Votre message</label>
-          <textarea id="f-msg" name="message" placeholder="Décrivez votre projet, votre organisation et vos besoins…" required></textarea>
+          <textarea id="f-msg" name="message" minlength="20" maxlength="5000" placeholder="Décrivez votre projet, votre organisation et vos besoins…" required></textarea>
         </div>
         <button class="btn btn-grad" type="submit" id="formSubmit" style="justify-self: start;">Envoyer le message</button>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>

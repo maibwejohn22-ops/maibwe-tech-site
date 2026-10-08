@@ -665,19 +665,20 @@
         <input type="hidden" name="from_name" value="Site Applications John Maibwe">
         <!-- Anti-spam honeypot (invisible to humans) -->
         <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="langue" value="English">
         <div class="form-row">
           <div class="field">
             <label for="f-nom">Your name</label>
-            <input id="f-nom" name="nom" type="text" autocomplete="name" required>
+            <input id="f-nom" name="nom" type="text" autocomplete="name" required minlength="2" maxlength="100">
           </div>
           <div class="field">
             <label for="f-email">Your email</label>
-            <input id="f-email" name="email" type="email" autocomplete="email" required>
+            <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="254">
           </div>
         </div>
         <div class="field">
           <label for="f-sujet">What is your request about?</label>
-          <select id="f-sujet" name="sujet">
+          <select id="f-sujet" name="sujet" required>
             <option>Web application or website</option>
             <option>iOS or Android app</option>
             <option>Custom software</option>
@@ -692,7 +693,7 @@
         </div>
         <div class="field">
           <label for="f-msg">Your message</label>
-          <textarea id="f-msg" name="message" placeholder="Describe your project, your organization and your needs…" required></textarea>
+          <textarea id="f-msg" name="message" minlength="20" maxlength="5000" placeholder="Describe your project, your organization and your needs…" required></textarea>
         </div>
         <button class="btn btn-grad" type="submit" id="formSubmit" style="justify-self: start;">Send message</button>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
