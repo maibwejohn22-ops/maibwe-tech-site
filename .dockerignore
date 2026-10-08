@@ -1,0 +1,5 @@
+# Seuls le site (public/) et la config nginx entrent dans l'image.
+*
+!public/
+!deploy/nginx.conf
+public/**/.DS_Store

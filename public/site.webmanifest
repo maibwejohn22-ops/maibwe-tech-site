@@ -1,0 +1,17 @@
+{
+  "name": "Applications John Maibwe",
+  "short_name": "AJM",
+  "description": "Applications web et mobiles, logiciels sur mesure, intelligence artificielle et transformation numérique — Québec, Canada.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "lang": "fr-CA",
+  "theme_color": "#14253F",
+  "background_color": "#0C1729",
+  "icons": [
+    { "src": "/assets/ajm-icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/ajm-icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/ajm-icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

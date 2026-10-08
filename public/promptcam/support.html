@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr-CA">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,8 +7,9 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#14253F">
   <title>Assistance — PromptCam</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/ajm-apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -25,7 +26,9 @@
     .topbar { background: var(--navy); padding: 16px 0; }
     .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
     .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; color: var(--white); }
-    .brand svg { width: 38px; height: 38px; }
+    .brand img { width: 38px; height: 38px; border-radius: 9px; display: block; }
+    .brand .bt { display: grid; gap: 2px; line-height: 1.1; }
+    .brand .bt small { font-size: 8px; font-weight: 700; letter-spacing: 0.3em; color: #B9C6D8; }
     .brand b { font-weight: 800; font-size: 16px; letter-spacing: 0.06em; }
     .brand b em { font-style: normal; color: #D29B38; }
     main { padding: 48px 0 72px; }
@@ -50,17 +53,9 @@
 <body>
   <div class="topbar">
     <div class="wrap">
-      <a class="brand" href="/" aria-label="Retour à l’accueil Maibwe Tech">
-        <svg viewBox="0 0 120 120" aria-hidden="true">
-          <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M51.4 21 L33.26 31.49 Q22 38 22 51 L22 69 Q22 82 33.26 88.51 L51.4 99" stroke="#F5F0E6"/>
-            <path d="M68.6 21 L86.74 31.49 Q98 38 98 51 L98 69 Q98 82 86.74 88.51 L68.6 99" stroke="#D29B38"/>
-            <path d="M41 78 L41 45 L60 62" stroke="#F5F0E6"/>
-            <path d="M60 62 L79 45 L79 78" stroke="#D29B38"/>
-          </g>
-          <circle cx="60" cy="62" r="4.6" fill="#D29B38" stroke="none"/>
-        </svg>
-        <b>MAIBWE <em>TECH</em></b>
+      <a class="brand" href="/" aria-label="Retour à l’accueil d’Applications John Maibwe">
+        <img src="/assets/ajm-icon.svg" alt="" width="38" height="38">
+        <span class="bt"><small>APPLICATIONS</small><b>JOHN <em>MAIBWE</em></b></span>
       </a>
     </div>
   </div>
@@ -75,14 +70,14 @@
       </div>
 
       <h1>Aide et assistance</h1>
-      <p class="updated">Mise à jour le 4 octobre 2026.</p>
+      <p class="updated">Mise à jour le 8 octobre 2026.</p>
       <a class="lang" href="#english">English version below ↓</a>
 
       <div class="card">
         <h2>Nous écrire</h2>
         <p>
           Une question, un problème d’abonnement ou d’enregistrement&nbsp;: écrivez à
-          <a href="mailto:maibwejohn21@icloud.com">maibwejohn21@icloud.com</a>.
+          <a href="mailto:john@johnmaibwe.com">john@johnmaibwe.com</a>.
           Nous répondons en français ou en anglais, en général sous deux jours ouvrables.
           Indiquez le modèle de votre iPhone et la version d’iOS.
         </p>
@@ -143,13 +138,13 @@
       <hr id="english">
 
       <h1>Help &amp; Support</h1>
-      <p class="updated">Updated October 4, 2026.</p>
+      <p class="updated">Updated October 8, 2026.</p>
 
       <div class="card">
         <h2>Contact us</h2>
         <p>
           Questions about your subscription or recordings: email
-          <a href="mailto:maibwejohn21@icloud.com">maibwejohn21@icloud.com</a>. We reply in
+          <a href="mailto:john@johnmaibwe.com">john@johnmaibwe.com</a>. We reply in
           English or French, usually within two business days. Please include your iPhone model
           and iOS version.
         </p>
@@ -195,7 +190,7 @@
   </main>
 
   <footer>
-    <div class="wrap">© 2026 Maibwe Tech (MT). PromptCam est une application de MAIBWE TECH (NEQ 2282127606).</div>
+    <div class="wrap">© 2026 Applications John Maibwe (AJM). PromptCam est une application d’Applications John Maibwe (NEQ 2282127606).</div>
   </footer>
 </body>
 </html>

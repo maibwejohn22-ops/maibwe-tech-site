@@ -45,3 +45,8 @@ temp/
 # === Déploiement ===
 .vercel
 .netlify
+
+# === Restes de build de la branche feat/admin-portal (Next.js) ===
+.next/
+next-env.d.ts
+*.tsbuildinfo

@@ -1,16 +1,12 @@
 <div align="center">
 
-# Maibwe Tech — Site officiel
+# Applications John Maibwe (AJM) — Site officiel
 
-**Nous créons des solutions numériques simples, utiles et accessibles.**
+**Applications web et mobiles · Logiciels sur mesure · Intelligence artificielle · Transformation numérique**
 
-*Innovation · Solutions · Succès*
+Québec, Canada · ouverte au monde 🌍
 
-Basée au Québec, ouverte au monde 🌍
-
-### 🔗 [**Voir le site en ligne →**](https://maibwe-tech-site.vercel.app/)
-
-`https://maibwe-tech-site.vercel.app/`
+### 🔗 [**johnmaibwe.com**](https://johnmaibwe.com) · [English](https://johnmaibwe.com/en/)
 
 </div>
 
@@ -18,92 +14,65 @@ Basée au Québec, ouverte au monde 🌍
 
 ## À propos
 
-**Maibwe Tech (MT)** est une entreprise technologique qui accompagne les entreprises, les
-organisations et les particuliers dans leur transformation numérique — de l'idée jusqu'à
-l'outil qui fonctionne. Nous concevons des sites web, des applications mobiles, des logiciels
-sur mesure, des bases de données et des solutions d'automatisation pour les PME, les églises,
-les écoles, les associations, les communautés et les entrepreneurs, au Canada comme à
-l'international.
+**Applications John Maibwe (AJM)** est une entreprise québécoise de développement technologique :
+applications web, applications iOS et Android, logiciels sur mesure, intelligence artificielle,
+automatisation des processus, solutions cloud et bases de données, transformation numérique.
 
-Ce dépôt contient le **site vitrine officiel** de l'entreprise.
+Ce dépôt contient le **site vitrine officiel** (anciennement « Maibwe Tech », renommé le 8 octobre 2026).
 
-## ✨ Fonctionnalités du site
+## ✨ Fonctionnalités
 
-- **Page d'accueil animée** avec héros à diaporama automatique et cartes flottantes
-- **Mode clair / sombre** avec bouton de bascule — mode clair par défaut à la première visite, choix mémorisé pour les visites suivantes
-- **Design 100 % responsive** — ordinateur, tablette et téléphone
-- **Sections complètes** : Solutions, À propos, Services, Notre approche, Pour qui, Produits,
-  Produits en vedette, Pourquoi nous, Réalisations, FAQ et Contact
-- **Compteurs animés**, bandeau défilant, accordéon FAQ et animations d'apparition au défilement
-- **Réalisations** présentant les vrais logos des applications (Église Connect, etc.) en orbite animée
-- **Assistant intégré (chatbot)** répondant aux questions fréquentes, 100 % côté client
-- **Formulaire de contact sécurisé** (Web3Forms) avec message de confirmation animé
-- **SEO optimisé** : balises Open Graph / Twitter, favicon, titre et description
-- **Accessibilité** : respect de `prefers-reduced-motion`, navigation au clavier, contrastes soignés
+- **Bilingue** : français (`/`) et anglais (`/en/`), avec `hreflang` et sélecteur FR / EN
+- **Mode clair / sombre** — clair par défaut, choix mémorisé dans le navigateur
+- **100 % responsive** — ordinateur, tablette et téléphone
+- Sections : Solutions, À propos, Services, Approche, Pour qui, Produits (état vérifié), En vedette,
+  Pourquoi nous, Réalisations, FAQ, Contact
+- **Assistant intégré** (chatbot 100 % côté client, FR/EN)
+- **Formulaire de contact** via Web3Forms, avec message de confirmation
+- **Bouton WhatsApp** prêt : il s'affiche dès qu'un numéro est indiqué dans `public/assets/site.js`
+  (`WHATSAPP_NUMBER`)
+- **SEO** : titres, descriptions, canonical, Open Graph / Twitter (FR et EN), données structurées
+  schema.org (`Organization`), `sitemap.xml`, `robots.txt`, favicon et manifeste
+- Pages légales des applications : `/adprotectx/…`, `/promptcam/…` (URL données à l'App Store)
 
-## 🛠️ Technologie
-
-Site **statique**, sans dépendance ni étape de compilation :
-
-| Élément | Détail |
-|---|---|
-| Structure | HTML5 sémantique |
-| Style | CSS3 (variables, Flexbox, Grid, animations) |
-| Interactivité | JavaScript vanilla (aucun framework) |
-| Police | Montserrat (Google Fonts) |
-| Images | Fichiers optimisés dans `assets/` (JPEG/PNG), chargées à la demande |
-| Formulaire | Web3Forms (envoi sécurisé, sans backend) |
-| Hébergement | Vercel (principal) · GitHub Pages (miroir) |
-
-Le site est **léger et rapide** (`index.html` ~100 Ko + images optimisées) et obtient
-**100/100** aux quatre catégories Lighthouse : Performance, Accessibilité, Bonnes
-pratiques et SEO.
-
-## 📁 Structure du projet
+## 📁 Structure
 
 ```
 maibwe-tech-site/
-├── index.html          # Le site (HTML + CSS + JS, ~100 Ko)
-├── assets/             # Images optimisées, chargées par le site
-│   ├── favicon-32.png          # Favicon
-│   ├── apple-touch-icon.png    # Icône iOS (180×180)
-│   ├── og-cover.png            # Image de partage social (1200×630)
-│   ├── photo-hero-afrique.jpg
-│   ├── photo-apropos-afrique.jpg
-│   ├── photo-cta-afrique.jpg
-│   ├── logo-eglise-connect.jpg
-│   ├── logo-cimko.jpg
-│   └── logo-classy-event.jpg
-├── CREDITS.md          # Sources et licences des images
-├── .gitignore
-└── README.md
+├── public/                  # Tout ce qui est servi en ligne (et rien d'autre)
+│   ├── index.html           # Accueil FR
+│   ├── en/index.html        # Accueil EN
+│   ├── assets/site.css      # Styles partagés FR/EN
+│   ├── assets/site.js       # Scripts partagés (thème, menu, assistant, formulaire, WhatsApp)
+│   ├── assets/ajm-icon.svg  # Logo AJM (source vectorielle)
+│   ├── assets/og-ajm-*.png  # Images de partage social (1200×630)
+│   ├── confidentialite.html, 404.html, robots.txt, sitemap.xml, site.webmanifest
+│   ├── adprotectx/          # Confidentialité + assistance AdProtectX
+│   └── promptcam/           # Confidentialité + assistance PromptCam
+├── deploy/nginx.conf        # Config nginx (sécurité, cache, gzip, 404)
+├── Dockerfile               # Image nginx non-root, port 8080
+└── CREDITS.md               # Sources et licences des images
 ```
 
-## 🚀 Lancer le projet localement
-
-Le site est statique : aucune installation n'est requise.
-
-**Option 1 — Ouvrir directement**
-
-Double-cliquez sur `index.html` pour l'ouvrir dans votre navigateur.
-
-**Option 2 — Serveur local (recommandé)**
+## 🚀 Prévisualiser en local
 
 ```bash
-# Avec Python 3
-python3 -m http.server 4173
-
-# ou avec Node.js
-npx serve .
+docker build -t ajm-site . && docker run --rm -p 8080:8080 ajm-site
+# puis http://localhost:8080
 ```
 
-Puis ouvrez <http://localhost:4173> dans votre navigateur.
+(ou, sans Docker : `cd public && python3 -m http.server 4173`)
 
-## 🌐 Déploiement
+## 🌐 Hébergement et déploiement
 
-Le site est déployé sur **Vercel** (adresse officielle
-<https://maibwe-tech-site.vercel.app/>) et se **redéploie automatiquement** à chaque
-`git push` sur la branche `main`. Un miroir reste disponible sur GitHub Pages.
+- **Hébergement** : VPS OVHcloud (Beauharnois, Québec), géré par **Coolify**.
+  Le proxy Traefik de Coolify termine le HTTPS (certificat Let's Encrypt renouvelé automatiquement).
+- **Déploiement** : `git push` sur `main` → l'application GitHub de Coolify reçoit le webhook et
+  reconstruit l'image sur le VPS. **Aucune GitHub Action, aucune minute GitHub consommée.**
+- **Domaine** : `johnmaibwe.com` (canonique) ; `www.johnmaibwe.com` redirige vers lui.
+  DNS chez Hostinger : seuls les enregistrements du site (A `@`) pointent vers le VPS ;
+  MX, SPF, DKIM et DMARC restent ceux de Hostinger (courriel `john@johnmaibwe.com`).
+- **Aucune variable d'environnement ni base de données** : site 100 % statique.
 
 ```bash
 git add -A
@@ -111,37 +80,19 @@ git commit -m "Description de la modification"
 git push
 ```
 
-La mise en ligne prend environ une minute. Aucune variable d'environnement n'est
-nécessaire (site statique).
+### Ancienne adresse
 
-### Brancher un nom de domaine personnalisé
+`maibwe-tech-site.vercel.app` redirige en **301** vers `johnmaibwe.com` (même chemin), grâce à
+`vercel.json`. Vercel ne sert plus le site ; ce fichier n'existe que pour conserver les anciens liens.
 
-1. **Sur Vercel** : *Project → Settings → Domains → Add*, saisissez votre domaine, puis
-   suivez les instructions DNS affichées (CNAME ou enregistrements A fournis par Vercel).
-2. Cochez le HTTPS automatique (activé par défaut sur Vercel).
-3. Mettez à jour l'adresse dans les balises `<link rel="canonical">`, `og:url` et
-   `og:image` de `index.html`, puis `git push`.
+## ✉️ Formulaire de contact (Web3Forms)
 
-## ✉️ Configurer le formulaire de contact (Web3Forms)
-
-Le formulaire envoie les messages via **[Web3Forms](https://web3forms.com)** — votre
-adresse courriel **n'apparaît jamais** dans le code, seulement une clé d'accès publique
-qui route les messages vers votre boîte.
-
-1. Créez une clé gratuite sur [web3forms.com](https://web3forms.com) (avec votre courriel).
-2. Dans `index.html`, remplacez la valeur du champ caché :
-
-```html
-<input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS_ICI">
-```
-
-3. `git push` — le formulaire est immédiatement fonctionnel, avec message de confirmation.
-
-Tant que la clé n'est pas renseignée, un message clair s'affiche au lieu d'un envoi.
+Le formulaire envoie les messages via **[Web3Forms](https://web3forms.com)**. La clé publique
+(`access_key`, dans `public/index.html` et `public/en/index.html`) détermine l'adresse qui reçoit
+les messages. Pour les recevoir sur une autre adresse, créer une clé sur web3forms.com avec cette
+adresse et remplacer la valeur dans les deux pages.
 
 ## 📄 Licence
 
-© 2026 Maibwe Tech (MT). Tous droits réservés.
-
-Le code de ce site est la propriété de Maibwe Tech. Les crédits et licences des images
-figurent dans [`CREDITS.md`](CREDITS.md).
+© 2026 Applications John Maibwe (AJM). Tous droits réservés.
+Les crédits et licences des images figurent dans [`CREDITS.md`](CREDITS.md).

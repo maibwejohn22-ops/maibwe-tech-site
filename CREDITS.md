@@ -2,16 +2,17 @@
 
 ## Logo et identité de marque
 
-Le logo « Maibwe Tech », le monogramme M, la charte de couleurs
-(Bleu nuit `#14253F` · Doré `#D29B38` · Crème `#F5F0E6`) et l'image de partage
-`assets/og-cover.png` sont la **propriété de Maibwe Tech**. Tous droits réservés.
+Le logo « Applications John Maibwe », le monogramme AJM (`public/assets/ajm-icon.svg`),
+la charte de couleurs (Bleu nuit `#14253F` · Doré `#D29B38` · Crème `#F5F0E6`), les icônes
+et les images de partage `public/assets/og-ajm-fr.png` / `og-ajm-en.png` sont la
+**propriété d'Applications John Maibwe**. Tous droits réservés.
 
 ## Logos des applications (section Réalisations)
 
 Les logos affichés dans les cartes « Réalisations » appartiennent à des projets
-développés par Maibwe Tech ou à ses clients :
+développés par Applications John Maibwe ou à ses clients :
 
-- `logo-eglise-connect.jpg` — application Église Connect (Maibwe Tech)
+- `logo-eglise-connect.jpg` — application Église Connect (Applications John Maibwe)
 - `logo-cimko.jpg` — plateforme de la Congrégation CIMKO (client)
 - `logo-classy-event.jpg` — site Classy Event (client)
 
