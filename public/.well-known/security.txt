@@ -1,0 +1,5 @@
+# Applications John Maibwe (AJM) — signalement de vulnérabilités / vulnerability disclosure (RFC 9116)
+Contact: mailto:john@johnmaibwe.com
+Expires: 2027-10-08T00:00:00.000Z
+Preferred-Languages: fr, en
+Canonical: https://johnmaibwe.com/.well-known/security.txt
