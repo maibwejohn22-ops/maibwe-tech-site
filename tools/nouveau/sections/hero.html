@@ -1,0 +1,158 @@
+<!-- HERO — « one object that transforms » (DESIGN.md § 9.1).
+     CSS-only intro (keyframes, ends visible without JS). JS (motion only): phone screen
+     cycle + floating glyphs (pause button), mouse parallax, scroll scrub into the iso angle. -->
+<section id="hero" class="section hero bg-grain bg-glow" data-theme="dark" aria-labelledby="hero-title">
+  <div class="wrap hero__grid">
+    <div class="hero__text">
+      <p class="eyebrow hero__eyebrow hero__in" style="--i: 0">Studio logiciel&nbsp;· Québec</p>
+
+      <h1 id="hero-title" class="hero__title">
+        <span class="hero__pre hero__in" style="--i: 1">Applications web et mobiles, IA et automatisations&nbsp;:</span>
+        <span class="hero__mega display display--mega">
+          <span class="hero__line"><span class="hero__w" style="--i: 0">Simples.</span></span>
+          <span class="hero__line"><span class="hero__w" style="--i: 1">Utiles.</span></span>
+          <span class="hero__line"><em class="hero__w" style="--i: 2">Accessibles.</em></span>
+        </span>
+      </h1>
+
+      <p class="lead hero__lead hero__in" style="--i: 5">Conçues au Québec, pour les paroisses, les écoles, les organismes, les PME et les entrepreneurs — ici comme en Afrique francophone.</p>
+
+      <div class="hero__ctas hero__in" style="--i: 6">
+        <a class="btn btn--primary btn--lg" href="#contact">Parlons de votre projet</a>
+        <a class="btn btn--ghost btn--lg" href="#apps">Voir nos applications
+          <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <ul class="hero__facts hero__in" style="--i: 7" aria-label="En bref">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>Hébergement au Québec</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/></svg>Vie privée&nbsp;: Loi&nbsp;25</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/></svg>7 produits</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="2.5" width="10" height="19" rx="2.6"/><path d="M10.5 18.5h3"/></svg>4&nbsp;applications sur l’App Store, 3&nbsp;sur Google&nbsp;Play</li>
+      </ul>
+    </div>
+
+    <figure class="hero__visual" aria-label="Aperçu de nos applications sur téléphone : Église Connect, Campus RDC, VillageMap RDC et TELEPromptCam Pro, devant l’illustration d’un tableau de bord sur ordinateur">
+      <div class="hero__halo" aria-hidden="true"></div>
+      <svg class="hero__rings" viewBox="0 0 600 552" aria-hidden="true" focusable="false">
+        <ellipse class="hero__ring" cx="300" cy="290" rx="318" ry="150" transform="rotate(-12 300 290)"/>
+        <ellipse class="hero__ring hero__ring--dash" cx="300" cy="286" rx="262" ry="224" transform="rotate(18 300 286)"/>
+      </svg>
+
+      <div class="hero__tilt">
+        <div class="hero__rig">
+          <div class="hero__laptop-pos" aria-hidden="true">
+            <div class="device-laptop hero__laptop">
+              <div class="device-laptop__lid"><div class="device-laptop__screen">
+                <svg class="hero__ui" viewBox="0 0 1600 1000" focusable="false">
+                  <rect width="1600" height="1000" fill="#0A1424"/>
+                  <g class="hero__ui-part" style="--i: 0">
+                    <rect width="1600" height="64" fill="#0F1C31"/>
+                    <g fill="#F5F0E6" fill-opacity=".2"><circle cx="40" cy="32" r="8"/><circle cx="70" cy="32" r="8"/><circle cx="100" cy="32" r="8"/></g>
+                    <rect x="580" y="18" width="440" height="28" rx="14" fill="#F5F0E6" fill-opacity=".07"/>
+                    <rect y="64" width="250" height="936" fill="#0C182B"/>
+                    <rect x="40" y="100" width="44" height="44" rx="12" fill="#D29B38"/>
+                    <rect x="100" y="114" width="96" height="16" rx="6" fill="#F5F0E6" fill-opacity=".8"/>
+                    <rect x="24" y="190" width="202" height="48" rx="12" fill="#D29B38" fill-opacity=".14"/>
+                    <rect x="44" y="204" width="20" height="20" rx="5" fill="#D29B38"/><rect x="80" y="208" width="104" height="12" rx="6" fill="#E8B55A"/>
+                    <g fill="#F5F0E6" fill-opacity=".16">
+                      <rect x="44" y="262" width="20" height="20" rx="5"/><rect x="80" y="266" width="88" height="12" rx="6"/>
+                      <rect x="44" y="318" width="20" height="20" rx="5"/><rect x="80" y="322" width="120" height="12" rx="6"/>
+                      <rect x="44" y="374" width="20" height="20" rx="5"/><rect x="80" y="378" width="96" height="12" rx="6"/>
+                      <rect x="44" y="430" width="20" height="20" rx="5"/><rect x="80" y="434" width="110" height="12" rx="6"/>
+                    </g>
+                  </g>
+                  <g class="hero__ui-part" style="--i: 1">
+                    <rect x="300" y="106" width="380" height="30" rx="9" fill="#F5F0E6" fill-opacity=".9"/>
+                    <rect x="300" y="156" width="560" height="14" rx="7" fill="#F5F0E6" fill-opacity=".22"/>
+                    <rect x="1340" y="102" width="210" height="52" rx="26" fill="#D29B38"/>
+                    <rect x="1385" y="122" width="120" height="12" rx="6" fill="#070F1C" fill-opacity=".85"/>
+                  </g>
+                  <g class="hero__ui-part" style="--i: 2">
+                    <g fill="#F5F0E6" fill-opacity=".045" stroke="#F5F0E6" stroke-opacity=".09" stroke-width="2">
+                      <rect x="300" y="214" width="400" height="140" rx="20"/><rect x="725" y="214" width="400" height="140" rx="20"/><rect x="1150" y="214" width="400" height="140" rx="20"/>
+                    </g>
+                    <circle cx="348" cy="262" r="22" fill="#D29B38" fill-opacity=".2"/><circle cx="773" cy="262" r="22" fill="#7FD4E0" fill-opacity=".2"/><circle cx="1198" cy="262" r="22" fill="#5BD6A0" fill-opacity=".2"/>
+                    <g fill="#F5F0E6" fill-opacity=".7"><rect x="388" y="250" width="150" height="14" rx="7"/><rect x="813" y="250" width="170" height="14" rx="7"/><rect x="1238" y="250" width="130" height="14" rx="7"/></g>
+                    <g fill="#F5F0E6" fill-opacity=".9"><rect x="332" y="304" width="120" height="24" rx="8"/><rect x="757" y="304" width="96" height="24" rx="8"/><rect x="1182" y="304" width="140" height="24" rx="8"/></g>
+                  </g>
+                  <g class="hero__ui-part" style="--i: 3">
+                    <rect x="300" y="384" width="800" height="330" rx="20" fill="#F5F0E6" fill-opacity=".035" stroke="#F5F0E6" stroke-opacity=".09" stroke-width="2"/>
+                    <rect x="332" y="414" width="200" height="14" rx="7" fill="#F5F0E6" fill-opacity=".7"/>
+                    <g fill="#F5F0E6" fill-opacity=".04"><rect x="332" y="452" width="736" height="52" rx="12"/><rect x="332" y="516" width="736" height="52" rx="12"/><rect x="332" y="580" width="736" height="52" rx="12"/><rect x="332" y="644" width="736" height="52" rx="12"/></g>
+                    <g fill="#D29B38"><rect x="352" y="468" width="20" height="20" rx="6"/><rect x="352" y="532" width="20" height="20" rx="6" fill-opacity=".45"/><rect x="352" y="596" width="20" height="20" rx="6" fill-opacity=".45"/><rect x="352" y="660" width="20" height="20" rx="6" fill-opacity=".45"/></g>
+                    <g fill="#F5F0E6" fill-opacity=".6"><rect x="392" y="465" width="230" height="11" rx="5.5"/><rect x="392" y="529" width="180" height="11" rx="5.5"/><rect x="392" y="593" width="260" height="11" rx="5.5"/><rect x="392" y="657" width="200" height="11" rx="5.5"/></g>
+                    <g fill="#F5F0E6" fill-opacity=".2"><rect x="392" y="483" width="160" height="9" rx="4.5"/><rect x="392" y="547" width="210" height="9" rx="4.5"/><rect x="392" y="611" width="140" height="9" rx="4.5"/><rect x="392" y="675" width="180" height="9" rx="4.5"/></g>
+                    <g fill="#F5F0E6" fill-opacity=".12"><rect x="968" y="468" width="80" height="20" rx="10"/><rect x="968" y="532" width="80" height="20" rx="10"/><rect x="968" y="596" width="80" height="20" rx="10"/><rect x="968" y="660" width="80" height="20" rx="10"/></g>
+                  </g>
+                  <g class="hero__ui-part" style="--i: 4">
+                    <rect x="1125" y="384" width="425" height="330" rx="20" fill="#F5F0E6" fill-opacity=".035" stroke="#F5F0E6" stroke-opacity=".09" stroke-width="2"/>
+                    <rect x="1155" y="414" width="150" height="14" rx="7" fill="#F5F0E6" fill-opacity=".7"/>
+                    <g fill="#1D3355"><circle cx="1175" cy="482" r="18"/><circle cx="1175" cy="552" r="18"/><circle cx="1175" cy="622" r="18"/></g>
+                    <g fill="#F5F0E6" fill-opacity=".6"><rect x="1207" y="470" width="170" height="11" rx="5.5"/><rect x="1207" y="540" width="140" height="11" rx="5.5"/><rect x="1207" y="610" width="186" height="11" rx="5.5"/></g>
+                    <g fill="#F5F0E6" fill-opacity=".2"><rect x="1207" y="488" width="110" height="9" rx="4.5"/><rect x="1207" y="558" width="130" height="9" rx="4.5"/><rect x="1207" y="628" width="96" height="9" rx="4.5"/></g>
+                    <rect x="1458" y="471" width="64" height="22" rx="11" fill="#5BD6A0" fill-opacity=".22"/><rect x="1458" y="541" width="64" height="22" rx="11" fill="#D29B38" fill-opacity=".24"/><rect x="1458" y="611" width="64" height="22" rx="11" fill="#5BD6A0" fill-opacity=".22"/>
+                  </g>
+                  <g class="hero__ui-part" style="--i: 5">
+                    <rect x="300" y="744" width="1250" height="216" rx="20" fill="#070F1C" stroke="#F5F0E6" stroke-opacity=".08" stroke-width="2"/>
+                    <g fill="#F5F0E6" fill-opacity=".14"><rect x="330" y="776" width="18" height="11" rx="3"/><rect x="330" y="812" width="18" height="11" rx="3"/><rect x="330" y="848" width="18" height="11" rx="3"/><rect x="330" y="884" width="18" height="11" rx="3"/><rect x="330" y="920" width="18" height="11" rx="3"/></g>
+                    <rect x="376" y="774" width="86" height="15" rx="7" fill="#D29B38"/><rect x="474" y="774" width="150" height="15" rx="7" fill="#F5F0E6" fill-opacity=".55"/><rect x="636" y="774" width="70" height="15" rx="7" fill="#7FD4E0"/>
+                    <rect x="416" y="810" width="120" height="15" rx="7" fill="#7FD4E0" fill-opacity=".85"/><rect x="548" y="810" width="230" height="15" rx="7" fill="#F5F0E6" fill-opacity=".4"/>
+                    <rect x="456" y="846" width="80" height="15" rx="7" fill="#D29B38" fill-opacity=".9"/><rect x="548" y="846" width="170" height="15" rx="7" fill="#F5F0E6" fill-opacity=".55"/><rect x="730" y="846" width="110" height="15" rx="7" fill="#5BD6A0" fill-opacity=".8"/>
+                    <rect x="416" y="882" width="210" height="15" rx="7" fill="#F5F0E6" fill-opacity=".32"/>
+                    <rect x="376" y="918" width="44" height="15" rx="7" fill="#D29B38"/>
+                    <rect class="hero__ui-caret" x="432" y="913" width="5" height="25" rx="2" fill="#E8B55A"/>
+                  </g>
+                </svg>
+              </div></div>
+              <div class="device-laptop__base"></div>
+            </div>
+          </div>
+
+          <div class="hero__phone-pos" aria-hidden="true">
+            <div class="device-phone hero__phone">
+              <div class="device-phone__screen">
+                <img class="hero__screen" src="/assets/nouveau/img/ec-accueil.webp" width="540" height="1173" alt="" fetchpriority="high" decoding="async">
+                <img class="hero__screen" src="/assets/nouveau/img/cr-accueil.webp" width="540" height="1170" alt="" loading="lazy" decoding="async">
+                <img class="hero__screen" src="/assets/nouveau/img/vm-accueil.webp" width="540" height="1170" alt="" loading="lazy" decoding="async">
+                <img class="hero__screen" src="/assets/nouveau/img/pc-teleprompteur.webp" width="540" height="1173" alt="" loading="lazy" decoding="async">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__field" aria-hidden="true">
+        <!-- Three meaningful tiles only: notifications, security, Québec. -->
+        <div class="hero__depth hero__depth--far"><div class="hero__par hero__par--far">
+          <span class="hero__glyph hero__dot" style="--x: 92%; --y: -2%; --ox: -12; --oy: 60; --i: 3"><span class="hero__glyph-in"></span></span>
+          <span class="hero__glyph hero__dot hero__dot--signal" style="--x: 107%; --y: 86%; --ox: -27; --oy: -21; --i: 5"><span class="hero__glyph-in"></span></span>
+        </div></div>
+
+        <div class="hero__depth hero__depth--near"><div class="hero__par hero__par--near">
+          <span class="hero__glyph hero__tile" style="--x: 61%; --y: 13%; --ox: -16; --oy: 23; --i: 1"><span class="hero__glyph-in">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2.2 2.2 0 0 0 4 0"/></svg></span></span>
+          <span class="hero__glyph hero__tile" style="--x: 99%; --y: 19%; --ox: -19; --oy: 40; --i: 3"><span class="hero__glyph-in">
+            <svg viewBox="0 0 24 24" focusable="false"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5M12 14.5v2.5"/></svg></span></span>
+          <span class="hero__glyph hero__tile hero__tile--signal" style="--x: -2%; --y: 63%; --ox: 47; --oy: -23; --i: 5"><span class="hero__glyph-in">
+            <svg viewBox="0 0 24 24" focusable="false"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span></span>
+        </div></div>
+      </div>
+
+      <div class="hero__controls">
+        <button class="hero__pause" type="button" aria-pressed="false" title="Mettre les animations en pause" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="hero__pause-bars" d="M9 7v10M15 7v10"/><path class="hero__pause-play" d="M9 6.8v10.4l8.2-5.2z"/></svg>
+          <span class="sr-only">Mettre les animations en pause</span>
+        </button>
+        <div class="hero__chip" aria-hidden="true">
+          <span class="hero__chip-dot"></span>
+          <span class="hero__chip-mask"><span class="hero__chip-names">
+            <span>Église Connect</span><span>Campus RDC</span><span>VillageMap RDC</span><span>TELEPromptCam Pro</span><span>Église Connect</span>
+          </span></span>
+          <span class="hero__chip-bar"></span>
+        </div>
+      </div>
+    </figure>
+  </div>
+
+  <div class="hero__cue" aria-hidden="true"><span class="hero__cue-text">Défiler</span><span class="hero__cue-line"></span></div>
+</section>

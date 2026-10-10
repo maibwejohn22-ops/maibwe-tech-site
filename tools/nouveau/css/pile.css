@@ -1,0 +1,257 @@
+/* ==========================================================================
+   pile — « Ce qu’il y a sous l’écran » (DESIGN.md § 9.2)
+   Default = static (no JS, reduced motion, < 900 px): exploded diagram, chapters stacked.
+   #pile.pile--live (set by pile.js at ≥ 900 px with motion): full-bleed sticky visual,
+   chapters alternate left / right over it, the story is scrubbed by ScrollTrigger.
+   Geometry: the stack box is 640 × 900 units (--u, container query units). Each plate is
+   a flat 300 × 600 rounded rectangle projected by matrix() = the shared --iso angle
+   (rotateX 55° · rotateZ −38°), orthographic. Thickness = box-shadows offset in plate
+   space (--ex, --ey) so that each step lands 1 unit straight below on screen.
+   ========================================================================== */
+#pile { padding-bottom: 0; }
+#pile .pile__fade {
+  position: absolute; inset: 0 0 auto; z-index: -1; height: 20vh; pointer-events: none;
+  background: linear-gradient(var(--deep), rgba(12, 23, 41, 0));
+}
+#pile .pile__head { position: relative; margin-bottom: clamp(1rem, 3vw, 3rem); }
+
+/* ---------- Visual ---------- */
+#pile .pile__visual {
+  position: relative; z-index: 0; display: grid; place-items: center;
+  padding: var(--s-6) var(--gutter) var(--s-7); overflow: clip;
+}
+#pile .pile__stack {
+  --u: calc(min(100vw - 6.5rem, 30rem) / 640);   /* fallback for browsers without container units (iOS < 16) */
+  position: relative; z-index: 1; container-type: inline-size; pointer-events: none;
+  width: min(100% - 6.5rem, 30rem); aspect-ratio: 640 / 900;
+  margin-left: auto;             /* phones: room for the labels on the left */
+}
+@supports (width: 1cqw) {
+  #pile .pile__stack { --u: calc(100cqw / 640); }
+}
+@media (min-width: 640px) {
+  #pile .pile__stack { width: min(54%, 30rem); margin-left: 0; translate: 14% 0; }
+}
+
+/* Layers: exploded by default (static diagram). pile.js only moves .pile__layer-in. */
+#pile .pile__layer, #pile .pile__layer-in { position: absolute; inset: 0; }
+#pile .pile__layer[data-k="0"] { z-index: 6; transform: translateY(-26.6667%); }
+#pile .pile__layer[data-k="1"] { z-index: 5; transform: translateY(-13.3333%); }
+#pile .pile__layer[data-k="2"] { z-index: 4; }
+#pile .pile__layer[data-k="3"] { z-index: 3; transform: translateY(13.3333%); }
+#pile .pile__layer[data-k="4"] { z-index: 2; transform: translateY(26.6667%); }
+
+#pile .pile__plate {
+  --ex: calc(-1.0734 * var(--u));
+  --ey: calc(1.3739 * var(--u));
+  position: absolute; left: calc(17.1 * var(--u)); top: calc(362.37 * var(--u));
+  width: calc(300 * var(--u)); height: calc(600 * var(--u)); border-radius: calc(44 * var(--u));
+  background: linear-gradient(155deg, #243C63 0%, #16284A 48%, #0F1D35 100%);
+  transform-origin: 0 0;
+  transform: matrix(0.78801, -0.35313, 0.61566, 0.45198, 0, 0);
+  outline: calc(3 * var(--u)) solid transparent; outline-offset: calc(-3 * var(--u));
+  box-shadow:
+    inset 0 0 0 calc(1.6 * var(--u)) rgba(245, 240, 230, 0.17),
+    calc(var(--ex) * 2) calc(var(--ey) * 2) 0 #2A4065,
+    calc(var(--ex) * 4) calc(var(--ey) * 4) 0 #213452,
+    calc(var(--ex) * 6) calc(var(--ey) * 6) 0 #182840,
+    calc(var(--ex) * 8) calc(var(--ey) * 8) 0 #111D30,
+    calc(var(--ex) * 10) calc(var(--ey) * 10) 0 #0A1323;
+  transition: outline-color var(--dur-2) var(--ease-out);
+}
+#pile .pile__layer[data-k="4"] .pile__plate { background: linear-gradient(155deg, #1D3253 0%, #12223D 50%, #0C182C 100%); }
+#pile .pile__plate--screen { background: #070D18; }
+#pile .pile__plate::before, #pile .pile__plate::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; opacity: 0; pointer-events: none;
+  transition: opacity var(--dur-2) var(--ease-out);
+}
+#pile .pile__plate::before {     /* gold edge of the active layer (over the dark edge, under the art) */
+  z-index: -1;
+  box-shadow:
+    calc(var(--ex) * 2) calc(var(--ey) * 2) 0 #E8B55A,
+    calc(var(--ex) * 4) calc(var(--ey) * 4) 0 #C8984A,
+    calc(var(--ex) * 6) calc(var(--ey) * 6) 0 #A97C34,
+    calc(var(--ex) * 8) calc(var(--ey) * 8) 0 #8A6022,
+    calc(var(--ex) * 10) calc(var(--ey) * 10) 0 #6E4A12;
+}
+#pile .pile__plate::after {      /* veil over face + edge of the layers out of focus */
+  --veil: rgba(7, 15, 28, 0.6);
+  z-index: 3; background: var(--veil);
+  box-shadow: calc(var(--ex) * 3) calc(var(--ey) * 3) 0 var(--veil), calc(var(--ex) * 6) calc(var(--ey) * 6) 0 var(--veil), calc(var(--ex) * 10) calc(var(--ey) * 10) 0 var(--veil);
+}
+#pile .pile__layer.is-active .pile__plate { outline-color: var(--gold); }
+#pile .pile__layer.is-active .pile__plate::before,
+#pile.pile--focus .pile__layer:not(.is-active) .pile__plate::after { opacity: 1; }
+
+#pile .pile__art { position: absolute; inset: 0; width: 100%; height: 100%; }
+#pile .pile__screen {
+  position: absolute; inset: calc(9 * var(--u));
+  width: calc(100% - 18 * var(--u)); height: calc(100% - 18 * var(--u)); border-radius: calc(35 * var(--u));
+  object-fit: cover; object-position: top center;
+}
+#pile .pile__shadow {
+  position: absolute; left: 50%; top: calc(482 * var(--u)); width: calc(700 * var(--u)); height: calc(300 * var(--u));
+  translate: -50% -50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+}
+
+/* Labels: anchored on the left tip of each plate, leader line + dot. */
+#pile .pile__label {
+  position: absolute; z-index: 8; right: calc(605.14 * var(--u)); top: calc(366.72 * var(--u));
+  display: flex; align-items: center; gap: 0.6em;
+  margin-top: -0.7rem; padding-right: calc(70 * var(--u));
+  font-size: var(--fs-small); font-weight: 700; line-height: 1.4rem; white-space: nowrap; color: var(--fg);
+}
+#pile .pile__label::before {
+  content: ""; position: absolute; right: 0; top: 50%; width: calc(62 * var(--u)); height: 1px;
+  background: linear-gradient(90deg, rgba(210, 155, 56, 0.25), var(--accent));
+}
+#pile .pile__label::after {
+  content: ""; position: absolute; right: -3px; top: calc(50% - 3px); width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 0 4px rgba(210, 155, 56, 0.18);
+}
+#pile .pile__label-num { font-family: var(--font-mono); font-size: var(--fs-2xs); font-weight: 500; letter-spacing: 0.08em; color: var(--accent); }
+@media (max-width: 639.98px) {
+  #pile .pile__label { flex-direction: column; align-items: flex-end; gap: 0; margin-top: -1.1rem; font-size: var(--fs-2xs); line-height: 1.1rem; padding-right: calc(46 * var(--u)); }
+  #pile .pile__label::before { top: 0.55rem; width: calc(40 * var(--u)); }
+  #pile .pile__label::after { top: calc(0.55rem - 3px); }
+}
+
+/* Decor used only by the live story */
+#pile .pile__glow, #pile .pile__rings, #pile .pile__beams, #pile .pile__badges, #pile .pile__sheen { display: none; }
+
+/* ---------- Chapters ---------- */
+#pile .pile__flow { position: relative; z-index: 1; }
+#pile .pile__chapters {          /* an <ol class="wrap">: restore what the ol reset removes */
+  display: grid; gap: var(--s-7); margin-inline: auto; padding: var(--s-6) var(--gutter) var(--section-pad);
+}
+@media (min-width: 900px) {
+  #pile .pile__chapters { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-8); }
+}
+#pile .pile__chapter-in {
+  display: grid; align-content: start; gap: var(--s-4); max-width: 36rem;
+  padding-top: var(--s-5); border-top: 1px solid var(--line);
+}
+#pile .pile__num { font-family: var(--font-mono); font-size: var(--fs-2xs); letter-spacing: 0.14em; color: var(--fg-muted); }
+#pile .pile__num span { color: var(--accent); }
+#pile .pile__title { font-size: clamp(2.1rem, 1.2rem + 2.4vw, 3.5rem); font-weight: 800; line-height: 0.98; letter-spacing: -0.04em; }
+#pile .pile__title em {
+  padding-right: 0.04em; font-family: var(--font-serif); font-style: italic; font-weight: 400;
+  font-size: 1.1em; letter-spacing: -0.01em; color: var(--accent);
+}
+#pile .pile__text { color: var(--fg-muted); max-width: 34rem; }
+#pile .pile__chips { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); font-size: var(--fs-small); font-weight: 700; }
+#pile .pile__chips li { display: inline-flex; align-items: center; gap: 0.6em; }
+#pile .pile__chips li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+#pile .pile__care { display: grid; gap: var(--s-2); }
+#pile .pile__care li { display: flex; align-items: center; gap: 0.75em; font-weight: 600; }
+#pile .pile__care li::before {
+  content: ""; flex: 0 0 auto; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--signal-dot); box-shadow: 0 0 0 4px rgba(127, 212, 224, 0.12);
+}
+
+/* The five layers, in words (chapter 2) */
+#pile .pile__rows { display: grid; margin-top: var(--s-2); }
+#pile .pile__row {
+  position: relative; display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: var(--s-2);
+  padding-block: 0.65rem; border-top: 1px solid var(--line);
+}
+#pile .pile__row::before {
+  content: ""; position: absolute; left: 0; top: -1px; width: 100%; height: 1px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left; transition: transform var(--dur-3) var(--ease-out);
+}
+#pile .pile__row-num { padding-top: 0.25rem; font-family: var(--font-mono); font-size: var(--fs-2xs); color: var(--accent); transition: color var(--dur-1) ease; }
+#pile .pile__row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.75rem; }
+#pile .pile__row-name { font-weight: 700; transition: color var(--dur-1) ease; }
+#pile .pile__row-text { margin-top: 0.1rem; font-size: var(--fs-small); line-height: 1.45; color: var(--fg-muted); }
+
+/* ---------- Outro: the cream dome (static: a rounded cream block) ---------- */
+#pile .pile__outro { position: relative; isolation: isolate; padding-block: var(--section-pad); background-color: transparent; text-align: center; }
+#pile .pile__outro-bg { position: absolute; inset: 0; z-index: -1; isolation: isolate; border-radius: var(--r-xl) var(--r-xl) 0 0; }
+#pile .pile__outro-in { display: grid; justify-items: center; gap: var(--s-6); }
+#pile .pile__statement { max-width: 15em; font-size: clamp(2.25rem, 1rem + 4.4vw, 5.25rem); }
+#pile .pile__outro-link { font-size: var(--fs-lead); }
+
+/* ==========================================================================
+   Live story (≥ 900 px, motion allowed) — class set by pile.js
+   ========================================================================== */
+#pile.pile--live {
+  --stack-w: min(36vw, 31rem, calc((100svh - var(--header-h) - 6rem) * 0.7111));
+  --chap-w: min(25rem, calc((min(100vw, 1360px) - var(--stack-w) * 1.1) / 2 - var(--gutter) - 2rem));
+  /* chapter 2 is wider: pile.js slides the exploded stack left (its labels need ≈ 11rem) */
+  --ch2-w: min(30rem, calc(min(100vw, 1360px) - 2 * var(--gutter) - 13rem - var(--stack-w) * 0.92));
+}
+#pile.pile--live .pile__stage { display: grid; }
+#pile.pile--live .pile__visual, #pile.pile--live .pile__flow { grid-area: 1 / 1; min-width: 0; }
+#pile.pile--live .pile__visual { position: sticky; top: var(--header-h); align-self: start; height: calc(100svh - var(--header-h)); padding: 0; }
+#pile.pile--live .pile__stack { width: var(--stack-w); margin: 0; translate: none; }
+#pile.pile--live .pile__stack, #pile.pile--live .pile__layer-in { will-change: transform; }
+
+#pile.pile--live .pile__label {
+  opacity: 0; transform: translateX(-14px); color: var(--fg-muted);
+  transition: opacity var(--dur-2) var(--ease-out), transform var(--dur-2) var(--ease-out), color var(--dur-1) ease;
+}
+#pile.pile--live .pile__chips { display: none; }   /* the diagram shows the store badges itself */
+#pile.pile--live .pile__label::before { background: var(--line-strong); }
+#pile.pile--live .pile__label::after { background: var(--fg-muted); box-shadow: none; }
+#pile.pile--live .pile__layer.is-shown .pile__label { opacity: 1; transform: none; }
+#pile.pile--live .pile__layer.is-active .pile__label { color: var(--fg); }
+#pile.pile--live .pile__layer.is-active .pile__label::before { background: linear-gradient(90deg, rgba(210, 155, 56, 0.25), var(--accent)); }
+#pile.pile--live .pile__layer.is-active .pile__label::after { background: var(--accent); box-shadow: 0 0 0 4px rgba(210, 155, 56, 0.2), 0 0 16px rgba(210, 155, 56, 0.7); }
+
+#pile.pile--live .pile__sheen { display: block; position: absolute; z-index: 2; inset: calc(9 * var(--u)); overflow: hidden; border-radius: calc(35 * var(--u)); }
+#pile .pile__sheen span {
+  position: absolute; inset: -20% 0;
+  background: linear-gradient(100deg, rgba(232, 181, 90, 0) 30%, rgba(232, 181, 90, 0.45) 50%, rgba(232, 181, 90, 0) 70%);
+}
+#pile.pile--live .pile__glow {
+  display: block; position: absolute; z-index: 0; left: 50%; top: 48%;
+  width: calc(900 * var(--u)); height: calc(640 * var(--u)); translate: -50% -50%; opacity: 0;
+  background: radial-gradient(closest-side, rgba(210, 155, 56, 0.3), rgba(210, 155, 56, 0.08) 55%, rgba(210, 155, 56, 0));
+}
+#pile.pile--live .pile__rings { display: block; position: absolute; inset: 0; z-index: 1; }
+#pile .pile__ring {              /* centred with margins, not `translate`: GSAP scales it */
+  position: absolute; left: 50%; top: 52.8%; width: calc(640 * var(--u)); height: calc(367 * var(--u));
+  margin: calc(-183.5 * var(--u)) 0 0 calc(-320 * var(--u));
+  border: 1.5px solid rgba(127, 212, 224, 0.75); border-radius: 50%; opacity: 0;
+  box-shadow: 0 0 24px -4px rgba(127, 212, 224, 0.45), inset 0 0 24px -4px rgba(127, 212, 224, 0.3);
+}
+#pile.pile--live .pile__beams { display: block; position: absolute; inset: 0; z-index: 7; width: 100%; height: 100%; overflow: visible; clip-path: inset(48% 0 52% 0); }
+#pile.pile--live .pile__badges { display: block; position: absolute; inset: 0; z-index: 8; }
+#pile .pile__badge {             /* a 0 × 0 anchor; the pill is centred on it (GSAP moves the anchor) */
+  position: absolute; left: var(--x); top: var(--y); width: 0; height: 0;
+  display: flex; justify-content: center; align-items: center; opacity: 0;
+}
+#pile .pile__badge-off, #pile .pile__badge-on {
+  display: inline-flex; align-items: center; gap: 0.55em; padding: 0.5em 1em;
+  border: 1px solid var(--line-strong); border-radius: var(--r-pill); background: rgba(7, 15, 28, 0.85);
+  color: var(--fg-muted); font-size: var(--fs-xs); font-weight: 700; white-space: nowrap;
+}
+#pile .pile__badge-off { position: relative; }
+#pile .pile__badge-on { position: absolute; inset: -1px; border-color: var(--gold); background: #13233D; color: var(--cream); box-shadow: var(--glow-gold); opacity: 0; }
+#pile .pile__badge-off::before, #pile .pile__badge-on::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--line-strong); }
+#pile .pile__badge-on::before { background: var(--ok); box-shadow: 0 0 10px rgba(91, 214, 160, 0.8); }
+
+#pile.pile--live .pile__chapters { display: block; padding-block: 0; }
+#pile.pile--live .pile__chapter { display: flex; align-items: center; min-height: 90svh; }
+#pile.pile--live .pile__chapter--1 { min-height: 80svh; }
+#pile.pile--live .pile__chapter--2 { min-height: 150svh; align-items: flex-start; }
+#pile.pile--live .pile__chapter:nth-child(even) { justify-content: flex-end; }
+#pile.pile--live .pile__chapter-in { width: var(--chap-w); padding-top: 0; border-top: 0; }
+#pile.pile--live .pile__chapter--2 .pile__chapter-in { position: sticky; top: calc(var(--header-h) + 4svh); width: var(--ch2-w); }
+/* chapter 4 sits next to the pulsing rings: a local ink veil keeps its text clean */
+#pile.pile--live .pile__chapter--4 .pile__chapter-in {
+  position: relative; z-index: 9; width: calc(var(--chap-w) + 4rem); padding: 2rem; margin: -2rem;
+  background: radial-gradient(closest-side, rgba(7, 15, 28, 0.88) 65%, rgba(7, 15, 28, 0));
+}
+@media (max-height: 800px) {
+  #pile.pile--live .pile__title { font-size: clamp(2rem, 1.2rem + 1.6vw, 2.75rem); }
+  #pile.pile--live .pile__row-text { font-size: 0.875rem; }
+}
+#pile.pile--live .pile__row-name, #pile.pile--live .pile__row-num { color: var(--fg-muted); }
+#pile.pile--live .pile__row.is-active .pile__row-name { color: var(--fg); }
+#pile.pile--live .pile__row.is-active .pile__row-num { color: var(--accent); }
+#pile.pile--live .pile__row.is-active::before { transform: scaleX(1); }
+
+#pile.pile--live .pile__outro { display: grid; align-items: center; padding-block: 16svh 9svh; }
+#pile.pile--live .pile__outro-bg { border-radius: 0; }

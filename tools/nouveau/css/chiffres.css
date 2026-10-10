@@ -1,0 +1,114 @@
+/* ==========================================================================
+   chiffres — « AJM en chiffres » (theme gold)
+   Default (no JS, reduced motion) = solid gold field, final numbers.
+   .chiffres--wipe (added by chiffres.js with motion) = the section turns ink and the gold
+   .chiffres__bg layer grows from an inset rounded card to full bleed (clip-path, scrubbed).
+   ========================================================================== */
+#chiffres { --chiffres-num: clamp(4rem, 2rem + 8vw, 9rem); }
+#chiffres.chiffres--wipe { background-color: var(--ink); }
+
+/* ---------- Gold field + pale ring (decorative) ------------------------- */
+#chiffres .chiffres__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: clip;
+  background: var(--gold);
+  pointer-events: none;
+}
+#chiffres .chiffres__ring-wrap {
+  position: absolute;
+  top: 38%;
+  left: 84%;
+  width: min(150vw, 820px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+}
+#chiffres .chiffres__ring { display: block; width: 100%; height: 100%; }
+
+/* ---------- Head ---------------------------------------------------------- */
+#chiffres .chiffres__head { position: relative; }
+
+/* ---------- Figures grid ------------------------------------------------- */
+#chiffres .chiffres__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line-strong);
+}
+#chiffres .chiffres__item {
+  min-width: 0;
+  padding: clamp(1.5rem, 1rem + 2vw, 2.75rem) clamp(0.75rem, 0.25rem + 2vw, 2.25rem) clamp(1.75rem, 1.25rem + 2vw, 3rem) 0;
+  border-bottom: 1px solid var(--line);
+}
+#chiffres .chiffres__item:nth-child(2),
+#chiffres .chiffres__item:nth-child(4) {
+  padding-left: clamp(0.75rem, 0.25rem + 2vw, 2.25rem);
+  border-left: 1px solid var(--line);
+}
+#chiffres .chiffres__item--wide { grid-column: 1 / -1; }
+
+#chiffres .chiffres__num {
+  display: flex;
+  align-items: flex-start;
+  font-size: var(--chiffres-num);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--fg);
+}
+#chiffres .chiffres__value { display: inline-block; }
+#chiffres .chiffres__plus {
+  margin-left: 0.04em;
+  font-family: var(--font-serif);
+  font-size: 0.62em;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+}
+/* Odometer digits (built by AJM.utils.rollingCounter): no negative tracking inside the clipped
+   cells, the cells overlap a little instead, so glyph edges are never cut. */
+#chiffres .chiffres__value .roll__strip > span { letter-spacing: 0; }
+#chiffres .chiffres__value .roll__digit + .roll__digit { margin-left: -0.04em; }
+
+#chiffres .chiffres__label {
+  max-width: 20rem;
+  margin-top: var(--s-4);
+  color: var(--fg-muted);
+  font-size: clamp(0.9375rem, 0.85rem + 0.3vw, 1.125rem);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+#chiffres .chiffres__note {
+  max-width: 46rem;
+  margin-top: var(--s-6);
+  color: var(--fg-muted);
+  font-size: var(--fs-xs);
+  line-height: 1.55;
+}
+#chiffres .chiffres__note-label {
+  margin-right: 0.6em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+/* ---------- ≥ 640 px: 3 columns ---------------------------------------- */
+@media (min-width: 640px) {
+  #chiffres .chiffres__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #chiffres .chiffres__item--wide { grid-column: auto; }
+  #chiffres .chiffres__item:nth-child(n) { padding-left: 0; border-left: 0; }
+  #chiffres .chiffres__item:not(:nth-child(3n + 1)) {
+    padding-left: clamp(0.75rem, 0.25rem + 2vw, 2.25rem);
+    border-left: 1px solid var(--line);
+  }
+  #chiffres .chiffres__ring-wrap { top: 46%; left: 74%; width: min(92vw, 1100px); }
+}
+@media (min-width: 640px) and (max-width: 899.98px) {
+  #chiffres { --chiffres-num: clamp(3.5rem, 1rem + 8vw, 5rem); }
+}

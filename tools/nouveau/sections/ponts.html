@@ -1,0 +1,112 @@
+<!-- ponts — « Du Québec à la RDC » : about AJM + the Québec ↔ RDC bridge (theme dark + grain).
+     Brief: DESIGN.md § 9.8. Map SVGs are decorative (aria-hidden): place names are HTML.
+     Two SVG variants: --wide (≥ 640 px, rough equirectangular, lon −84…36, lat 58…−12) and --tall (phones). -->
+<section id="ponts" class="section ponts bg-grain" data-theme="dark" aria-labelledby="ponts-title">
+  <div class="wrap">
+    <div class="section-head ponts__head">
+      <p class="eyebrow">À propos</p>
+      <h2 id="ponts-title" class="display">Du Québec <em>à la RDC.</em></h2>
+    </div>
+
+    <div class="ponts__intro">
+      <p class="lead ponts__lead">Applications John Maibwe (AJM) est une entreprise individuelle fondée en mai 2026 au Québec par John Maibwe. Un seul interlocuteur, de la première conversation jusqu’à la maintenance&nbsp;: vous savez toujours à qui vous parlez.</p>
+      <p class="ponts__question">Nous ne faisons pas que de beaux sites. Paroisses, écoles, organismes, PME, entrepreneurs&nbsp;: nous parlons votre langue, pas seulement celle de la technologie. Chaque projet commence par une question simple&nbsp;: <span class="ponts__ask">qu’est-ce qui vous ferait vraiment gagner du temps&nbsp;?</span></p>
+    </div>
+
+    <figure class="ponts__bridge">
+      <div class="ponts__map">
+        <svg class="ponts__svg ponts__svg--wide ponts__base" viewBox="0 0 1200 460" aria-hidden="true" focusable="false">
+          <path class="ponts__grid" d="M90 0V460M240 0V460M390 0V460M540 0V460M690 0V460M840 0V460M990 0V460M1140 0V460M0 85H1200M0 184H1200M0 283H1200"/>
+          <path class="ponts__equator" d="M0 381H1200"/>
+          <text class="ponts__svg-tech" x="24" y="372">ÉQUATEUR</text>
+          <text class="ponts__svg-tech" x="24" y="76">45° N</text>
+          <text class="ponts__ocean" x="470" y="262">Océan Atlantique</text>
+        </svg>
+        <svg class="ponts__svg ponts__svg--wide ponts__arcs" viewBox="0 0 1200 460" aria-hidden="true" focusable="false">
+          <defs>
+            <radialGradient id="ponts-glow-wide">
+              <stop offset="0" stop-color="#E8B55A" stop-opacity="0.75"/>
+              <stop offset="1" stop-color="#E8B55A" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <path class="ponts__arc ponts__arc--faint" d="M104 84C360 160 760 220 993 410"/>
+          <path class="ponts__arc ponts__arc--faint" d="M104 84C470 -60 960 20 993 410"/>
+          <path class="ponts__arc ponts__arc--main" d="M104 84C420 -40 860 80 993 410"/>
+          <g class="ponts__packet"><circle r="18" fill="url(#ponts-glow-wide)"/><circle r="4" class="ponts__packet-core"/></g>
+          <circle class="ponts__halo" cx="104" cy="84" r="15"/>
+          <circle class="ponts__halo" cx="993" cy="410" r="15"/>
+          <circle class="ponts__ping" cx="104" cy="84" r="15"/>
+          <circle class="ponts__ping" cx="993" cy="410" r="15"/>
+          <circle class="ponts__dot" cx="104" cy="84" r="5.5"/>
+          <circle class="ponts__dot" cx="993" cy="410" r="5.5"/>
+        </svg>
+
+        <svg class="ponts__svg ponts__svg--tall ponts__base" viewBox="0 0 360 440" aria-hidden="true" focusable="false">
+          <path class="ponts__grid" d="M60 0V440M120 0V440M180 0V440M240 0V440M300 0V440M0 70H360M0 160H360M0 250H360"/>
+          <path class="ponts__equator" d="M0 330H360"/>
+          <text class="ponts__svg-tech" x="12" y="322">ÉQUATEUR</text>
+          <text class="ponts__ocean" x="40" y="236">Atlantique</text>
+        </svg>
+        <svg class="ponts__svg ponts__svg--tall ponts__arcs" viewBox="0 0 360 440" aria-hidden="true" focusable="false">
+          <defs>
+            <radialGradient id="ponts-glow-tall">
+              <stop offset="0" stop-color="#E8B55A" stop-opacity="0.75"/>
+              <stop offset="1" stop-color="#E8B55A" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <path class="ponts__arc ponts__arc--faint" d="M70 70C200 130 280 230 290 360"/>
+          <path class="ponts__arc ponts__arc--faint" d="M70 70C300 -10 370 120 290 360"/>
+          <path class="ponts__arc ponts__arc--main" d="M70 70C250 30 330 170 290 360"/>
+          <g class="ponts__packet"><circle r="14" fill="url(#ponts-glow-tall)"/><circle r="3.5" class="ponts__packet-core"/></g>
+          <circle class="ponts__halo" cx="70" cy="70" r="12"/>
+          <circle class="ponts__halo" cx="290" cy="360" r="12"/>
+          <circle class="ponts__ping" cx="70" cy="70" r="12"/>
+          <circle class="ponts__ping" cx="290" cy="360" r="12"/>
+          <circle class="ponts__dot" cx="70" cy="70" r="4.5"/>
+          <circle class="ponts__dot" cx="290" cy="360" r="4.5"/>
+        </svg>
+
+        <p class="ponts__place ponts__place--qc"><span class="ponts__place-name">Québec</span> <span class="tech">Canada&nbsp;· notre base</span></p>
+        <p class="ponts__place ponts__place--cd"><span class="ponts__place-name">RDC</span> <span class="tech">Afrique francophone&nbsp;· à distance</span></p>
+      </div>
+      <figcaption class="ponts__caption">Deux marchés, une même exigence. Le Québec est notre base&nbsp;; la RDC et l’Afrique francophone, notre deuxième terrain. Campus RDC et VillageMap RDC y sont déjà sur l’App Store et Google Play, et Zembo Music IA, en bêta privée, écrit des paroles jusqu’en lingala et en swahili.</figcaption>
+    </figure>
+  </div>
+
+  <div class="ponts__band">
+    <div class="wrap">
+      <h3 class="eyebrow ponts__band-title">Pour qui</h3>
+    </div>
+    <div class="ponts__band-view">
+      <ul class="ponts__band-track">
+        <li class="ponts__aud">Paroisses <em>et diocèses</em></li>
+        <li class="ponts__aud">Écoles <em>et universités</em></li>
+        <li class="ponts__aud">OBNL <em>et ONG</em></li>
+        <li class="ponts__aud">PME <em>d’ici et d’ailleurs</em></li>
+        <li class="ponts__aud">Entrepreneurs <em>et porteurs de projets</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <h3 class="eyebrow ponts__values-title">Ce qui nous guide</h3>
+    <ul class="ponts__values">
+      <li class="ponts__value">
+        <h4 class="ponts__value-name">Simplicité</h4>
+        <p>Des outils clairs, que tout le monde peut utiliser sans formation compliquée.</p>
+      </li>
+      <li class="ponts__value">
+        <h4 class="ponts__value-name">Fiabilité</h4>
+        <p>Des solutions stables, sécurisées et maintenues dans le temps.</p>
+      </li>
+      <li class="ponts__value">
+        <h4 class="ponts__value-name">Accessibilité</h4>
+        <p>Des prix et des interfaces pensés pour les petites et moyennes organisations.</p>
+      </li>
+      <li class="ponts__value">
+        <h4 class="ponts__value-name">Impact</h4>
+        <p>Des projets qui changent concrètement la façon de travailler au quotidien.</p>
+      </li>
+    </ul>
+  </div>
+</section>

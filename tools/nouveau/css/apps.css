@@ -1,0 +1,312 @@
+/* ==========================================================================
+   apps — « Nos applications » (theme navy)
+   Default (no JS, reduced motion) = a calm grid of 7 cards.
+   .apps--rail is added by apps.js only when motion is allowed:
+     < 900 px (or < 680 px tall) → native swipe row with scroll-snap;
+     ≥ 900 px and ≥ 680 px tall  → sticky stage, vertical scroll moves the track sideways.
+   ========================================================================== */
+#apps {
+  --apps-gap: clamp(1.5rem, 1rem + 2.4vw, 3.5rem);
+  --apps-phone: clamp(150px, 42vw, 220px);
+}
+
+/* ---------- Stage, glow, track ------------------------------------------ */
+#apps .apps__stage { position: relative; }
+#apps .apps__glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(46% 42% at 70% 46%, rgba(210, 155, 56, 0.12), transparent 70%);
+}
+#apps .apps__track {             /* behaves like .wrap in the calm grid */
+  position: relative;
+  width: 100%;
+  max-width: calc(var(--wrap) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Intro (section head) ---------------------------------------- */
+#apps .apps__intro {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: var(--s-5);
+  max-width: 62rem;
+  margin-bottom: clamp(3rem, 2rem + 4vw, 6rem);
+}
+#apps .apps__hint {
+  display: none;
+  align-items: center;
+  gap: 0.75em;
+  margin-top: var(--s-2);
+  color: var(--fg-muted);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+#apps .apps__hint svg { width: 1.25rem; height: 1.25rem; color: var(--accent); }
+
+/* ---------- Calm grid ---------------------------------------------------- */
+#apps .apps__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
+  gap: var(--s-8) var(--apps-gap);
+}
+#apps .apps__item { min-width: 0; }
+
+/* ---------- Card --------------------------------------------------------- */
+#apps .apps__card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "top" "name" "kind" "fig" "pitch" "for" "links";
+  align-content: start;
+  height: 100%;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line-strong);
+}
+#apps .apps__index {
+  grid-area: top;
+  align-self: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+}
+#apps .apps__status { grid-area: top; justify-self: end; align-self: center; }
+#apps .apps__name { grid-area: name; margin-top: var(--s-5); font-size: clamp(1.3rem, 1.1rem + 0.5vw, 1.55rem); }
+#apps .apps__kind { grid-area: kind; margin-top: var(--s-2); }
+
+#apps .apps__figure {
+  grid-area: fig;
+  position: relative;
+  display: grid;
+  justify-items: start;
+  gap: var(--s-4);
+  margin-block: var(--s-6) var(--s-5);
+  perspective: 1100px;
+}
+#apps .apps__num {               /* giant outline index behind the phone (decorative) */
+  position: absolute;
+  z-index: 0;
+  top: -0.04em;
+  right: -0.02em;
+  font-size: clamp(6rem, 3.5rem + 7vw, 10.5rem);
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  --stroke-w: 1px;
+  --stroke-color: rgba(245, 240, 230, 0.2);
+  pointer-events: none;
+  user-select: none;
+}
+#apps .apps__tilt {
+  position: relative;
+  z-index: 1;
+  width: min(var(--apps-phone), 100%);
+  transform-style: preserve-3d;
+}
+#apps .apps__tilt::after {        /* soft gold floor light under the phone */
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 4%;
+  right: 4%;
+  bottom: -28px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(210, 155, 56, 0.3), transparent);
+  pointer-events: none;
+}
+#apps .apps__phone { --phone-w: var(--apps-phone); }
+#apps .apps__alt { clip-path: inset(100% 0 0 0); }   /* second screen, revealed on hover/focus */
+#apps .apps__caption {
+  position: relative;
+  z-index: 1;
+  max-width: calc(var(--apps-phone) + 3rem);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  color: var(--fg-muted);
+}
+
+#apps .apps__pitch { grid-area: pitch; max-width: 30rem; font-size: var(--fs-small); line-height: 1.55; }
+#apps .apps__for { grid-area: for; margin-top: var(--s-2); color: var(--fg-muted); font-size: var(--fs-xs); line-height: 1.45; }
+#apps .apps__for-label { font-weight: 700; color: var(--fg); }
+#apps .apps__links { grid-area: links; display: flex; flex-wrap: wrap; gap: 0 var(--s-5); margin-top: var(--s-2); }
+#apps .apps__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  min-height: 44px;
+  color: var(--accent);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(210, 155, 56, 0.4);
+  text-underline-offset: 0.32em;
+  transition: color var(--dur-1) ease, text-decoration-color var(--dur-1) ease;
+}
+#apps .apps__link svg { width: 0.95em; height: 0.95em; transition: transform var(--dur-1) var(--ease-out-soft); }
+#apps .apps__link:hover { color: var(--accent-hover); text-decoration-color: currentColor; }
+#apps .apps__link:hover svg,
+#apps .apps__link:focus-visible svg { transform: translateX(3px); }
+
+/* Hover / focus: the phone tilts slightly and its second screen wipes up. */
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-motion="reduced"]) #apps .apps__phone { transition: transform var(--dur-3) var(--ease-out); }
+  html:not([data-motion="reduced"]) #apps .apps__alt { transition: clip-path var(--dur-3) var(--ease-out); }
+  html:not([data-motion="reduced"]) #apps .apps__card:focus-within .apps__phone { transform: translateY(-8px) rotateX(5deg) rotateY(-9deg); }
+  html:not([data-motion="reduced"]) #apps .apps__card:focus-within .apps__alt { clip-path: inset(0 0 0 0); }
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  html:not([data-motion="reduced"]) #apps .apps__card:hover .apps__phone { transform: translateY(-8px) rotateX(5deg) rotateY(-9deg); }
+  html:not([data-motion="reduced"]) #apps .apps__card:hover .apps__alt { clip-path: inset(0 0 0 0); }
+}
+
+/* ---------- Outro card ---------------------------------------------------- */
+#apps .apps__outro {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: var(--s-4);
+  max-width: 36rem;
+  margin-top: clamp(4rem, 3rem + 4vw, 7rem);
+}
+#apps .apps__outro-text { color: var(--fg-muted); margin-bottom: var(--s-3); }
+
+#apps .apps__progress { display: none; }
+
+/* Calm grid on phones: compact card (phone beside the name) so the 7 stacked cards stay short. */
+@media (max-width: 639.98px) {
+  #apps:not(.apps--rail) { --apps-phone: 128px; }
+  #apps:not(.apps--rail) .apps__card {
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto auto auto 1fr auto auto auto;
+    grid-template-areas: "top top" "fig name" "fig kind" "fig ." "pitch pitch" "for for" "links links";
+    column-gap: var(--s-5);
+  }
+  #apps:not(.apps--rail) .apps__figure { position: static; align-self: start; width: var(--apps-phone); margin-block: var(--s-5); perspective: none; }
+  #apps:not(.apps--rail) .apps__num { z-index: -1; top: 8.5rem; right: 0; font-size: 6rem; }
+  #apps:not(.apps--rail) .apps__caption { max-width: var(--apps-phone); }
+}
+
+/* ---------- Rail, small screens (or short windows): native swipe row ----- */
+@media (max-width: 899.98px), (max-height: 679.98px) {
+  #apps.apps--rail .apps__hint { display: inline-flex; }
+  #apps.apps--rail .apps__hint-desk { display: none; }
+  #apps.apps--rail .apps__intro { margin-bottom: var(--s-7); }
+  #apps.apps--rail .apps__list {
+    display: flex;
+    gap: var(--apps-gap);
+    margin-inline: calc(-1 * var(--gutter));
+    padding: var(--s-2) var(--gutter) var(--s-6);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+  #apps.apps--rail .apps__item {
+    flex: 0 0 min(80vw, 19rem);
+    scroll-snap-align: start;
+  }
+  #apps.apps--rail .apps__outro { margin-top: var(--s-7); }
+}
+
+/* ---------- Rail, desktop: sticky stage + horizontal track --------------- */
+@media (min-width: 900px) and (min-height: 680px) {
+  #apps.apps--rail {
+    --apps-phone: clamp(120px, calc((100svh - var(--header-h) - 400px) / 2.17), 270px);
+    padding-block: 0;
+  }
+  #apps.apps--rail .apps__stage {
+    position: sticky;
+    top: var(--header-h);
+    height: calc(100svh - var(--header-h));
+    overflow: clip;
+    display: flex;
+    align-items: center;
+    padding-block: clamp(12px, 2vh, 24px) clamp(44px, 7vh, 72px);
+  }
+  #apps.apps--rail .apps__track {
+    display: flex;
+    align-items: center;
+    gap: var(--apps-gap);
+    width: max-content;
+    max-width: none;
+    margin: 0;
+    padding-inline: max(var(--gutter), calc((100% - var(--wrap)) / 2)) clamp(3rem, 9vw, 10rem);
+    will-change: transform;
+  }
+  #apps.apps--rail .apps__intro {
+    flex: 0 0 clamp(25rem, 40vw, 38rem);
+    margin: 0;
+    padding-right: clamp(1rem, 3vw, 4rem);
+  }
+  #apps.apps--rail .apps__hint { display: inline-flex; }
+  #apps.apps--rail .apps__hint-touch { display: none; }
+  #apps.apps--rail .apps__list { display: flex; gap: var(--apps-gap); }
+  #apps.apps--rail .apps__item { flex: 0 0 clamp(19rem, calc(var(--apps-phone) + 9.5rem), 24rem); }
+  #apps.apps--rail .apps__name { margin-top: var(--s-3); }
+  #apps.apps--rail .apps__figure { margin-block: var(--s-5) var(--s-4); }
+  #apps.apps--rail .apps__links { gap: 0 var(--s-4); }
+  #apps.apps--rail .apps__link { font-size: 0.875rem; }
+  /* « Illustration » caption sits beside the phone, under the outline number. */
+  #apps.apps--rail .apps__caption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: calc(100% - var(--apps-phone) - var(--s-5));
+    max-width: 10rem;
+  }
+  #apps.apps--rail .apps__outro {
+    flex: 0 0 clamp(20rem, 30vw, 28rem);
+    margin: 0;
+    padding-left: var(--apps-gap);
+  }
+  #apps.apps--rail .apps__progress {
+    position: absolute;
+    left: max(var(--gutter), calc((100% - var(--wrap)) / 2));
+    right: max(var(--gutter), calc((100% - var(--wrap)) / 2));
+    bottom: clamp(16px, 3vh, 30px);
+    display: flex;
+    align-items: center;
+    gap: var(--s-4);
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs);
+    letter-spacing: 0.14em;
+  }
+  #apps .apps__bar {
+    position: relative;
+    flex: 1;
+    height: 1px;
+    overflow: hidden;
+    background: var(--line-strong);
+  }
+  #apps .apps__bar-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+}
+
+/* Short desktop windows (680–820 px tall): tighter card so the whole card fits the stage. */
+@media (min-width: 900px) and (min-height: 680px) and (max-height: 820px) {
+  #apps.apps--rail { --apps-phone: clamp(120px, calc((100svh - var(--header-h) - 368px) / 2.17), 270px); }
+  #apps.apps--rail .apps__stage { padding-block: 12px 44px; }
+  #apps.apps--rail .apps__card { padding-top: var(--s-3); }
+  #apps.apps--rail .apps__name { margin-top: var(--s-2); }
+  #apps.apps--rail .apps__kind { display: none; }
+  #apps.apps--rail .apps__figure { margin-block: var(--s-4) var(--s-3); }
+  #apps.apps--rail .apps__link { min-height: 40px; }
+}

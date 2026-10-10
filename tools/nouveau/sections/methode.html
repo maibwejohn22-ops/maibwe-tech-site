@@ -1,0 +1,125 @@
+<section id="methode" class="section methode" data-theme="cream" aria-labelledby="methode-title">
+  <!-- Pictogrammes des 4 étapes (24 × 24, trait seul), réutilisés par la barre et les nœuds via <use>. -->
+  <svg class="methode__defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <symbol id="methode-ico-ecouter" viewBox="0 0 24 24"><path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7.5L7 20.5V17H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></symbol>
+    <symbol id="methode-ico-concevoir" viewBox="0 0 24 24"><path d="M15.5 4.5l4 4L9 19l-5 1 1-5z"/><path d="M13 7l4 4M4 20h16"/></symbol>
+    <symbol id="methode-ico-developper" viewBox="0 0 24 24"><path d="M8.5 7.5L4 12l4.5 4.5M15.5 7.5L20 12l-4.5 4.5M13.5 5l-3 14"/></symbol>
+    <symbol id="methode-ico-ameliorer" viewBox="0 0 24 24"><path d="M3.5 17.5l5.5-5.5 4 4 7.5-7.5"/><path d="M15 8.5h5.5V14"/></symbol>
+  </svg>
+
+  <div class="wrap">
+    <div class="section-head methode__head">
+      <p class="eyebrow">Méthode</p>
+      <h2 id="methode-title" class="display">Quatre étapes. <em>Aucune surprise.</em></h2>
+      <p class="lead">Chaque projet suit le même chemin&nbsp;: partir de votre réalité, livrer un outil fiable, puis l’améliorer avec vous.</p>
+    </div>
+
+    <div class="methode__journey">
+      <nav class="methode__bar" aria-label="Les quatre étapes de la méthode">
+        <ol class="methode__bar-list">
+          <li><a class="methode__bar-link" href="#methode-etape-1"><svg class="methode__bar-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#methode-ico-ecouter"/></svg><span class="methode__bar-label">Comprendre</span><span class="methode__bar-fill" aria-hidden="true"></span></a></li>
+          <li><a class="methode__bar-link" href="#methode-etape-2"><svg class="methode__bar-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#methode-ico-concevoir"/></svg><span class="methode__bar-label">Concevoir</span><span class="methode__bar-fill" aria-hidden="true"></span></a></li>
+          <li><a class="methode__bar-link" href="#methode-etape-3"><svg class="methode__bar-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#methode-ico-developper"/></svg><span class="methode__bar-label">Développer</span><span class="methode__bar-fill" aria-hidden="true"></span></a></li>
+          <li><a class="methode__bar-link" href="#methode-etape-4"><svg class="methode__bar-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#methode-ico-ameliorer"/></svg><span class="methode__bar-label">Améliorer</span><span class="methode__bar-fill" aria-hidden="true"></span></a></li>
+        </ol>
+      </nav>
+
+      <div class="methode__track">
+        <!-- Le chemin est tracé par methode.js à partir de la position des nœuds (décoratif). -->
+        <svg class="methode__path methode__path--base" aria-hidden="true" focusable="false"><path d=""/></svg>
+        <svg class="methode__path methode__path--ink" aria-hidden="true" focusable="false"><path d=""/></svg>
+        <span class="methode__pen" aria-hidden="true"></span>
+
+        <ol class="methode__steps">
+          <li class="methode__step" id="methode-etape-1">
+            <p class="methode__num" aria-hidden="true"><span class="wipe-text"><span class="wipe-text__base outline-text">01</span><span class="wipe-text__fill">01</span></span></p>
+            <span class="methode__node" aria-hidden="true">
+              <svg class="methode__node-ico" viewBox="0 0 24 24" focusable="false"><use href="#methode-ico-ecouter"/></svg>
+              <span class="methode__node-on"><svg class="methode__node-ico" viewBox="0 0 24 24" focusable="false"><use href="#methode-ico-ecouter"/></svg></span>
+            </span>
+            <div class="methode__body">
+              <h3 class="h3 methode__title">Comprendre le besoin</h3>
+              <p class="methode__text">Nous écoutons d’abord&nbsp;: votre organisation, vos contraintes, ce qui vous fait perdre du temps aujourd’hui.</p>
+            </div>
+          </li>
+          <li class="methode__step" id="methode-etape-2">
+            <p class="methode__num" aria-hidden="true"><span class="wipe-text"><span class="wipe-text__base outline-text">02</span><span class="wipe-text__fill">02</span></span></p>
+            <span class="methode__node" aria-hidden="true">
+              <svg class="methode__node-ico" viewBox="0 0 24 24" focusable="false"><use href="#methode-ico-concevoir"/></svg>
+              <span class="methode__node-on"><svg class="methode__node-ico" viewBox="0 0 24 24" focusable="false"><use href="#methode-ico-concevoir"/></svg></span>
+            </span>
+            <div class="methode__body">
+              <h3 class="h3 methode__title">Concevoir une solution simple</h3>
+              <p class="methode__text">Nous proposons la solution la plus simple qui règle vraiment le problème — pas la plus compliquée.</p>
+            </div>
+          </li>
+          <li class="methode__step" id="methode-etape-3">
+            <p class="methode__num" aria-hidden="true"><span class="wipe-text"><span class="wipe-text__base outline-text">03</span><span class="wipe-text__fill">03</span></span></p>
+            <span class="methode__node" aria-hidden="true">
+              <svg class="methode__node-ico" viewBox="0 0 24 24" focusable="false"><use href="#methode-ico-developper"/></svg>
+              <span class="methode__node-on"><svg class="methode__node-ico" viewBox="0 0 24 24" focusable="false"><use href="#methode-ico-developper"/></svg></span>
+            </span>
+            <div class="methode__body">
+              <h3 class="h3 methode__title">Développer un produit fiable</h3>
+              <p class="methode__text">Nous construisons avec des technologies éprouvées, testons rigoureusement et livrons un outil stable.</p>
+            </div>
+          </li>
+          <li class="methode__step" id="methode-etape-4">
+            <p class="methode__num" aria-hidden="true"><span class="wipe-text"><span class="wipe-text__base outline-text">04</span><span class="wipe-text__fill">04</span></span></p>
+            <span class="methode__node" aria-hidden="true">
+              <svg class="methode__node-ico" viewBox="0 0 24 24" focusable="false"><use href="#methode-ico-ameliorer"/></svg>
+              <span class="methode__node-on"><svg class="methode__node-ico" viewBox="0 0 24 24" focusable="false"><use href="#methode-ico-ameliorer"/></svg></span>
+            </span>
+            <div class="methode__body">
+              <h3 class="h3 methode__title">Améliorer avec vos retours</h3>
+              <p class="methode__text">Après la mise en service, vos retours et ceux de vos utilisateurs guident chaque amélioration.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="methode__arrive">
+          <span class="methode__end" aria-hidden="true"></span>
+          <div class="methode__arrive-body">
+            <p class="methode__callout"><strong>La première rencontre est gratuite</strong> — et vous repartez avec des conseils utiles.</p>
+            <a class="btn btn--primary" href="#contact">Parlons de votre projet
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="methode__faq-wrap">
+      <div class="methode__faq-head">
+        <h3 class="methode__faq-title" id="methode-faq-title">Questions fréquentes</h3>
+        <p class="methode__faq-intro">Les réponses aux questions que l’on nous pose le plus souvent — en langage clair.</p>
+        <a class="link-arrow" href="#contact">Une autre question&nbsp;? Écrivez-nous <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="methode__faqs">
+        <details class="methode__faq">
+          <summary class="methode__faq-q"><span>Combien coûte un site web ou une application&nbsp;?</span><svg class="methode__faq-chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="methode__faq-a"><p>Chaque projet est unique&nbsp;: le prix dépend du nombre de pages ou d’écrans, des fonctionnalités et de vos besoins. Nous offrons une évaluation gratuite et un devis clair avant tout engagement — sans surprise en cours de route.</p></div>
+        </details>
+        <details class="methode__faq">
+          <summary class="methode__faq-q"><span>En combien de temps mon projet sera-t-il livré&nbsp;?</span><svg class="methode__faq-chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="methode__faq-a"><p>Un site vitrine se livre généralement en quelques semaines. Une application mobile ou un logiciel sur mesure prend plus de temps selon la portée du projet&nbsp;: nous vous donnons un échéancier réaliste dès le départ.</p></div>
+        </details>
+        <details class="methode__faq">
+          <summary class="methode__faq-q"><span>Proposez-vous des solutions d’intelligence artificielle&nbsp;?</span><svg class="methode__faq-chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="methode__faq-a"><p>Oui. Nous intégrons l’intelligence artificielle là où elle apporte un vrai gain&nbsp;: assistants, tri et rédaction de documents, recherche dans vos informations, automatisation de tâches. Nous vous expliquons clairement ce que l’IA fait de vos données avant toute mise en place.</p></div>
+        </details>
+        <details class="methode__faq">
+          <summary class="methode__faq-q"><span>Vous occupez-vous de l’hébergement et du nom de domaine&nbsp;?</span><svg class="methode__faq-chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="methode__faq-a"><p>Oui. Nous prenons en charge le nom de domaine, l’hébergement sur notre propre serveur au Québec, les courriels professionnels et la mise en ligne. Vous n’avez rien de technique à gérer&nbsp;: c’est notre travail.</p></div>
+        </details>
+        <details class="methode__faq">
+          <summary class="methode__faq-q"><span>Puis-je faire évoluer mon site ou mon application après le lancement&nbsp;?</span><svg class="methode__faq-chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="methode__faq-a"><p>Absolument — c’est même notre philosophie. Nous améliorons vos outils en continu avec vos retours, et nous reprenons aussi les projets créés par d’autres pour les corriger ou les faire évoluer.</p></div>
+        </details>
+        <details class="methode__faq">
+          <summary class="methode__faq-q"><span>Travaillez-vous avec des organisations hors du Québec&nbsp;?</span><svg class="methode__faq-chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="methode__faq-a"><p>Oui. Applications John Maibwe est basée au Québec et sert aussi la RDC et l’Afrique francophone&nbsp;: les rencontres se font à distance et le suivi, en ligne.</p></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>

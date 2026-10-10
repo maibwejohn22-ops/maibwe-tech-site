@@ -1,0 +1,230 @@
+/* ponts — « Du Québec à la RDC » (theme dark + bg-grain).
+   Map: decorative SVG layers + HTML place names positioned in % of the same box.
+   Band: a wrapped static list by default; JS adds .ponts__band--moving (motion only)
+   to turn it into one long scroll-scrubbed row. */
+
+#ponts { --grain-opacity: 0.06; }
+
+/* ---------- Intro -------------------------------------------------------- */
+#ponts .ponts__intro {
+  display: grid;
+  gap: var(--s-6);
+  margin-bottom: clamp(3rem, 2rem + 4vw, 6rem);
+}
+@media (min-width: 900px) {
+  #ponts .ponts__intro {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--grid-gap, clamp(16px, 2vw, 32px));
+    align-items: start;
+  }
+  #ponts .ponts__lead { grid-column: 1 / span 6; }
+  #ponts .ponts__question { grid-column: 8 / span 5; }
+}
+#ponts .ponts__lead { color: var(--fg); }
+#ponts .ponts__question { color: var(--fg-muted); font-size: var(--fs-body); }
+#ponts .ponts__ask {
+  display: block;
+  margin-top: var(--s-4);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.75rem, 1.25rem + 1.6vw, 2.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  text-wrap: balance;
+}
+
+/* ---------- Bridge map --------------------------------------------------- */
+#ponts .ponts__bridge { margin: 0; }
+#ponts .ponts__map {
+  position: relative;
+  aspect-ratio: 360 / 440;
+  max-width: 30rem;
+  margin-inline: auto;
+}
+#ponts .ponts__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+#ponts .ponts__svg--wide { display: none; }
+#ponts .ponts__base {
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 50%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 50%, #000 40%, transparent 100%);
+}
+#ponts .ponts__grid {
+  fill: none;
+  stroke: rgba(245, 240, 230, 0.09);
+  stroke-width: 1;
+  stroke-dasharray: 2 6;
+  vector-effect: non-scaling-stroke;
+}
+#ponts .ponts__equator {
+  fill: none;
+  stroke: rgba(245, 240, 230, 0.24);
+  stroke-width: 1;
+  stroke-dasharray: 6 6;
+  vector-effect: non-scaling-stroke;
+}
+#ponts .ponts__svg-tech {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  fill: rgba(169, 182, 202, 0.75);
+}
+#ponts .ponts__ocean {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 30px;
+  fill: rgba(245, 240, 230, 0.2);
+}
+#ponts .ponts__arc {
+  fill: none;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+#ponts .ponts__arc--main { stroke: var(--gold); stroke-width: 1.5; }
+#ponts .ponts__arc--faint { stroke: rgba(210, 155, 56, 0.4); stroke-width: 1.25; stroke-dasharray: 1 7; }
+#ponts .ponts__dot { fill: var(--gold-hi); }
+#ponts .ponts__halo { fill: rgba(210, 155, 56, 0.12); stroke: rgba(210, 155, 56, 0.5); stroke-width: 1; vector-effect: non-scaling-stroke; }
+#ponts .ponts__ping { fill: none; stroke: var(--gold-hi); stroke-width: 1.25; vector-effect: non-scaling-stroke; opacity: 0; }
+#ponts .ponts__packet { opacity: 0; }
+#ponts .ponts__packet-core { fill: #FCEBC8; }
+
+/* Place names (HTML) */
+#ponts .ponts__place {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  gap: 2px;
+  line-height: 1.2;
+}
+#ponts .ponts__place-name {
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+/* Tall variant (phones): QC dot (70, 70), RDC dot (290, 360) in a 360 × 440 box. */
+#ponts .ponts__place--qc { left: calc(19.444% - 6px); top: calc(15.909% + 20px); }
+#ponts .ponts__place--cd { right: calc(19.444% + 22px); top: 81.818%; transform: translateY(-50%); text-align: right; justify-items: end; }
+
+@media (min-width: 640px) {
+  #ponts .ponts__map { aspect-ratio: 1200 / 460; max-width: none; }
+  #ponts .ponts__svg--wide { display: block; }
+  #ponts .ponts__svg--tall { display: none; }
+  /* Wide variant: QC dot (104, 84), RDC dot (993, 410) in a 1200 × 460 box. */
+  #ponts .ponts__place--qc { left: calc(8.667% - 6px); top: calc(18.261% + 24px); }
+  #ponts .ponts__place--cd { right: calc(17.25% + 28px); top: 89.13%; }
+}
+
+#ponts .ponts__caption {
+  max-width: 46rem;
+  margin-top: var(--s-6);
+  color: var(--fg-muted);
+  font-size: var(--fs-small);
+}
+
+/* ---------- « Pour qui » band ------------------------------------------- */
+#ponts .ponts__band { margin-top: clamp(4rem, 3rem + 5vw, 8rem); }
+#ponts .ponts__band-title { margin-bottom: var(--s-5); }
+#ponts .ponts__band-view { padding-inline: var(--gutter); max-width: calc(var(--wrap) + 2 * var(--gutter)); margin-inline: auto; }
+#ponts .ponts__band-track {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s-3) var(--s-6);
+}
+#ponts .ponts__aud {
+  font-size: clamp(1.75rem, 1.1rem + 2.8vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--fg);
+}
+#ponts .ponts__aud em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.6em;
+  letter-spacing: 0;
+  color: var(--accent);
+}
+
+/* Motion version (class set by JS): one row, huge outline/filled words, moved by scroll. */
+#ponts .ponts__band--moving .ponts__band-view {
+  max-width: none;
+  padding-inline: 0;
+  overflow: clip;
+}
+#ponts .ponts__band--moving .ponts__band-track {
+  flex-wrap: nowrap;
+  width: max-content;
+  gap: clamp(2rem, 1rem + 3vw, 4.5rem);
+  padding-inline: var(--gutter);
+  padding-block: 0.08em 0.12em;
+  will-change: transform;
+}
+#ponts .ponts__band--moving .ponts__aud {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.18em;
+  font-size: clamp(3rem, 1.6rem + 5.2vw, 6.5rem);
+  line-height: 1;
+  white-space: nowrap;
+}
+#ponts .ponts__band--moving .ponts__aud:nth-child(odd) {
+  /* same technique as .outline-text (base.css): double stroke under a background-coloured fill,
+     which hides the overlapping contours of the variable font */
+  color: var(--bg);
+  -webkit-text-stroke: 3px var(--cream);
+  paint-order: stroke fill;
+}
+#ponts .ponts__band--moving .ponts__aud em {
+  max-width: 7.5em;
+  margin-top: 0.4em;
+  font-size: max(0.24em, 0.9375rem);
+  line-height: 1.15;
+  white-space: normal;
+  -webkit-text-stroke: 0;
+}
+#ponts .ponts__band--moving .ponts__aud + .ponts__aud::before {
+  content: "";
+  align-self: center;
+  flex: 0 0 auto;
+  width: 0.14em;
+  height: 0.14em;
+  margin-right: 0.45em;
+  border-radius: 50%;
+  background: var(--gold);
+}
+@supports not (-webkit-text-stroke: 1px black) {
+  #ponts .ponts__band--moving .ponts__aud:nth-child(odd) { color: var(--fg); }
+}
+
+/* ---------- Values ------------------------------------------------------- */
+#ponts .ponts__values-title { margin-top: clamp(4rem, 3rem + 4vw, 7rem); margin-bottom: var(--s-6); }
+#ponts .ponts__values {
+  display: grid;
+  gap: var(--s-6);
+}
+@media (min-width: 640px) {
+  #ponts .ponts__values { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1100px) {
+  #ponts .ponts__values { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-6) clamp(1.5rem, 2.5vw, 3rem); }
+}
+#ponts .ponts__value {
+  display: grid;
+  align-content: start;
+  gap: var(--s-3);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line-strong);
+}
+#ponts .ponts__value-name {
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+#ponts .ponts__value p { color: var(--fg-muted); font-size: var(--fs-small); }

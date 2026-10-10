@@ -1,0 +1,377 @@
+/* donnees — « Le chemin de vos données » (theme ink + bg-grid + bg-signal).
+   Mobile first: vertical flow with one straight wire. ≥ 900 px: HTML nodes placed over
+   a 1200 × 480 SVG (same coordinates, see --x/--y on each node). */
+
+#donnees {
+  --glow-x: 82%;
+  --glow-y: 30%;
+  --glow-a: 0.09;
+  --grid-y: 42%;
+}
+
+/* ---------- Diagram (mobile: vertical) --------------------------------- */
+#donnees .donnees__flow { margin: 0; }
+#donnees .donnees__diagram {
+  --icon: 48px;
+  --zone-pad: 20px;
+  position: relative;
+  isolation: isolate;
+  max-width: 34rem;
+}
+#donnees .donnees__svg { display: none; }
+
+/* One continuous wire: from the first icon centre to the last one. */
+#donnees .donnees__wire {
+  position: absolute;
+  z-index: 0;
+  left: calc(var(--zone-pad) + var(--icon) / 2);
+  top: calc(var(--icon) / 2);
+  bottom: calc(var(--icon) / 2);
+  width: 1px;
+  margin-left: -0.5px;
+  background: linear-gradient(180deg, rgba(245, 240, 230, 0.3), rgba(127, 212, 224, 0.6) 22%, rgba(127, 212, 224, 0.35));
+  transform-origin: 50% 0;
+  pointer-events: none;
+}
+
+#donnees .donnees__nodes,
+#donnees .donnees__zone-nodes { display: grid; }
+#donnees .donnees__zone-nodes { gap: var(--s-5); }
+
+#donnees .donnees__node {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  min-height: var(--icon);
+}
+#donnees .donnees__node--user { padding-left: var(--zone-pad); }
+/* The backup sits outside the server frame: the diagram does not say where copies are kept. */
+#donnees .donnees__node--safe { margin-top: 36px; padding-left: var(--zone-pad); }
+
+#donnees .donnees__icon {
+  position: relative;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: var(--icon);
+  height: var(--icon);
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: inset 0 0 0 1px rgba(127, 212, 224, 0.5), 0 0 0 5px var(--ink);
+}
+#donnees .donnees__icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--cream);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#donnees .donnees__node--user .donnees__icon { box-shadow: inset 0 0 0 1px var(--line-strong), 0 0 0 5px var(--ink); }
+#donnees .donnees__node--safe .donnees__icon { box-shadow: inset 0 0 0 1px rgba(210, 155, 56, 0.7), 0 0 0 5px var(--ink), 0 0 28px -6px rgba(210, 155, 56, 0.45); }
+#donnees .donnees__node--safe .donnees__icon svg { stroke: var(--gold); }
+
+/* Arrival ring, animated by JS only (transform + opacity). */
+#donnees .donnees__ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--signal), 0 0 18px rgba(127, 212, 224, 0.5);
+  opacity: 0;
+  pointer-events: none;
+}
+#donnees .donnees__node--safe .donnees__ping { box-shadow: 0 0 0 1px var(--gold), 0 0 18px rgba(210, 155, 56, 0.5); }
+
+#donnees .donnees__node-text { display: grid; gap: 2px; min-width: 0; }
+#donnees .donnees__node-title { font-size: 1rem; font-weight: 700; line-height: 1.25; letter-spacing: -0.005em; }
+
+/* The server zone */
+#donnees .donnees__zone {
+  position: relative;
+  margin-top: 44px;
+  padding: var(--zone-pad);
+}
+#donnees .donnees__zone-frame {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: 1px dashed rgba(127, 212, 224, 0.42);
+  border-radius: var(--r-lg);
+  background: linear-gradient(180deg, rgba(127, 212, 224, 0.06), rgba(127, 212, 224, 0.015) 70%);
+  pointer-events: none;
+}
+#donnees .donnees__zone-label {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 10px;
+  margin-bottom: var(--s-5);
+  padding-left: calc(var(--icon) + var(--s-4));
+}
+#donnees .donnees__zone-label .tech { flex-basis: 100%; }
+#donnees .donnees__zone-title { font-size: var(--fs-small); font-weight: 700; color: var(--cream); }
+#donnees .donnees__leds { display: inline-flex; gap: 5px; }
+#donnees .donnees__leds span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 8px rgba(127, 212, 224, 0.8);
+}
+#donnees .donnees__leds span + span { opacity: 0.55; }
+
+#donnees .donnees__https {
+  position: absolute;
+  z-index: 2;
+  top: -22px;
+  left: calc(var(--zone-pad) + var(--icon) + var(--s-4));
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 8px;
+  border: 1px solid rgba(127, 212, 224, 0.5);
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--signal);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+#donnees .donnees__https svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Packets: created by JS (motion only), moved with transform. */
+#donnees .donnees__packet {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: #DDF6FA;
+  box-shadow: 0 0 0 3px rgba(127, 212, 224, 0.22), 0 0 16px 5px rgba(127, 212, 224, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+#donnees .donnees__caption {
+  margin-top: var(--s-6);
+  max-width: 44rem;
+  color: var(--fg-muted);
+  font-size: var(--fs-small);
+}
+
+/* ---------- Diagram ≥ 900 px: horizontal, over the SVG ------------------ */
+@media (min-width: 900px) {
+  #donnees .donnees__diagram {
+    --icon: 56px;
+    max-width: none;
+    aspect-ratio: 1200 / 480;
+  }
+  #donnees .donnees__svg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  #donnees .donnees__wire { display: none; }
+  #donnees .donnees__nodes,
+  #donnees .donnees__zone-nodes { display: block; }
+
+  #donnees .donnees__node {
+    position: absolute;
+    left: calc(var(--x) * 1%);
+    top: calc(var(--y) * 1%);
+    width: 11rem;
+    margin: calc(var(--icon) / -2) 0 0 -5.5rem;
+    flex-direction: column;
+    gap: var(--s-3);
+    min-height: 0;
+    text-align: center;
+  }
+  #donnees .donnees__node--up {
+    top: auto;
+    bottom: calc(100% - var(--y) * 1%);
+    margin: 0 0 calc(var(--icon) / -2) -5.5rem;
+    flex-direction: column-reverse;
+  }
+  #donnees .donnees__node--user,
+  #donnees .donnees__node--safe { width: 12.5rem; margin-left: -6.25rem; padding-left: 0; }
+  #donnees .donnees__node-text { justify-items: center; }
+
+  /* Zone = x 220→890, y 24→456 in SVG units (the backup node, x 1060, stays outside). */
+  #donnees .donnees__zone {
+    position: absolute;
+    left: 18.3333%;
+    top: 5%;
+    width: 55.8333%;
+    height: 90%;
+    margin: 0;
+    padding: 0;
+  }
+  #donnees .donnees__zone-frame { border-radius: var(--r-xl); }
+  #donnees .donnees__zone-label {
+    position: absolute;
+    top: 0;
+    left: 36px;
+    transform: translateY(-50%);
+    flex-wrap: nowrap;
+    gap: 12px;
+    margin: 0;
+    padding: 8px 18px 8px 14px;
+    border: 1px solid rgba(127, 212, 224, 0.42);
+    border-radius: var(--r-pill);
+    background: var(--ink);
+    white-space: nowrap;
+  }
+  #donnees .donnees__zone-label .tech { flex-basis: auto; }
+  /* Where the first curve crosses the zone border (x 220, y ≈ 238). */
+  #donnees .donnees__https { top: 49.47%; left: 0; transform: translate(-50%, -50%); }
+  #donnees .donnees__caption { margin-top: var(--s-5); }
+}
+@media (min-width: 1100px) {
+  #donnees .donnees__diagram { --icon: 64px; }
+  #donnees .donnees__icon svg { width: 24px; height: 24px; }
+  #donnees .donnees__node-title { font-size: 1.0625rem; }
+}
+
+/* ---------- Commitments + terminal ------------------------------------- */
+#donnees .donnees__bottom {
+  display: grid;
+  gap: var(--s-8);
+  margin-top: clamp(4rem, 2.5rem + 5vw, 8rem);
+}
+@media (min-width: 1100px) {
+  #donnees .donnees__bottom {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: start;
+    gap: clamp(3rem, 5vw, 6rem);
+  }
+  /* centred next to the four commitments: no empty column under it */
+  #donnees .donnees__terminal { align-self: center; margin-top: 0; }
+}
+
+#donnees .donnees__promises {
+  display: grid;
+  gap: var(--s-6);
+  margin-top: var(--s-5);
+}
+@media (min-width: 640px) {
+  #donnees .donnees__promises { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-7) var(--s-6); }
+}
+#donnees .donnees__promise {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: var(--s-3);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+#donnees .donnees__promise-icon {
+  width: 28px;
+  height: 28px;
+  margin-bottom: var(--s-1);
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#donnees .donnees__promise-name {
+  font-size: clamp(1.15rem, 1.05rem + 0.4vw, 1.375rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+#donnees .donnees__promise p:not(.tech) { color: var(--fg-muted); font-size: var(--fs-small); line-height: 1.55; }
+#donnees .donnees__policy { margin-top: var(--s-1); font-size: var(--fs-small); }
+#donnees .donnees__note {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-7);
+  color: var(--fg-muted);
+  font-size: var(--fs-small);
+}
+#donnees .donnees__note::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ok);
+}
+
+/* Decorative terminal (aria-hidden). Full text is in the HTML: static without JS. */
+#donnees .donnees__terminal {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(127, 212, 224, 0.22);
+  border-radius: var(--r-md);
+  background: linear-gradient(180deg, rgba(20, 37, 63, 0.55), rgba(7, 15, 28, 0.9));
+  box-shadow: var(--shadow-2), 0 0 80px -40px rgba(127, 212, 224, 0.45);
+}
+#donnees .donnees__term-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+#donnees .donnees__term-dots { display: inline-flex; gap: 6px; }
+#donnees .donnees__term-dots span { width: 9px; height: 9px; border-radius: 50%; background: rgba(245, 240, 230, 0.2); }
+#donnees .donnees__term-title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+}
+#donnees .donnees__term-body {
+  margin: 0;
+  padding: 18px 18px 22px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.8;
+  color: var(--cream);
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+#donnees .donnees__prompt { color: var(--signal); }
+#donnees .donnees__term-line--out { color: var(--fg-muted); }
+#donnees .donnees__term-line--hi { color: var(--signal); }
+#donnees .donnees__ghost { visibility: hidden; }
+#donnees .donnees__caret { position: relative; display: inline-block; width: 0; height: 1em; vertical-align: text-bottom; }
+#donnees .donnees__caret::after {
+  content: "";
+  position: absolute;
+  left: 1px;
+  bottom: -0.15em;
+  width: 0.55em;
+  height: 1.2em;
+  background: var(--signal);
+  opacity: 0.85;
+}
+#donnees .donnees__caret--blink::after { animation: donnees-blink 1.1s steps(1) 4 forwards; }   /* < 5 s (WCAG 2.2.2) */
+@keyframes donnees-blink { 50% { opacity: 0; } }
