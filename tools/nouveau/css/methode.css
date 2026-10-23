@@ -271,6 +271,9 @@ html:not(.js) #methode .methode__track::before {
   /* the card takes the full width under the end of the path (which stays in the node lane) */
   #methode .methode__arrive { grid-template-columns: minmax(0, 1fr); }
   #methode .methode__end { justify-self: start; margin-left: calc((var(--node) + 8px) / 2 - 11px); }
+  /* ~46 px digits: a thinner doubled stroke and looser tracking, so the strokes of « 0 » and the
+     next digit no longer overlap (they looked doubled / notched on phones). */
+  #methode .methode__num { --stroke-w: 0.75px; letter-spacing: -0.03em; }
 }
 
 /* ---------- FAQ ----------------------------------------------------------- */

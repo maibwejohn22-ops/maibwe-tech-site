@@ -1,0 +1,179 @@
+<!-- pile — « What’s beneath the screen »: the pinned exploded view (DESIGN.md § 9.2).
+     Static by default (no JS / reduced motion / < 900 px): exploded diagram, then the 4 chapters stacked.
+     pile.js adds .pile--live (≥ 900 px, motion allowed): the visual becomes sticky and the story is scrubbed.
+     Layers are listed top (k=0, the screen) → bottom (k=4, the server); z-index restores the painting order.
+     Plates are drawn flat (300 × 600 units) and projected by a CSS matrix = the shared --iso angle, orthographic. -->
+<section id="pile" class="section pile" data-theme="ink" aria-labelledby="pile-title">
+  <div class="pile__fade" aria-hidden="true"></div>
+
+  <div class="wrap pile__head section-head">
+    <p class="eyebrow">Anatomy of an app</p>
+    <h2 id="pile-title" class="display">What’s <em>beneath the screen.</em></h2>
+    <p class="lead">An app is much more than a screen: it’s five layers working together. We build every one of them, from your first idea to ongoing care.</p>
+  </div>
+
+  <div class="pile__stage">
+    <div class="pile__visual">
+      <div class="pile__stack" role="img" aria-label="Diagram: an app seen as five layers, from top to bottom — the screen, artificial intelligence, the features, the data and the server in Québec.">
+        <div class="pile__glow"></div>
+        <div class="pile__rings"><span class="pile__ring"></span><span class="pile__ring"></span><span class="pile__ring"></span></div>
+
+        <div class="pile__layer" data-k="0">
+          <div class="pile__layer-in">
+            <div class="pile__plate pile__plate--screen">
+              <img class="pile__screen" src="/assets/nouveau/img/ec-accueil.webp" width="540" height="1173" alt="" loading="lazy" decoding="async">
+              <span class="pile__sheen"><span></span></span>
+            </div>
+            <p class="pile__label"><span class="pile__label-num">01</span><span class="pile__label-name">Screen</span></p>
+          </div>
+        </div>
+
+        <div class="pile__layer" data-k="1">
+          <div class="pile__layer-in">
+            <div class="pile__plate">
+              <svg class="pile__art" viewBox="0 0 300 600" focusable="false">
+                <circle cx="186" cy="470" r="38" fill="none" stroke="#D29B38" stroke-opacity=".3" stroke-width="1.6"/>
+                <path d="M52 64 118 132 60 210 124 284 52 356 106 428 64 512 134 556M106 428l80 42 62 50M186 470l50-60-58-74-54-52M134 556l52-86M118 132l78-36 54 74-72 166M60 210l118 126M236 410l28-118-14-122" fill="none" stroke="#D29B38" stroke-opacity=".45" stroke-width="1.8"/>
+                <g fill="#D29B38"><circle cx="52" cy="64" r="6"/><circle cx="118" cy="132" r="7"/><circle cx="60" cy="210" r="6"/><circle cx="124" cy="284" r="8"/><circle cx="52" cy="356" r="6"/><circle cx="106" cy="428" r="7"/><circle cx="64" cy="512" r="6"/><circle cx="134" cy="556" r="7"/><circle cx="248" cy="520" r="6"/><circle cx="236" cy="410" r="6"/><circle cx="178" cy="336" r="7"/><circle cx="196" cy="96" r="5"/><circle cx="250" cy="170" r="6"/><circle cx="264" cy="292" r="5"/></g>
+                <path d="M186 444c3 15 11 23 26 26-15 3-23 11-26 26-3-15-11-23-26-26 15-3 23-11 26-26z" fill="#E8B55A"/>
+              </svg>
+            </div>
+            <p class="pile__label"><span class="pile__label-num">02</span><span class="pile__label-name">AI</span></p>
+          </div>
+        </div>
+
+        <div class="pile__layer" data-k="2">
+          <div class="pile__layer-in">
+            <div class="pile__plate">
+              <svg class="pile__art" viewBox="0 0 300 600" focusable="false">
+                <g fill="#F5F0E6" fill-opacity=".05" stroke="#F5F0E6" stroke-opacity=".18" stroke-width="1.6"><rect x="22" y="26" width="120" height="122" rx="18"/><rect x="158" y="26" width="120" height="122" rx="18"/><rect x="22" y="168" width="120" height="122" rx="18"/><rect x="158" y="168" width="120" height="122" rx="18"/><rect x="22" y="310" width="120" height="122" rx="18"/><rect x="158" y="310" width="120" height="122" rx="18"/><rect x="22" y="452" width="120" height="122" rx="18"/><rect x="158" y="452" width="120" height="122" rx="18"/></g>
+                <path d="M40 104h64m-64 14h40M176 104h64m-64 14h40M40 246h64m-64 14h40M176 246h64m-64 14h40M40 388h64m-64 14h40M176 388h64m-64 14h40M40 530h64m-64 14h40M176 530h64m-64 14h40" stroke="#F5F0E6" stroke-opacity=".24" stroke-width="7" stroke-linecap="round"/>
+                <g fill="none" stroke="#D29B38" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M42 52h8l16-9v28l-16-9h-8zM50 62l4 12"/><circle cx="192" cy="50" r="7"/><path d="M180 74c2-8 7-12 12-12s10 4 12 12"/><path d="M48 208a10 10 0 0 1 20 0v8l4 6H44l4-6zM54 228h8"/><rect x="180" y="190" width="22" height="28" rx="3"/><path d="M186 200h10m-10 8h7"/><rect x="40" y="334" width="28" height="24" rx="4"/><path d="M40 342h28M48 330v8m12-8v8"/><path d="M178 336h30v18h-18l-8 7v-7h-4z"/><circle cx="56" cy="490" r="13"/><path d="M50 490l4 4 8-8"/><path d="M182 480h22l-5-5m5 17h-22l5 5"/></g>
+                <path d="M142 87h16M142 229h16M142 371h16M142 513h16M82 148v20M82 290v20M82 432v20" stroke="#D29B38" stroke-opacity=".7" stroke-width="2"/>
+              </svg>
+            </div>
+            <p class="pile__label"><span class="pile__label-num">03</span><span class="pile__label-name">Features</span></p>
+          </div>
+        </div>
+
+        <div class="pile__layer" data-k="3">
+          <div class="pile__layer-in">
+            <div class="pile__plate">
+              <svg class="pile__art" viewBox="0 0 300 600" focusable="false">
+                <rect x="22" y="26" width="256" height="40" rx="10" fill="#D29B38" fill-opacity=".16" stroke="#D29B38" stroke-opacity=".45" stroke-width="1.6"/>
+                <g fill="#F5F0E6" fill-opacity=".05" stroke="#F5F0E6" stroke-opacity=".13" stroke-width="1.4"><rect x="22" y="80" width="256" height="30" rx="8"/><rect x="22" y="120" width="256" height="30" rx="8"/><rect x="22" y="160" width="256" height="30" rx="8"/><rect x="22" y="200" width="256" height="30" rx="8"/><rect x="22" y="240" width="256" height="30" rx="8"/><rect x="22" y="280" width="256" height="30" rx="8"/><rect x="22" y="320" width="256" height="30" rx="8"/><rect x="22" y="360" width="256" height="30" rx="8"/><rect x="22" y="400" width="256" height="30" rx="8"/></g>
+                <path d="M66 95h66m16 0h48m14 0h36M66 135h52m30 0h40m22 0h36M66 175h70m12 0h56m6 0h36M66 215h44m38 0h48m14 0h36M66 255h62m20 0h40m22 0h36M66 295h56m26 0h52m10 0h36M66 335h66m16 0h44m18 0h36M66 375h48m34 0h48m14 0h36M66 415h60m22 0h40m22 0h36" stroke="#F5F0E6" stroke-opacity=".22" stroke-width="7" stroke-linecap="round"/>
+                <path d="M34 95h14M34 135h14M34 175h14M34 215h14M34 255h14M34 295h14M34 335h14M34 375h14M34 415h14" stroke="#D29B38" stroke-width="7" stroke-linecap="round"/>
+                <g fill="none" stroke="#7FD4E0" stroke-opacity=".7" stroke-width="2.2"><ellipse cx="70" cy="474" rx="30" ry="11"/><path d="M40 474v66c0 6 13 11 30 11s30-5 30-11v-66M40 507c0 6 13 11 30 11s30-5 30-11"/><ellipse cx="150" cy="474" rx="30" ry="11"/><path d="M120 474v66c0 6 13 11 30 11s30-5 30-11v-66M120 507c0 6 13 11 30 11s30-5 30-11"/><ellipse cx="230" cy="474" rx="30" ry="11"/><path d="M200 474v66c0 6 13 11 30 11s30-5 30-11v-66M200 507c0 6 13 11 30 11s30-5 30-11"/></g>
+              </svg>
+            </div>
+            <p class="pile__label"><span class="pile__label-num">04</span><span class="pile__label-name">Data</span></p>
+          </div>
+        </div>
+
+        <div class="pile__layer" data-k="4">
+          <div class="pile__layer-in">
+            <div class="pile__shadow"></div>
+            <div class="pile__plate">
+              <svg class="pile__art" viewBox="0 0 300 600" focusable="false">
+                <g fill="#F5F0E6" fill-opacity=".045" stroke="#F5F0E6" stroke-opacity=".16" stroke-width="1.6"><rect x="22" y="26" width="256" height="52" rx="10"/><rect x="22" y="94" width="256" height="52" rx="10"/><rect x="22" y="162" width="256" height="52" rx="10"/><rect x="22" y="230" width="256" height="52" rx="10"/><rect x="22" y="298" width="256" height="52" rx="10"/><rect x="22" y="366" width="256" height="52" rx="10"/><rect x="22" y="434" width="256" height="52" rx="10"/></g>
+                <path d="M72 44h60m-60 8h60m-60 8h60M72 112h60m-60 8h60m-60 8h60M72 180h60m-60 8h60m-60 8h60M72 248h60m-60 8h60m-60 8h60M72 316h60m-60 8h60m-60 8h60M72 384h60m-60 8h60m-60 8h60M72 452h60m-60 8h60m-60 8h60M160 52h96M160 120h96M160 188h96M160 256h96M160 324h96M160 392h96M160 460h96" stroke="#F5F0E6" stroke-opacity=".16" stroke-width="2.4" stroke-linecap="round"/>
+                <g fill="#7FD4E0" fill-opacity=".2"><circle cx="44" cy="52" r="10"/><circle cx="44" cy="120" r="10"/><circle cx="44" cy="188" r="10"/><circle cx="44" cy="256" r="10"/><circle cx="44" cy="324" r="10"/><circle cx="44" cy="392" r="10"/><circle cx="44" cy="460" r="10"/></g>
+                <g fill="#7FD4E0"><circle cx="44" cy="52" r="4.5"/><circle cx="44" cy="120" r="4.5"/><circle cx="44" cy="188" r="4.5"/><circle cx="44" cy="256" r="4.5"/><circle cx="44" cy="324" r="4.5"/><circle cx="44" cy="392" r="4.5"/><circle cx="44" cy="460" r="4.5"/></g>
+                <rect x="98" y="512" width="104" height="44" rx="22" fill="#7FD4E0" fill-opacity=".08" stroke="#7FD4E0" stroke-opacity=".7" stroke-width="2"/>
+                <text x="150" y="542" text-anchor="middle" fill="#7FD4E0" font-size="21" font-weight="800" letter-spacing="2">QC</text>
+              </svg>
+            </div>
+            <p class="pile__label"><span class="pile__label-num">05</span><span class="pile__label-name">Server</span></p>
+          </div>
+        </div>
+
+        <svg class="pile__beams" viewBox="0 0 640 900" preserveAspectRatio="none" focusable="false">
+          <defs><linearGradient id="pile-beam" gradientUnits="userSpaceOnUse" x1="0" y1="425" x2="0" y2="110"><stop offset="0" stop-color="#E8B55A"/><stop offset="1" stop-color="#E8B55A" stop-opacity=".15"/></linearGradient></defs>
+          <path d="M320 425 112 150M320 425V100M320 425l208-275" fill="none" stroke="url(#pile-beam)" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+        </svg>
+        <ul class="pile__badges">
+          <li class="pile__badge" style="--x: 17.5%; --y: 14.5%"><span class="pile__badge-off">App Store<span class="pile__badge-on" aria-hidden="true">App Store</span></span></li>
+          <li class="pile__badge" style="--x: 50%; --y: 9.5%"><span class="pile__badge-off">Google Play<span class="pile__badge-on" aria-hidden="true">Google Play</span></span></li>
+          <li class="pile__badge" style="--x: 82.5%; --y: 14.5%"><span class="pile__badge-off">Web<span class="pile__badge-on" aria-hidden="true">Web</span></span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pile__flow">
+      <ol class="wrap pile__chapters">
+        <li class="pile__chapter pile__chapter--1">
+          <div class="pile__chapter-in">
+            <p class="pile__num"><span>01</span> / 04</p>
+            <h3 class="pile__title">Your <em>idea.</em></h3>
+            <p class="pile__text">From the outside, an app is a single thing: an icon on a phone, an address on the web. It all starts with what you want to offer your members, your students or your customers.</p>
+          </div>
+        </li>
+
+        <li class="pile__chapter pile__chapter--2">
+          <div class="pile__chapter-in">
+            <p class="pile__num"><span>02</span> / 04</p>
+            <h3 class="pile__title">The five <em>layers.</em></h3>
+            <ol class="pile__rows">
+              <li class="pile__row" data-k="0">
+                <span class="pile__row-num" aria-hidden="true">01</span>
+                <div class="pile__row-body"><p class="pile__row-head"><span class="pile__row-name">Screen</span> <span class="tech">iPhone&nbsp;· Android&nbsp;· Web</span></p><p class="pile__row-text">What your members see and touch, on a phone or a computer.</p></div>
+              </li>
+              <li class="pile__row" data-k="1">
+                <span class="pile__row-num" aria-hidden="true">02</span>
+                <div class="pile__row-body"><p class="pile__row-head"><span class="pile__row-name">AI</span> <span class="tech">Assistants&nbsp;· automation</span></p><p class="pile__row-text">AI wherever it saves you time: drafting, sorting, answering.</p></div>
+              </li>
+              <li class="pile__row" data-k="2">
+                <span class="pile__row-num" aria-hidden="true">03</span>
+                <div class="pile__row-body"><p class="pile__row-head"><span class="pile__row-name">Features</span> <span class="tech">API&nbsp;· business logic</span></p><p class="pile__row-text">Your rules, turned into actions: posting an announcement, receiving a request.</p></div>
+              </li>
+              <li class="pile__row" data-k="3">
+                <span class="pile__row-num" aria-hidden="true">04</span>
+                <div class="pile__row-body"><p class="pile__row-head"><span class="pile__row-name">Data</span> <span class="tech">PostgreSQL&nbsp;· backups</span></p><p class="pile__row-text">Your information, neatly organized and protected, with encrypted backups.</p></div>
+              </li>
+              <li class="pile__row" data-k="4">
+                <span class="pile__row-num" aria-hidden="true">05</span>
+                <div class="pile__row-body"><p class="pile__row-head"><span class="pile__row-name">Server</span> <span class="tech">OVHcloud&nbsp;· Docker</span></p><p class="pile__row-text">Our own server, hosted in Beauharnois, Québec.</p></div>
+              </li>
+            </ol>
+          </div>
+        </li>
+
+        <li class="pile__chapter pile__chapter--3">
+          <div class="pile__chapter-in">
+            <p class="pile__num"><span>03</span> / 04</p>
+            <h3 class="pile__title">The <em>launch.</em></h3>
+            <p class="pile__text">When everything is ready, the layers come back together as a single app. We publish it where your users will find it.</p>
+            <ul class="pile__chips" aria-label="Where we publish">
+              <li>App Store</li>
+              <li>Google Play</li>
+              <li>Web</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="pile__chapter pile__chapter--4">
+          <div class="pile__chapter-in">
+            <p class="pile__num"><span>04</span> / 04</p>
+            <h3 class="pile__title">Ongoing <em>care.</em></h3>
+            <p class="pile__text">An app lives on after its launch. We maintain it and keep improving it with you.</p>
+            <ul class="pile__care">
+              <li>Security updates</li>
+              <li>Bug fixes</li>
+              <li>Encrypted backups</li>
+              <li>Improvements based on your feedback</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+
+      <div class="pile__outro" data-theme="cream">
+        <div class="pile__outro-bg bg-grain" data-theme="cream" aria-hidden="true"></div>
+        <div class="wrap pile__outro-in">
+          <p class="pile__statement display">We build every layer&nbsp;— <em>and we stay with you.</em></p>
+          <a class="link-arrow pile__outro-link" href="#services">See our services <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

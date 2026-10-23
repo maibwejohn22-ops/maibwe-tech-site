@@ -1,0 +1,182 @@
+<!doctype html>
+<!-- page.en.html — shell of the ENGLISH home page (public/en/index.html).
+     <head>: the previous live /en/ page's metadata (title, description, Open Graph, JSON-LD).
+     <body>: English version of page.fr.html (Canadian English).
+     Keep ids, classes, hrefs and structure identical to page.fr.html: build.py checks that the FR
+     and EN pages have the same ids and the same in-page links. -->
+<html lang="en-CA" data-motion="full">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Applications John Maibwe (AJM) — Web, Mobile &amp; AI Development in Québec</title>
+  <meta name="description" content="Applications John Maibwe (AJM) is a Québec-based company building web and mobile apps (iOS, Android), custom software, artificial intelligence, automation, cloud and digital transformation solutions.">
+  <meta name="author" content="Applications John Maibwe">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#0C1729">
+  <link rel="canonical" href="https://johnmaibwe.com/en/">
+  <link rel="alternate" hreflang="fr-CA" href="https://johnmaibwe.com/">
+  <link rel="alternate" hreflang="en-CA" href="https://johnmaibwe.com/en/">
+  <link rel="alternate" hreflang="x-default" href="https://johnmaibwe.com/">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Applications John Maibwe">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:locale:alternate" content="fr_CA">
+  <meta property="og:title" content="Applications John Maibwe (AJM) — Web, Mobile &amp; AI Apps">
+  <meta property="og:description" content="Web and mobile apps, custom software, artificial intelligence and digital transformation. Based in Québec, open to the world.">
+  <meta property="og:url" content="https://johnmaibwe.com/en/">
+  <meta property="og:image" content="https://johnmaibwe.com/assets/og-ajm-en.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AJM logo — Applications John Maibwe, johnmaibwe.com">
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Applications John Maibwe (AJM) — Web, Mobile &amp; AI Apps">
+  <meta name="twitter:description" content="Web and mobile apps, custom software and artificial intelligence. Based in Québec, open to the world.">
+  <meta name="twitter:image" content="https://johnmaibwe.com/assets/og-ajm-en.png">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/ajm-apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Montserrat:wght@400;500;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="/assets/nouveau/nouveau.css?v={{CSS_VERSION}}">
+  <noscript><style>
+    /* Without JavaScript: menu always visible, no inactive button. */
+    .site-header { height: auto; background: #0C1729; color: #F5F0E6; }
+    .site-header__bar { flex-wrap: wrap; padding-block: 10px; }
+    .site-header__toggle { display: none !important; }
+    .site-menu { position: static !important; opacity: 1 !important; visibility: visible !important; transform: none !important; background: none !important; border: 0 !important; box-shadow: none !important; padding: 0 !important; display: flex !important; flex-wrap: wrap; gap: 6px 18px; width: 100%; max-height: none !important; }
+    .site-menu .site-nav__list { flex-direction: row !important; flex-wrap: wrap; gap: 6px 18px !important; }
+    .site-menu .site-nav__link { font-size: 0.875rem !important; padding: 4px 0 !important; border: 0 !important; }
+    .site-menu__cta { display: none !important; }
+  </style></noscript>
+  <script src="/assets/vendor/gsap.min.js" defer></script>
+  <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/nouveau/nouveau.js?v={{JS_VERSION}}" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://johnmaibwe.com/#organization",
+        "name": "Applications John Maibwe",
+        "alternateName": "AJM",
+        "url": "https://johnmaibwe.com/",
+        "logo": "https://johnmaibwe.com/assets/ajm-icon-512.png",
+        "image": "https://johnmaibwe.com/assets/og-ajm-en.png",
+        "email": "john@johnmaibwe.com",
+        "description": "Web and mobile app development, custom software, artificial intelligence, automation, cloud solutions and digital transformation.",
+        "founder": { "@type": "Person", "name": "John Maibwe" },
+        "address": { "@type": "PostalAddress", "addressRegion": "QC", "addressCountry": "CA" },
+        "areaServed": [ { "@type": "Country", "name": "Canada" }, "International" ],
+        "knowsLanguage": [ "fr", "en" ],
+        "contactPoint": { "@type": "ContactPoint", "contactType": "customer service", "email": "john@johnmaibwe.com", "availableLanguage": [ "French", "English" ] }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://johnmaibwe.com/en/#webpage",
+        "url": "https://johnmaibwe.com/en/",
+        "name": "Applications John Maibwe (AJM) — Web, Mobile & AI Development",
+        "inLanguage": "en-CA",
+        "isPartOf": { "@id": "https://johnmaibwe.com/#website" },
+        "about": { "@id": "https://johnmaibwe.com/#organization" }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+<div class="top-sentinel" id="top" aria-hidden="true"></div>
+<a class="skip-link" href="#contenu">Skip to content</a>
+
+<header class="site-header" id="site-header" data-on="dark">
+  <div class="site-header__bar wrap">
+    <a class="brand" href="#top" aria-label="Applications John Maibwe — back to top">
+      <img class="brand__logo" src="/assets/ajm-icon.svg" alt="" width="34" height="34">
+      <span class="brand__name" aria-hidden="true"><span class="brand__small">Applications</span><span class="brand__big">John <em>Maibwe</em></span></span>
+    </a>
+
+    <div class="site-menu" id="site-menu">
+      <nav class="site-nav" aria-label="Page sections">
+        <ul class="site-nav__list">
+          <li><a class="site-nav__link" href="#services">Services</a></li>
+          <li><a class="site-nav__link" href="#apps">Products</a></li>
+          <li><a class="site-nav__link" href="#donnees">Your data</a></li>
+          <li><a class="site-nav__link" href="#methode">Approach</a></li>
+          <li><a class="site-nav__link" href="#ponts">About</a></li>
+        </ul>
+      </nav>
+      <div class="site-menu__utils">
+        <a class="site-menu__util" href="/" hreflang="fr" lang="fr">FR<span class="sr-only"> — version française</span></a>
+      </div>
+      <a class="btn btn--primary site-menu__cta" href="#contact">Tell us about your project</a>
+    </div>
+
+    <div class="site-header__actions">
+      <a class="btn btn--primary btn--sm site-header__cta" href="#contact">Tell us about your project</a>
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <span class="site-header__toggle-icon" aria-hidden="true"><span></span><span></span></span>
+        <!-- « Menu » / « Close » are written by core.js from js/i18n.js (menuOpen / menuClose). -->
+        <span class="site-header__toggle-label">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="contenu" tabindex="-1">
+<!-- @section hero -->
+<!-- @section pile -->
+<!-- @section services -->
+<!-- @section apps -->
+<!-- @section donnees -->
+<!-- @section chiffres -->
+<!-- @section methode -->
+<!-- @section ponts -->
+<!-- @section contact -->
+</main>
+
+<footer class="site-footer" data-theme="ink">
+  <div class="wrap site-footer__grid">
+    <div class="site-footer__brand">
+      <a class="brand" href="#top" aria-label="Applications John Maibwe — back to top">
+        <img class="brand__logo" src="/assets/ajm-icon.svg" alt="" width="40" height="40" loading="lazy">
+        <span class="brand__name" aria-hidden="true"><span class="brand__small">Applications</span><span class="brand__big">John <em>Maibwe</em></span></span>
+      </a>
+      <p class="site-footer__tagline">Web and mobile apps, custom software and artificial intelligence. Designed in Québec, for Québec and francophone Africa.</p>
+      <a class="site-footer__mail" href="mailto:john@johnmaibwe.com">john@johnmaibwe.com</a>
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Footer">
+      <p class="site-footer__title">On this page</p>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#apps">Products</a></li>
+        <li><a href="#donnees">Your data</a></li>
+        <li><a href="#methode">Approach</a></li>
+        <li><a href="#ponts">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- The privacy policy exists in French only: the link says so. -->
+    <div class="site-footer__nav">
+      <p class="site-footer__title">Links</p>
+      <ul>
+        <li><a href="/confidentialite.html" hreflang="fr">Privacy policy (in French)</a></li>
+        <li><a href="/" hreflang="fr" lang="fr">Français</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="site-footer__mark outline-text" aria-hidden="true">John Maibwe</p>
+
+  <div class="wrap site-footer__legal">
+    <p>Applications John Maibwe — sole proprietorship of John Maibwe&nbsp;· NEQ&nbsp;2282127606&nbsp;· Québec, Canada</p>
+    <p>© 2026 Applications John Maibwe</p>
+  </div>
+</footer>
+</body>
+</html>

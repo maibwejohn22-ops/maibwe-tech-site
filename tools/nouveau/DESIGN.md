@@ -1,7 +1,10 @@
-# /nouveau/ — design system and build brief (« Nord doré »)
+# johnmaibwe.com home page — design system and build brief (« Nord doré »)
 
-New home page **prototype** for johnmaibwe.com (Applications John Maibwe, AJM).
-It lives at `/nouveau/` only and is `noindex, nofollow`. The live site must stay byte-identical.
+Home page of johnmaibwe.com (Applications John Maibwe, AJM), in **French** (`/`,
+`public/index.html`) and **English** (`/en/`, `public/en/index.html`). Born as the `/nouveau/`
+prototype (October 2026), approved by John and promoted to production on 2026-10-23: `/nouveau/`
+is no longer published. Both pages are **generated** by `build.py` — see § 14 for the production
+build, the two languages and the old deep links.
 
 Builders rely on this file only. If something here is ambiguous, follow the spirit:
 **credible, calm, premium; few words, big type, one accent; every effect must survive
@@ -11,18 +14,20 @@ reduced motion and a modest Android phone.**
 
 ## 0. Ground rules (read first)
 
-**Never** switch branches, commit or push. Never touch `public/index.html`, `public/en/`,
-`public/assets/site.css`, `public/assets/site.js`, `deploy/`, `Dockerfile`, `vercel.json`.
+**Never** switch branches, commit or push (deploying = pushing `main`, John's call). Never edit
+the generated files (`public/index.html`, `public/en/index.html`, `public/assets/nouveau/nouveau.*`)
+by hand, and never touch `deploy/`, `Dockerfile`, `vercel.json`.
 
 **You own only your section's three files** (5 builders work in parallel):
 
 | File | What |
 |---|---|
 | `tools/nouveau/sections/<id>.html` | HTML fragment, root = `<section id="<id>" class="section <id> …" data-theme="…">` |
+| `tools/nouveau/sections/en/<id>.html` | the same fragment in English (same ids, classes, hrefs — § 14) |
 | `tools/nouveau/css/<id>.css` | styles, every selector scoped to `#<id>` or `.<id>__*` |
 | `tools/nouveau/js/<id>.js` | one `AJM.register('<id>', fn)` call (the file is wrapped in its own IIFE by the build) |
 
-Do **not** edit `page.html`, `css/base.css`, `js/core.js`, `build.py`, `composants.html` or another
+Do **not** edit `page.fr.html`, `page.en.html`, `css/base.css`, `js/core.js`, `js/i18n.js`, `build.py`, `composants.html` or another
 section's files. Need a shared change? Say so in your report instead.
 New images: `public/assets/nouveau/img/<id>-*.webp` only (see § 10).
 
@@ -36,17 +41,21 @@ The build fails on duplicate ids. No global element selectors (`h2 { … }`), no
 python3 /Users/johnmaibwesihaya/dev/Nexora/maibwe-tech-site/tools/nouveau/build.py
 ```
 
-Assembles `public/nouveau/index.html`, `public/assets/nouveau/nouveau.css`, `nouveau.js`
-(+ `public/nouveau/composants.html`, a sample page of every component). It **fails loudly** on:
+Assembles `public/index.html` (FR), `public/en/index.html` (EN) and the shared
+`public/assets/nouveau/nouveau.css` / `nouveau.js`. It **fails loudly** on:
 missing/duplicate markers, missing fragment, `<section id>` or `data-theme` missing, inline
-`<script>`, `on*=` attributes, `javascript:` URLs, external img/script sources, `<iframe>`,
-duplicate ids, `href="#x"` pointing nowhere. Keep your fragment valid at all times: a broken
-fragment breaks everyone's build. It prints the page weight against the 700 KB budget.
+`<script>` (JSON-LD excepted), `on*=` attributes, `javascript:` URLs, external img/script sources,
+`<iframe>`, duplicate ids, `href="#x"` pointing nowhere, plus the production guards of § 14.
+Keep your fragment valid at all times: a broken fragment breaks everyone's build. It prints the
+weight of each page against the 700 KB budget and the TODO-EN markers left.
 
-Preview server « ajm-prototype » serves `public/` on http://localhost:8090 → open
-http://localhost:8090/nouveau/ in **your own tab**. Add `?motion=reduced` to see the calm version
-(the in-app browser cannot emulate `prefers-reduced-motion`); `?motion=full` forces motion.
-Design-system sample: http://localhost:8090/nouveau/composants.html
+Preview server « ajm-csp » serves `public/` on http://127.0.0.1:8091 **with the production
+security headers** (CSP violations show in the console) → open http://127.0.0.1:8091/ (FR) and
+http://127.0.0.1:8091/en/ (EN) in **your own tab** (« ajm-prototype », port 8090, is the same
+without headers). Add `?motion=reduced` to see the calm version (the in-app browser cannot
+emulate `prefers-reduced-motion`); `?motion=full` forces motion.
+Design-system sample (never published): `python3 tools/nouveau/build.py --sample <dir outside
+public/>`, then `python3 -m http.server -d <dir>` and open `/composants.html`.
 Screenshot tip: when the Browser pane is narrower than an emulated 1440 px viewport, captures can
 come back mostly empty (page painted in a tiny corner). Then verify desktop layout numerically
 (`getBoundingClientRect`, `scrollWidth`) and take visual screenshots at the pane's own width or with
@@ -138,7 +147,7 @@ so components work in every theme:
 | 7 | `methode` | `cream` | 4 steps + FAQ |
 | 8 | `ponts` | `dark` (+ `bg-grain`) | about, Québec ↔ Africa |
 | 9 | `contact` | `cream` | final CTA + form |
-| — | footer | `ink` | in page.html |
+| — | footer | `ink` | in page.fr.html / page.en.html |
 
 The header reads the theme of the block under it (`data-on="dark|light|gold"`) and adapts.
 
@@ -146,7 +155,7 @@ The header reads the theme of the block under it (`data-on="dark|light|gold"`) a
 
 ## 3. Typography
 
-Fonts (Google Fonts, `display=swap`, already linked in page.html):
+Fonts (Google Fonts, `display=swap`, already linked in the page shells):
 **Montserrat** 400/500/600/700/800 (brand, everything) and **Instrument Serif** 400 regular +
 italic (accent words only). Mono = system stack (`--font-mono`), never downloaded.
 
@@ -203,7 +212,7 @@ Rules:
 
 ---
 
-## 5. Components (base.css) — see them live in `/nouveau/composants.html`
+## 5. Components (base.css) — sample page: `build.py --sample` (§ 0)
 
 **Eyebrow / kicker** `<p class="eyebrow">Services</p>` (`.eyebrow--plain` without the rule).
 
@@ -279,7 +288,7 @@ Laptop screen 16/10 (no real web screenshots exist: use an abstract SVG, see § 
 **Split text / counters** classes (`.split-word`, `.split-word__inner`, `.split-word--mask`, `.roll*`)
 are produced by `AJM.utils` (§ 7); don't write that markup by hand.
 
-**Header & footer** live in page.html (don't restyle them from a section).
+**Header & footer** live in the page shells `page.fr.html` / `page.en.html` (don't restyle them from a section).
 
 ---
 
@@ -318,7 +327,7 @@ leaves it), and refreshes ScrollTrigger after `document.fonts.ready` and `window
 scrolls and #fragment jumps; so ScrollTrigger's own load/DOMContentLoaded auto-refresh is off
 (`autoRefreshEvents: 'visibilitychange,resize'`), `AJM.refresh()` waits until scrolling has
 stopped for 250 ms, image loads never trigger a refresh (every `<img>` has width/height), and a
-deep link (`/nouveau/#methode`) is re-applied after each refresh until the visitor scrolls.
+deep link (`/#methode`, `/en/#produits`) is re-applied after each refresh until the visitor scrolls.
 
 ```js
 // tools/nouveau/js/apps.js  (wrapped in its own IIFE + 'use strict' by build.py)
@@ -625,22 +634,25 @@ starting point — keep the facts exact (§ 11). Reuse/adapt the current site's 
   `xPercent`, no autoplay; duplicated copy `aria-hidden`). The real list is an HTML `<ul>`.
   Reduced: wrapped static list.
 - Values (small 4-up, optional): Simplicité · Fiabilité · Accessibilité · Impact (current site copy).
-- No photos of people (no stock photos in the prototype).
+- No photos of people (no stock photos).
 
 ### 9.9 `contact` — theme `cream` — final call to action
 - Eyebrow « Contact », headline mega-ish « Parlons de <em>votre projet.</em> », lead « Décrivez
   votre besoin en quelques lignes : nous vous répondons rapidement, en langage clair, sans jargon.
   La première rencontre est gratuite. »
 - Big `mailto:john@johnmaibwe.com` link (display-ish size, underline drawn with a `scaleX` wipe).
-- Form: **reuse the current site's form** (`public/index.html`, `#contactForm`): same Web3Forms
+- Form: **reuse the previous site's form** (old `public/index.html`, `#contactForm`; see git history): same Web3Forms
   `action="https://api.web3forms.com/submit" method="POST"`, same `access_key`
-  (`072943ae-2b7c-4151-91dd-86ed93e98fc4`), hidden `subject` « Nouveau message — johnmaibwe.com
-  (prototype) », `from_name`, honeypot `botcheck` (`tabindex="-1"`, `aria-hidden`), `langue`, fields
+  (`072943ae-2b7c-4151-91dd-86ed93e98fc4`), hidden `subject` « Nouveau message — johnmaibwe.com »
+  (EN: « New message (EN) — johnmaibwe.com »), `from_name` « Site Applications John Maibwe »,
+  honeypot `botcheck` (`tabindex="-1"`, `aria-hidden`), `langue` (« Français » / « English »), fields
   nom / email / sujet (same 10 options) / message with the same constraints; ids prefixed `contact-`.
   JS (always, not motion-gated): port the submit logic of `public/assets/site.js` (« Formulaire de
   contact » block: 3 s timer + honeypot → fake success, length checks, > 3 links refused,
   `fetch` with `Accept: application/json`, `aria-busy`, status `role="status" aria-live="polite"`,
-  success panel + « Envoyer un autre message »). French messages written inline in contact.js.
+  success panel + « Envoyer un autre message »). Messages and the e-mail subject come from
+  `js/i18n.js` (`AJM.t('formSending')`, `AJM.t('formSubject', sujet)` → « Nouveau message — <sujet> —
+  johnmaibwe.com », EN « New message (EN) — <sujet> — johnmaibwe.com »).
   Without JS the form posts normally. Note under the form: « Vos informations sont transmises via
   Web3Forms, uniquement pour traiter votre demande. » + link `/confidentialite.html`.
 - Side info: Courriel · Zones « Québec · RDC et Afrique francophone — rencontres à distance » ·
@@ -726,7 +738,7 @@ Test on the mobile preset: no horizontal scroll (`document.documentElement.scrol
 ## 12. Definition of done (each builder)
 
 1. `python3 tools/nouveau/build.py` passes; weight still < 700 KB.
-2. Own tab at http://localhost:8090/nouveau/: screenshots desktop (~1440) and mobile preset;
+2. Own tab at http://127.0.0.1:8091/ and /en/: screenshots desktop (~1440) and mobile preset;
    no console errors/warnings from your section; no horizontal scroll at 375 px.
 3. `?motion=reduced`: section fully readable, stacked, static; essential behaviour works.
 4. Keyboard: Tab through your section — visible focus, logical order, no trap; tabs/menus/details
@@ -746,7 +758,7 @@ Test on the mobile preset: no horizontal scroll (`document.documentElement.scrol
   (`.pile__outro[data-theme="cream"]`): the bar turns light as soon as the cream page reaches it.
   `aria-current` in the nav still follows the top-level sections only.
 - **One FAQ per page.** The FAQ lives in `methode` (6 questions). `contact` holds the form
-  (§ 9.9, the live site's Web3Forms form ported to contact.js, subject « … (prototype) ») on the
+  (§ 9.9, the previous site's Web3Forms form ported to contact.js) on the
   left, e-mail + facts on the right: every « Parlons de votre projet » ends on a working form.
 - **Clip-path strings with radii.** GSAP normalises clip-path through the computed style, which
   drops zero radii (`inset(0%)`), so a tween from `inset(… round 50vw …)` to `round 0vw` interpolates
@@ -767,3 +779,102 @@ Test on the mobile preset: no horizontal scroll (`document.documentElement.scrol
   is currently unused by the page (kept for a later screen). Backups: the diagram draws the
   « Sauvegarde chiffrée » node outside the server frame and the caption makes no claim about
   where copies are stored — to confirm with John.
+- **Release fixes (2026-10-23).** Narrow phones: below 375 px the services tiles drop their
+  pictogram and tighten their padding (and `.services__tab-name` breaks a word rather than spill
+  out of its tile); below 380 px the calm `apps` card puts the product name on its own row above
+  the phone (« TELEPromptCam » broke mid-word in the 136 px column); on phones the `methode`
+  step numbers use a thinner stroke and looser tracking (the doubled strokes overlapped); with JS,
+  the open « Menu » sheet fills the screen under the bar below 560 px (the hero's identical CTA
+  showed under the menu's own). The pile's lit store badges (`.pile__badge-on`) are
+  `aria-hidden` (they duplicate the label). French `alt` / `aria-label` values use `&nbsp;`
+  before « : » like the visible text.
+
+---
+
+## 14. Production & languages (since 2026-10-23)
+
+### Files
+
+| File | Role |
+|---|---|
+| `page.fr.html` | French shell: full production `<head>` (title, description, robots `index, follow`, canonical `https://johnmaibwe.com/`, hreflang fr-CA / en-CA / x-default, Open Graph + Twitter with `og-ajm-fr.png`, icons, manifest, fonts, JSON-LD Organization + WebSite), header, footer, `<!-- @section id -->` markers |
+| `page.en.html` | English shell: same structure; `<head>` = the previous live `/en/` metadata (canonical `/en/`, `og-ajm-en.png`, JSON-LD Organization + WebPage); body in Canadian English (translated 2026-10-23, no TODO-EN left) |
+| `sections/<id>.html` | French fragments |
+| `sections/en/<id>.html` | English fragments (translated 2026-10-23; same structure as the French ones) |
+| `js/i18n.js` | every user-visible string **written by JavaScript**, `fr` + `en` dictionaries |
+| `css/*`, `js/core.js`, `js/<id>.js` | shared by both languages (one CSS and one JS bundle, `?v=<hash>`) |
+
+Outputs: `public/index.html` (`lang="fr-CA"`), `public/en/index.html` (`lang="en-CA"`),
+`public/assets/nouveau/nouveau.css|js`. `public/nouveau/` does not exist any more and build.py
+never writes it (it warns if it reappears). `composants.html` stays in `tools/` (`--sample`).
+
+### Strings written by JavaScript — `js/i18n.js`
+
+The dictionary is chosen from `<html lang>` (first two letters; anything else → French).
+`AJM.t(key, …args)` returns the string (functions receive the args); `AJM.lang` = `fr|en`,
+`AJM.locale` = `fr-CA|en-CA` (for `Intl`). A key missing in `en` falls back to French with a
+console warning. **Never write a user-visible string in a section JS file**: add a key to both
+dictionaries. Current keys: `menuOpen`/`menuClose` (header button, core.js), `heroPause`/
+`heroResume` (pause button tooltip; its accessible name is the sr-only text in the HTML and its
+state is `aria-pressed`), `formSending`, `formTooShort`, `formTooManyLinks`, `formFailed`,
+`formNetwork`, `formThanks(name)`, `formSubject(topic)` (contact.js).
+Everything that is already in the HTML is translated in the HTML: terminal lines
+(`donnees`, typed from the DOM text), counter values and labels (`chiffres`, rolled from the DOM
+text), hero chip names, headings split into words (splitWords reads the DOM), aria-labels, alt
+texts, titles, placeholders, `<option>` labels (they become the e-mail subject: keep them short).
+
+### Translating (TODO-EN workflow)
+
+English conventions chosen on 2026-10-23 (keep them when the French text changes): Canadian
+spelling (organization, colour); « RDC » in running text → « DR Congo » (product names Campus RDC,
+VillageMap RDC, Zembo Music IA, Castor IA unchanged); « Loi 25 » → « Québec’s Law 25 »; « PME » →
+small businesses, « organismes / OBNL » → non-profits; status chips Available / Available on iPhone /
+Coming soon to the App Store / Private beta / In design; CTA buttons « Tell us about your project »
+(shorter than « Let’s talk about your project », which overflowed the hero button at 320 px; that
+phrase stays as the contact headline); French-only pages are labelled « (in French) » everywhere
+with `hreflang="fr"`; the TELEPromptCam support link points to `/promptcam/support.html#english`.
+Native-speaker review (2026-10-23): the pile layer « L’intelligence » is « AI » in English (not
+« Intelligence »), service 08 is « Maintenance and updates » (tab and panel title alike),
+« porteurs de projet » → « new ventures » (not « project leaders »), « copie de sécurité » →
+« Spare copy »; avoid word-for-word calques of « accompagner », « la machine s’en occupe »,
+« ne rentre dans aucune case », « votre réalité ».
+
+- Every English source still to translate carries a `TODO-EN` comment; `build.py` prints how many
+  are left and strips those comments from the generated page. Remove a marker when its block is done.
+- Keep ids, classes, `href`s, `data-*`, `style="--i: …"` and the element structure **identical**
+  to French: build.py fails if the two pages differ in ids or in-page links (`#…`).
+- In `sections/en/contact.html`, the hidden fields `langue` (« English ») and `subject`
+  (« New message (EN) — johnmaibwe.com ») are already final (John's mailbox sorts on them).
+  Approved English wording of the previous `/en/` page (form labels, the 10 subject options,
+  FAQ, services, products) is in git history: `git show 4c6a271:public/en/index.html`.
+- English typography: sentence case for headings (as in French), curly apostrophes ’ and quotes
+  “ ”, no space before : ; ? !. Watch line lengths at 375 px in the mega headlines (hero, contact) and the services/methode
+  outline words.
+
+### Old deep links (previous home page)
+
+Links in the wild point to the ids of the previous page. Each still lands on the matching
+section, on both pages (build.py fails if one disappears — `LEGACY_IDS`):
+
+| Old id | Lands on | How |
+|---|---|---|
+| `#accueil` | `hero` (top of page) | alias span injected by build.py |
+| `#solutions` | `services` | alias |
+| `#services` | `services` | same id |
+| `#produits`, `#vedette`, `#realisations` | `apps` | aliases |
+| `#approche` | `methode` | alias |
+| `#faq` | the FAQ block of `methode` | `id="faq"` on `.methode__faq-wrap` |
+| `#apropos` | `ponts` | alias |
+| `#pour-qui` | the « Pour qui » band of `ponts` | `id="pour-qui"` on `.ponts__band` |
+| `#pourquoi` | « Ce qui nous guide » (values) in `ponts` | `id="pourquoi"` on `.ponts__values-title` |
+| `#contact` | `contact` | same id |
+
+Aliases (`build.py` `ANCHOR_ALIASES`) are `<span class="anchor-alias" id="…">` injected right
+after the section's opening tag: absolutely positioned at the section's top (`base.css` § 14),
+zero size, no content. The old `#temoignages` section was never shown, so it has no target.
+
+### Production guards (build.py)
+
+Per page: `<html lang>` = `fr-CA` / `en-CA`; the canonical URL and the three hreflang links are
+present; no `noindex`; the word « prototype » nowhere on the page (comments excluded); no link to
+`/nouveau/`; JSON-LD must parse; every legacy id exists. Across pages: same ids, same in-page links.

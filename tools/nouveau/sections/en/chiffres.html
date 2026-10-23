@@ -1,0 +1,53 @@
+<!-- chiffres — « AJM by the numbers » (theme gold). Only the numbers allowed by DESIGN.md § 11.
+     No JS / reduced motion: solid gold, final numbers. With motion, chiffres.js grows the gold
+     field from an inset card to full bleed (clip-path, scrubbed) and rolls the digits once. -->
+<section id="chiffres" class="section chiffres" data-theme="gold" aria-labelledby="chiffres-title">
+  <div class="chiffres__bg" aria-hidden="true">
+    <div class="chiffres__ring-wrap">
+      <svg class="chiffres__ring" viewBox="0 0 1000 1000" fill="none">
+        <circle cx="500" cy="500" r="300" fill="#F5F0E6" fill-opacity=".16"/>
+        <circle cx="500" cy="500" r="490" stroke="#F5F0E6" stroke-opacity=".55" stroke-width="1.5"/>
+        <circle cx="500" cy="500" r="438" stroke="#F5F0E6" stroke-opacity=".42" stroke-width="16" stroke-dasharray="1.6 21.33"/>
+        <circle cx="500" cy="500" r="432" stroke="#F5F0E6" stroke-opacity=".6" stroke-width="28" stroke-dasharray="2.4 224"/>
+        <circle cx="500" cy="500" r="352" stroke="#F5F0E6" stroke-opacity=".38" stroke-width="1"/>
+        <circle cx="500" cy="10" r="7" fill="#070F1C" fill-opacity=".72"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header class="section-head chiffres__head">
+      <p class="eyebrow">AJM by the numbers</p>
+      <h2 id="chiffres-title" class="display chiffres__title">Facts, <em>not promises.</em></h2>
+    </header>
+
+    <ul class="chiffres__grid" role="list">
+      <li class="chiffres__item">
+        <p class="chiffres__num"><span class="chiffres__value">7</span></p>
+        <p class="chiffres__label">products built or on the way</p>
+      </li>
+      <li class="chiffres__item">
+        <p class="chiffres__num"><span class="chiffres__value">4</span></p>
+        <p class="chiffres__label">apps on the App Store</p>
+      </li>
+      <li class="chiffres__item">
+        <p class="chiffres__num"><span class="chiffres__value">3</span></p>
+        <p class="chiffres__label">apps on Google Play</p>
+      </li>
+      <li class="chiffres__item">
+        <p class="chiffres__num"><span class="chiffres__value">8</span></p>
+        <p class="chiffres__label">services, from websites to artificial intelligence</p>
+      </li>
+      <li class="chiffres__item chiffres__item--wide">
+        <p class="chiffres__num"><span class="chiffres__value">2</span></p>
+        <p class="chiffres__label">markets: Québec&nbsp;· DR Congo and francophone Africa</p>
+      </li>
+      <li class="chiffres__item chiffres__item--wide" aria-describedby="chiffres-source">
+        <p class="chiffres__num"><span class="sr-only">More than </span><span class="chiffres__value">360</span><span class="chiffres__plus" aria-hidden="true">+</span></p>
+        <p class="chiffres__label">downloads since April 2026</p>
+      </li>
+    </ul>
+
+    <p class="chiffres__note" id="chiffres-source"><span class="chiffres__note-label">Source</span> App Store Connect and Google Play Console, as of October&nbsp;7, 2026: 261 first-time downloads on the App Store and 104 on Google Play since April 2026. These figures are as of that date and are not updated live.</p>
+  </div>
+</section>

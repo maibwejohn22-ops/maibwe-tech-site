@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AJM — prototype /nouveau/ — design system « Nord doré »
+   AJM — home page (/ and /en/) — design system « Nord doré »
    Read tools/nouveau/DESIGN.md before touching this file.
    Section styles live in css/<id>.css and must be scoped to #<id> / .<id>__*.
    ========================================================================== */
@@ -861,6 +861,9 @@ main:focus { outline: none; }
 @media (max-width: 559.98px) {
   .site-header__cta { display: none; }
   .site-menu__cta { display: inline-flex; justify-self: start; }
+  /* The open sheet covers the whole screen under the bar: the hero's identical CTA no longer
+     shows just below the menu's own button. (JS only: without JS the menu is static, see noscript.) */
+  html.js .site-menu { min-height: calc(100svh - var(--header-h)); align-content: start; }
 }
 
 /* ---------- 13. Footer -------------------------------------------------- */
@@ -936,18 +939,18 @@ main:focus { outline: none; }
   background: var(--line);
 }
 .site-footer__legal p { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); }
-.site-footer__proto { color: var(--accent); border-color: rgba(210, 155, 56, 0.45); }
 
-/* ---------- 14. Build placeholder (removed by section builders) -------- */
-.todo-placeholder {
-  display: grid;
-  gap: var(--s-3);
-  padding: var(--s-6);
-  border: 1px dashed var(--line-strong);
-  border-radius: var(--r-md);
-  color: var(--fg-muted);
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
+/* ---------- 14. Old deep links ------------------------------------------ */
+/* Zero-size targets injected by build.py at the top of a section, so the ids of the
+   previous home page (/#produits, /#approche, /en/#apropos…) still land on the right
+   section. Same position as the section's own id (scroll-padding-top handles the header). */
+.anchor-alias {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
 }
 
 /* ---------- 15. Reduced motion: the calm version ----------------------- */

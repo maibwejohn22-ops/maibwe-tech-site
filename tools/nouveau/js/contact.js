@@ -1,9 +1,10 @@
 /* contact — final call to action + contact form.
- * Essential behaviour (always, also in reduced motion): the form submit, ported from the live
+ * Essential behaviour (always, also in reduced motion): the form submit, ported from the previous
  * site (public/assets/site.js, « Formulaire de contact »): honeypot + 3 s timer → silent fake
  * success for robots, length checks, more than 3 links refused, fetch to Web3Forms with
  * Accept: application/json, aria-busy on the button, messages in a polite live region, then a
  * success panel (focused) with « Envoyer un autre message ». Without JS the form posts normally.
+ * Every message comes from js/i18n.js (AJM.t), chosen by <html lang>: same code for / and /en/.
  * Motion only: the mega headline rises word by word from a mask, then the lead, the form and the
  * e-mail follow; the e-mail underline draws with a scaleX wipe. */
 AJM.register('contact', function (api) {
@@ -31,7 +32,6 @@ AJM.register('contact', function (api) {
 function setupForm(api) {
   var form = api.$('#contact-form');
   if (!form) return;
-  var EMAIL = 'john@johnmaibwe.com';
   var status = api.$('#contact-status');
   var submit = api.$('#contact-submit');
   var submitLabel = api.$('.contact__submit-label');
@@ -51,8 +51,7 @@ function setupForm(api) {
     status.classList.toggle('is-error', !!isError);
   }
   function showSuccess(name) {
-    successText.textContent = 'Merci' + (name ? ' ' + name : '') +
-      ' ! Nous avons bien reçu votre demande et vous répondrons rapidement, en langage clair.';
+    successText.textContent = AJM.t('formThanks', name);
     form.hidden = true;
     success.hidden = false;
     successTitle.focus();
@@ -73,30 +72,30 @@ function setupForm(api) {
     // The browser checks minlength only after keyboard input: check again here.
     var message = (messageField.value || '').trim();
     if (name.length < 2 || message.length < 20) {
-      say('Merci de préciser votre nom (2 caractères minimum) et votre demande (20 caractères minimum).', true);
+      say(AJM.t('formTooShort'), true);
       return;
     }
     if ((message.match(/https?:\/\/|www\./gi) || []).length > 3) {
-      say('Pour éviter les messages indésirables, limitez votre message à 3 liens. Vous pourrez nous envoyer les autres par courriel.', true);
+      say(AJM.t('formTooManyLinks'), true);
       return;
     }
     say('', false);
     sending = true;
     submit.setAttribute('aria-busy', 'true');
-    submitLabel.textContent = 'Envoi en cours…';
+    submitLabel.textContent = AJM.t('formSending');
 
     var data = new FormData(form);
     // Subject of the e-mail received: the chosen category, to sort at a glance.
-    data.set('subject', 'Nouveau message — ' + subjectField.value + ' — johnmaibwe.com (prototype)');
+    data.set('subject', AJM.t('formSubject', subjectField.value));
 
     fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
       .then(function (r) { return r.json(); })
       .then(function (res) {
         if (res && res.success) showSuccess(name);
-        else say('Désolé, l’envoi a échoué. Réessayez dans un instant ou écrivez à ' + EMAIL + '.', true);
+        else say(AJM.t('formFailed'), true);
       })
       .catch(function () {
-        say('Problème de connexion. Vérifiez votre réseau et réessayez.', true);
+        say(AJM.t('formNetwork'), true);
       })
       .then(function () {
         sending = false;

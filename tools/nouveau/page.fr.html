@@ -1,16 +1,38 @@
 <!doctype html>
-<html lang="fr" data-motion="full">
+<html lang="fr-CA" data-motion="full">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Applications John Maibwe — Prototype</title>
-  <meta name="description" content="Applications John Maibwe (AJM), studio logiciel québécois : applications web et mobiles, logiciels sur mesure, intelligence artificielle et automatisation, pour les organisations du Québec et de l’Afrique francophone.">
-  <meta name="robots" content="noindex, nofollow">
+  <title>Applications John Maibwe (AJM) — Développement web, mobile et IA au Québec</title>
+  <meta name="description" content="Applications John Maibwe (AJM), entreprise québécoise : applications web et mobiles (iOS, Android), logiciels sur mesure, intelligence artificielle, automatisation, cloud et transformation numérique.">
   <meta name="author" content="Applications John Maibwe">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#0C1729">
+  <link rel="canonical" href="https://johnmaibwe.com/">
+  <link rel="alternate" hreflang="fr-CA" href="https://johnmaibwe.com/">
+  <link rel="alternate" hreflang="en-CA" href="https://johnmaibwe.com/en/">
+  <link rel="alternate" hreflang="x-default" href="https://johnmaibwe.com/">
+  <!-- Open Graph (partage Facebook, LinkedIn, WhatsApp…) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Applications John Maibwe">
+  <meta property="og:locale" content="fr_CA">
+  <meta property="og:locale:alternate" content="en_CA">
+  <meta property="og:title" content="Applications John Maibwe (AJM) — Applications web, mobiles et IA">
+  <meta property="og:description" content="Applications web et mobiles, logiciels sur mesure, intelligence artificielle et transformation numérique. Entreprise basée au Québec, ouverte au monde.">
+  <meta property="og:url" content="https://johnmaibwe.com/">
+  <meta property="og:image" content="https://johnmaibwe.com/assets/og-ajm-fr.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo AJM — Applications John Maibwe, johnmaibwe.com">
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Applications John Maibwe (AJM) — Applications web, mobiles et IA">
+  <meta name="twitter:description" content="Applications web et mobiles, logiciels sur mesure et intelligence artificielle. Basée au Québec, ouverte au monde.">
+  <meta name="twitter:image" content="https://johnmaibwe.com/assets/og-ajm-fr.png">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/ajm-apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Montserrat:wght@400;500;600;700;800&amp;display=swap">
@@ -28,6 +50,37 @@
   <script src="/assets/vendor/gsap.min.js" defer></script>
   <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
   <script src="/assets/nouveau/nouveau.js?v={{JS_VERSION}}" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://johnmaibwe.com/#organization",
+        "name": "Applications John Maibwe",
+        "alternateName": "AJM",
+        "url": "https://johnmaibwe.com/",
+        "logo": "https://johnmaibwe.com/assets/ajm-icon-512.png",
+        "image": "https://johnmaibwe.com/assets/og-ajm-fr.png",
+        "email": "john@johnmaibwe.com",
+        "description": "Développement d’applications web et mobiles, logiciels sur mesure, intelligence artificielle, automatisation, solutions cloud et transformation numérique.",
+        "founder": { "@type": "Person", "name": "John Maibwe" },
+        "address": { "@type": "PostalAddress", "addressRegion": "QC", "addressCountry": "CA" },
+        "areaServed": [ { "@type": "Country", "name": "Canada" }, "International" ],
+        "knowsLanguage": [ "fr", "en" ],
+        "contactPoint": { "@type": "ContactPoint", "contactType": "customer service", "email": "john@johnmaibwe.com", "availableLanguage": [ "French", "English" ] }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://johnmaibwe.com/#website",
+        "url": "https://johnmaibwe.com/",
+        "name": "Applications John Maibwe",
+        "inLanguage": [ "fr-CA", "en-CA" ],
+        "publisher": { "@id": "https://johnmaibwe.com/#organization" }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 <div class="top-sentinel" id="top" aria-hidden="true"></div>
@@ -51,7 +104,6 @@
         </ul>
       </nav>
       <div class="site-menu__utils">
-        <a class="site-menu__util" href="/">Site actuel</a>
         <a class="site-menu__util" href="/en/" hreflang="en" lang="en">EN<span class="sr-only"> — English version</span></a>
       </div>
       <a class="btn btn--primary site-menu__cta" href="#contact">Parlons de votre projet</a>
@@ -91,7 +143,7 @@
     </div>
 
     <nav class="site-footer__nav" aria-label="Pied de page">
-      <p class="site-footer__title">La page</p>
+      <p class="site-footer__title">Sur cette page</p>
       <ul>
         <li><a href="#services">Services</a></li>
         <li><a href="#apps">Produits</a></li>
@@ -106,7 +158,6 @@
       <p class="site-footer__title">Liens</p>
       <ul>
         <li><a href="/confidentialite.html">Politique de confidentialité</a></li>
-        <li><a href="/">Site actuel</a></li>
         <li><a href="/en/" hreflang="en" lang="en">English</a></li>
       </ul>
     </div>
@@ -116,7 +167,7 @@
 
   <div class="wrap site-footer__legal">
     <p>Applications John Maibwe — entreprise individuelle de John Maibwe&nbsp;· NEQ&nbsp;2282127606&nbsp;· Québec, Canada</p>
-    <p><span class="chip site-footer__proto">Prototype — non indexé</span> <span>© 2026 Applications John Maibwe</span></p>
+    <p>© 2026 Applications John Maibwe</p>
   </div>
 </footer>
 </body>

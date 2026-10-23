@@ -1,4 +1,4 @@
-/* core.js — AJM prototype micro-framework (see tools/nouveau/DESIGN.md, « core.js API »).
+/* core.js — AJM home page micro-framework (see tools/nouveau/DESIGN.md, « core.js API »).
  *
  *   AJM.register('apps', function (api) {
  *     // essential, non-motion behaviour first (tabs, menus…): always runs
@@ -192,7 +192,7 @@
     else window.addEventListener('load', refresh, { once: true });
   }
 
-  /* A deep link (/nouveau/#methode) opened in a new tab: the first refreshes reset the scroll
+  /* A deep link (/#methode, /en/#produits) opened in a new tab: the first refreshes reset the scroll
      position before or after the browser jumps to the fragment. Go back to the target after
      each refresh, until the visitor scrolls by themselves (or 3 s after load). */
   function keepHashTarget() {
@@ -306,7 +306,7 @@
     function setOpen(open, returnFocus) {
       header.toggleAttribute('data-menu-open', open);
       toggle.setAttribute('aria-expanded', String(open));
-      if (label) label.textContent = open ? 'Fermer' : 'Menu';
+      if (label) label.textContent = AJM.t(open ? 'menuClose' : 'menuOpen');   // js/i18n.js
       if (open) {
         var first = menu.querySelector('a');
         if (first) setTimeout(function () { first.focus(); }, 30);
@@ -511,7 +511,7 @@
     var finalText = el.textContent;
     var to = opts.to != null ? opts.to : parseFloat(finalText.replace(/[^\d.,-]/g, '').replace(',', '.'));
     var obj = { v: opts.from || 0 };
-    var fmt = new Intl.NumberFormat('fr-CA', { maximumFractionDigits: opts.decimals || 0, minimumFractionDigits: opts.decimals || 0 });
+    var fmt = new Intl.NumberFormat(AJM.locale || 'fr-CA', { maximumFractionDigits: opts.decimals || 0, minimumFractionDigits: opts.decimals || 0 });
     restorers.push(function () { el.textContent = finalText; });
     return gsap.to(obj, {
       v: to, duration: opts.duration || 1.6, ease: opts.ease || 'power3.out',

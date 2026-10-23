@@ -1,8 +1,8 @@
 <!-- contact — final call to action + the contact form (theme cream). Brief: DESIGN.md § 9.9.
-     The form is the live site's form (same Web3Forms endpoint and access key, honeypot, checks),
-     with ids prefixed « contact- » and a « (prototype) » subject so John can tell where a message
-     came from. contact.js handles the submit (always, also in reduced motion); without JS the
-     form posts normally. Left: lead + form; right: the e-mail and the practical facts.
+     The form is the previous live site's form (same Web3Forms endpoint and access key, honeypot,
+     checks, subject « Nouveau message — <sujet> — johnmaibwe.com », hidden « langue »), with ids
+     prefixed « contact- ». contact.js handles the submit (always, also in reduced motion; messages
+     in js/i18n.js); without JS the form posts normally with the hidden subject below. Left: lead + form; right: the e-mail and the practical facts.
      The FAQ lives in « methode » (one FAQ per page). -->
 <section id="contact" class="section contact bg-grain" data-theme="cream" aria-labelledby="contact-title">
   <div class="wrap">
@@ -23,8 +23,8 @@
           <!-- Web3Forms : clé d’accès publique (route les messages vers la boîte configurée sur
                web3forms.com). Elle ne donne aucun accès au compte ; sûre côté client. -->
           <input type="hidden" name="access_key" value="072943ae-2b7c-4151-91dd-86ed93e98fc4">
-          <input type="hidden" name="subject" value="Nouveau message — johnmaibwe.com (prototype)">
-          <input type="hidden" name="from_name" value="Site Applications John Maibwe (prototype)">
+          <input type="hidden" name="subject" value="Nouveau message — johnmaibwe.com">
+          <input type="hidden" name="from_name" value="Site Applications John Maibwe">
           <input type="hidden" name="langue" value="Français">
           <!-- Pot de miel anti-robots : invisible et hors du parcours clavier. -->
           <input type="checkbox" name="botcheck" class="contact__hp" tabindex="-1" autocomplete="off" aria-hidden="true">

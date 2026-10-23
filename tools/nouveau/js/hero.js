@@ -81,16 +81,21 @@ AJM.register('hero', function (api) {
   api.onCleanup(api.utils.pauseWhenHidden(visual, group));
 
   if (pauseBtn) {
+    // The accessible name (sr-only text in the HTML) stays the same and aria-pressed carries
+    // the state; only the mouse tooltip says what a click will do (js/i18n.js).
     pauseBtn.hidden = false;
+    pauseBtn.title = AJM.t('heroPause');
     api.listen(pauseBtn, 'click', function () {
       userPaused = !userPaused;
       pauseBtn.setAttribute('aria-pressed', String(userPaused));
+      pauseBtn.title = AJM.t(userPaused ? 'heroResume' : 'heroPause');
       el.classList.toggle('hero--paused', userPaused);
       if (userPaused) group.pause(); else group.play();
     });
     api.onCleanup(function () {
       pauseBtn.hidden = true;
       pauseBtn.setAttribute('aria-pressed', 'false');
+      pauseBtn.title = AJM.t('heroPause');
       el.classList.remove('hero--paused');
     });
   }

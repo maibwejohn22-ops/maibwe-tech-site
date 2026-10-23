@@ -97,8 +97,18 @@
   stroke-linejoin: round;
   color: var(--accent);
 }
-.services__tab-name { min-width: 0; }
+.services__tab-name { min-width: 0; overflow-wrap: break-word; }   /* safety net: a long word never spills out of its tile */
 .services__tab-arrow { display: none; }
+/* Phones: the longest words (« Automatisation », « Transformation », “transformation”,
+   “Maintenance”) must fit their tile whole. < 420 px: tighter padding and gap; < 375 px: no
+   pictogram either, and every tile keeps to two lines (360 px is a common Android width). */
+@media (max-width: 419.98px) {
+  .services__tab { gap: 8px; padding-inline: 10px; }
+}
+@media (max-width: 374.98px) {
+  .services__tab { gap: 6px; }
+  .services__tab-ico { display: none; }
+}
 
 /* ---------- Panels ------------------------------------------------------- */
 /* No-JS / before init: a grid of cards. */

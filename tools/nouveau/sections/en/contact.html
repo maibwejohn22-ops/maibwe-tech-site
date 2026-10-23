@@ -1,0 +1,90 @@
+<!-- contact — final call to action + the contact form (theme cream). Brief: DESIGN.md § 9.9.
+     The form is the previous live site's form (same Web3Forms endpoint and access key, honeypot,
+     checks, subject « New message (EN) — <topic> — johnmaibwe.com », hidden « langue »), with ids
+     prefixed « contact- ». contact.js handles the submit (always, also in reduced motion; messages
+     in js/i18n.js); without JS the form posts normally with the hidden subject below. Left: lead + form; right: the e-mail and the practical facts.
+     The FAQ lives in « methode » (one FAQ per page). -->
+<section id="contact" class="section contact bg-grain" data-theme="cream" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="contact__head">
+      <p class="eyebrow">Contact</p>
+      <h2 id="contact-title" class="display display--mega contact__title">Let’s talk about <em>your project.</em></h2>
+    </div>
+
+    <div class="contact__grid">
+      <div class="contact__main">
+        <p class="lead contact__lead">Describe your needs in a few lines: we’ll reply quickly, in plain language, without jargon.</p>
+        <p class="contact__reassure">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6L9 17l-5-5"/></svg>
+          The first meeting is free — and you’ll walk away with useful advice.
+        </p>
+
+        <form class="contact__form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <!-- Web3Forms: public access key (routes messages to the mailbox configured on
+               web3forms.com). It gives no access to the account; safe on the client side. -->
+          <input type="hidden" name="access_key" value="072943ae-2b7c-4151-91dd-86ed93e98fc4">
+          <input type="hidden" name="subject" value="New message (EN) — johnmaibwe.com">
+          <input type="hidden" name="from_name" value="Site Applications John Maibwe">
+          <!-- « subject », « from_name » and « langue » are the values of the previous live /en/ form:
+               John's mailbox sorts on them. Do not translate. -->
+          <input type="hidden" name="langue" value="English">
+          <!-- Anti-spam honeypot: invisible and out of the keyboard path. -->
+          <input type="checkbox" name="botcheck" class="contact__hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <div class="contact__row">
+            <div class="contact__field">
+              <label class="contact__label" for="contact-nom">Your name</label>
+              <input class="contact__input" id="contact-nom" name="nom" type="text" autocomplete="name" required minlength="2" maxlength="100">
+            </div>
+            <div class="contact__field">
+              <label class="contact__label" for="contact-email">Your email</label>
+              <input class="contact__input" id="contact-email" name="email" type="email" autocomplete="email" required maxlength="254">
+            </div>
+          </div>
+          <div class="contact__field">
+            <label class="contact__label" for="contact-sujet">What is your request about?</label>
+            <select class="contact__input contact__select" id="contact-sujet" name="sujet" required>
+              <option>Web application or website</option>
+              <option>iOS or Android app</option>
+              <option>Custom software</option>
+              <option>Artificial intelligence</option>
+              <option>Process automation</option>
+              <option>Cloud and databases</option>
+              <option>Digital transformation</option>
+              <option>Maintenance of an existing project</option>
+              <option>One of our products</option>
+              <option>Other request</option>
+            </select>
+          </div>
+          <div class="contact__field">
+            <label class="contact__label" for="contact-message">Your message</label>
+            <textarea class="contact__input contact__textarea" id="contact-message" name="message" minlength="20" maxlength="5000" placeholder="Describe your project, your organization and your needs…" required></textarea>
+          </div>
+          <div class="contact__send">
+            <button class="btn btn--primary btn--lg contact__submit" id="contact-submit" type="submit"><span class="contact__submit-label">Send message</span>
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <p class="contact__status" id="contact-status" role="status" aria-live="polite"></p>
+          </div>
+          <p class="contact__note">Your information is sent through Web3Forms and used only to handle your request. <a href="/confidentialite.html" hreflang="fr">Privacy policy (in French)</a>.</p>
+        </form>
+
+        <div class="contact__success" id="contact-success" hidden>
+          <span class="contact__success-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <h3 class="h3 contact__success-title" id="contact-success-title" tabindex="-1">Message sent!</h3>
+          <p id="contact-success-text">Thank you! We’ve received your request and will get back to you shortly, in plain language.</p>
+          <button class="btn btn--ghost" type="button" id="contact-again">Send another message</button>
+        </div>
+      </div>
+
+      <div class="contact__side">
+        <p class="contact__or">or write directly to</p>
+        <a class="contact__mail" href="mailto:john@johnmaibwe.com"><span class="contact__mail-text">john@<wbr>johnmaibwe.com</span><span class="contact__mail-line" aria-hidden="true"></span></a>
+        <dl class="contact__facts">
+          <div class="contact__fact"><dt>Your contact</dt><dd>John Maibwe, founder</dd></div>
+          <div class="contact__fact"><dt>Regions</dt><dd>Québec&nbsp;· DR Congo and francophone Africa — remote meetings</dd></div>
+          <div class="contact__fact"><dt>Languages</dt><dd>English and French</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>

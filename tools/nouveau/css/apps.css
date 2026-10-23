@@ -195,6 +195,14 @@
   #apps:not(.apps--rail) .apps__num { z-index: -1; top: 8.5rem; right: 0; font-size: 6rem; }
   #apps:not(.apps--rail) .apps__caption { max-width: var(--apps-phone); }
 }
+/* < 380 px the column beside the phone is too narrow for « TELEPromptCam » (it broke mid-word):
+   the name takes its own full-width row above the phone, the kind stays beside it. */
+@media (max-width: 379.98px) {
+  #apps:not(.apps--rail) .apps__card {
+    grid-template-areas: "top top" "name name" "fig kind" "fig ." "pitch pitch" "for for" "links links";
+  }
+  #apps:not(.apps--rail) .apps__kind { margin-top: var(--s-5); }
+}
 
 /* ---------- Rail, small screens (or short windows): native swipe row ----- */
 @media (max-width: 899.98px), (max-height: 679.98px) {
